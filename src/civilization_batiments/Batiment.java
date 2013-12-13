@@ -6,6 +6,8 @@
 
 package civilization_batiments;
 
+import civilization.Joueur;
+
 /**
  *
  * @author Nicolas
@@ -14,5 +16,6 @@ public abstract class Batiment {
     
     int pointDeVie;
     int tempsConstruction;
+    Joueur Proprietaire;
     
 }

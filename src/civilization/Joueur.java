@@ -4,17 +4,12 @@
  * and open the template in the editor.
  */
 
-package civilization_batiments;
+package civilization;
 
 /**
  *
  * @author Nicolas
  */
-public class Ferme extends Batiment{
-    
-    public Ferme(){
-        this.tempsConstruction=2;
-        this.pointDeVie=2;
-    }
+public class Joueur {
     
 }

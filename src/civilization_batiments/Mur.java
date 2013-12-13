@@ -10,6 +10,9 @@ package civilization_batiments;
  *
  * @author Nicolas
  */
-public class Mur {
-    
+public class Mur extends Batiment{
+    public Mur() {
+        this.tempsConstruction=10;
+        this.pointDeVie=20;
+    }
 }

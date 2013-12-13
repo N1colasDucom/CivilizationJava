@@ -10,6 +10,9 @@ package civilization_batiments;
  *
  * @author Nicolas
  */
-public class Caserne {
-    
+public class Caserne extends Batiment{
+   public Caserne(){
+       this.tempsConstruction=15;
+       this.pointDeVie=10;
+   } 
 }

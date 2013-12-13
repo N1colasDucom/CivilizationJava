@@ -10,6 +10,9 @@ package civilization_batiments;
  *
  * @author Nicolas
  */
-public class Tour {
-    
+public class Tour extends Batiment{
+    public Tour(){
+        this.tempsConstruction=15;
+        this.pointDeVie=8;
+    }
 }

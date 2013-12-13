@@ -14,7 +14,7 @@ public class HotelDeVille extends Batiment {
     
     public HotelDeVille(){
         this.tempsConstruction = 0;
-        
+        this.pointDeVie=10;
     }
     
 }

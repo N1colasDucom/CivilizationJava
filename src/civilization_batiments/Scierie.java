@@ -10,6 +10,9 @@ package civilization_batiments;
  *
  * @author Nicolas
  */
-public class Scierie {
-    
+public class Scierie extends Batiment{
+    public Scierie() {
+    this.tempsConstruction=4;
+    this.pointDeVie=4;
+    }
 }

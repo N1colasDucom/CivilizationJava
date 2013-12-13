@@ -14,6 +14,7 @@ public class Port extends Batiment{
     
     public Port(){
         this.tempsConstruction=10;
+        this.pointDeVie=5;
     }
     
 }
