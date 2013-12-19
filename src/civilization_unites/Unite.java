@@ -7,14 +7,28 @@ public abstract class Unite
     int defense;
     int niveau;
     
-    int requiertNourriture;
+    int requisNourriture;
+    int requisBois;
+    int requisFer;
+    int requisOr;
+    
     int consommeNourriture;
-    
-    int capaciteDeProduction;
-    
-    int degatsInfliges;
-    
-    boolean peutConstruire;
-    boolean peutChercherNourriture;
-    boolean peutCombattre;
+    int consommeBois;
+    int consommeFer;
+    int consommeOr;
+
+    public Unite() {
+        this.defense = 1;
+        this.niveau = 1;
+        
+        this.requisNourriture = 0;
+        this.requisBois = 0;
+        this.requisFer = 0;
+        this.requisOr = 0;
+        
+        this.consommeNourriture = 0;
+        this.consommeBois = 0;
+        this.consommeFer = 0;
+        this.consommeOr = 0;
+    }
 }
