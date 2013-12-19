@@ -21,4 +21,9 @@ public abstract class UniteCivile extends Unite
         this.peutTransporter = false;
         this.peutConstruire = false;
     }
+    
+    @Override public String toString()
+    {
+        return this.getClass().getSimpleName() + " (" + this.getClass().getSuperclass().getSimpleName() + ")\n" + super.toString();
+    }
 }
