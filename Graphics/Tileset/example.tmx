@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="100" height="100" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="grass-tiles-2-small" tilewidth="32" tileheight="32">
+  <image source="grass-tiles-2-small.png" width="384" height="192"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="100" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2cS3LCMBAFbaq4BRdgySr3v1k2pMpM9BljxBtretEVgnExem1Zlq1kXZZlhTD8PLk4Wc1rGOPD0tuv5AnGeLG5e92o2zADnnPU1ZDBx71AhFrWgg/rZDYfpfwVTi5L+bgo+bia/WZx0spc0Uf+HFg3awIfvbyVPrYetq9L2c/iotc3vuHDZln73vtSz3wWH0e2j3JifWz7g/IaQ+lD0W6be6k/zO6jd66OUtvjSYTaRra39Z56HlI6Xh7Lqx/Luvl5FmzmnuxVbvbMUa2Xs9DqF568R7mp3cv17KfO9KgPD++4HeXFcw9+NlrjxxFnez2846a2/5lRXrd4jvWj289E9OtI2w/U9Yx2oa7B48HzPoxz0Mt79vH8DNyeqOuAVxc4ieECHzG4NVDXlo2s8/MzUOoX9BO9E+sGH2Pg3BML73jAuPFdH711JPjQOmndx1LXmwHv9S0+ND72bofPumj9XnKirnlm9s6/8aH1o64nOziIBT5igY9Yaxwy+1CvocbHfw/4iOcBH7FcROoj2XysSzn7b6yhxkfdh9cJPsb6sH2klr/q/JXJRyn/mgt86JxE8JDRx9aJfU/tIbMP9ZiNj/OAj1jgIxb4iAU+AAAAAOBTRL5vkolS/jiJ4aH0GXWdWdjz//nUtc7OnozxEccH/SOeD3WtGegd9xGfpc9Ob90VLvROoj9PzwD5AwAAAAAAAAAAvAf31eKAh1jgIg64iPEsqvX38JkctZ7dRqjDu30Wam1UtN+7Tk+dmSqDiD5md3JGHzM7ibSuGh++cdT72W86mdVHq22KtXHe75nZRy0H9Xwksw+bf4TrfeaIkJVfCFIyBUCcAAA=
+  </data>
+ </layer>
+</map>
