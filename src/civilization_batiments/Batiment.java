@@ -14,8 +14,15 @@ import civilization.Joueur;
  */
 public abstract class Batiment {
     
-    int pointDeVie;
+    int pointsDeVie;
     int tempsConstruction;
     Joueur Proprietaire;
     
+    public void Batiment(Joueur j){
+       Proprietaire=j;
+       Proprietaire.ajouterBatiment(this);
+    }
+    
 }
+
+

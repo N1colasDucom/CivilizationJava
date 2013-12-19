@@ -6,10 +6,21 @@
 
 package civilization;
 
+import civilization_batiments.Batiment;
+import java.util.ArrayList;
+
 /**
  *
  * @author Nicolas
  */
 public class Joueur {
+    int nourriture;
+    int bois;
+    int or;
+    int fer;
+    ArrayList<Batiment> batiments= new ArrayList<Batiment>();
     
+    public void ajouterBatiment(Batiment b){
+        this.batiments.add(b);
+    }
 }
