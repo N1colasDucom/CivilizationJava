@@ -13,7 +13,8 @@ public class Engine extends BasicGame
 {
         private TiledMap tMap;
         int tMapX=0,tMapY=0,tMapXX=0,tMapYY=0;
-        static int WSizeX=640,WSizeY=480;
+        static int WSizeX=1280,WSizeY=720;
+        int realMouseX=0,realMouseY=0;
         
 	public Engine(String gamename)
 	{
@@ -27,6 +28,15 @@ public class Engine extends BasicGame
 
 	@Override
 	public void update(GameContainer gc, int i) throws SlickException {
+                   gc.setVSync(true);
+                   if (gc.getInput().isMousePressed(0)) {
+                       realMouseX=gc.getInput().getMouseX()-tMapX;
+                       realMouseY=gc.getInput().getMouseY()-tMapY;
+                       System.out.println("Mouse 1 :"+realMouseX+" "+realMouseY);
+                       System.out.println("Cell X: "+(realMouseX-(WSizeX-100*32)/2)/32);
+                       System.out.println("Cell Y: "+(realMouseY-(WSizeY-100*32)/2)/32);
+                       
+            }
                    
         if( gc.getInput().isKeyDown(Input.KEY_RIGHT) )
 		{
