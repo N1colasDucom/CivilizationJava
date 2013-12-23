@@ -23,7 +23,8 @@ public class Engine extends BasicGame
 
 	@Override
 	public void init(GameContainer gc) throws SlickException {
-        tMap = new TiledMap("Graphics/Tileset/example.tmx");
+        civilization.game_engine.mapgenerator.Noise.GenerateMap();
+        tMap = new TiledMap("Graphics/Tileset/map.tmx");
         }
 
 	@Override
@@ -40,21 +41,21 @@ public class Engine extends BasicGame
                    
         if( gc.getInput().isKeyDown(Input.KEY_RIGHT) )
 		{
-			tMapX--;
+			tMapX=tMapX-10;
 		}
  
 		if( gc.getInput().isKeyDown(Input.KEY_LEFT) )
 		{
-			tMapX++;
+			tMapX=tMapX+10;
 		}
 		if( gc.getInput().isKeyDown(Input.KEY_UP) )
 		{
-			tMapY++;
+			tMapY=tMapY+10;
 		}
  
 		if( gc.getInput().isKeyDown(Input.KEY_DOWN) )
 		{
-			tMapY--;
+			tMapY=tMapY-10;
 		}
         }
 
