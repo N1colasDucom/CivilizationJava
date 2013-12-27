@@ -11,12 +11,11 @@ import org.newdawn.slick.SlickException;
 public class Civilization 
 {
     
-    private EngineManager eng;
-
+  
     
 	public Civilization(String gamename) throws SlickException
 	{
-            eng.startEngine();
+
 	}
 
 }
