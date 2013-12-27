@@ -12,9 +12,11 @@ import org.newdawn.slick.tiled.TiledMap;
 public class Engine extends BasicGame
 {
         private TiledMap tMap;
-        int tMapX=0,tMapY=0,tMapXX=0,tMapYY=0;
-        static int WSizeX=1280,WSizeY=720;
+        int tMapX=0,tMapY=0;
+        static int WSizeX=30*36,WSizeY=20*36;
         int realMouseX=0,realMouseY=0;
+        String state = "menu";
+
         
 	public Engine(String gamename)
 	{
@@ -23,46 +25,52 @@ public class Engine extends BasicGame
 
 	@Override
 	public void init(GameContainer gc) throws SlickException {
-        civilization.game_engine.mapgenerator.Noise.GenerateMap();
+      // civilization.game_engine.mapgenerator.Noise.GenerateMap();
         tMap = new TiledMap("Graphics/Tileset/map.tmx");
         }
 
 	@Override
 	public void update(GameContainer gc, int i) throws SlickException {
-                   gc.setVSync(true);
+                   gc.setVSync(true); 
                    if (gc.getInput().isMousePressed(0)) {
-                       realMouseX=gc.getInput().getMouseX()-tMapX;
-                       realMouseY=gc.getInput().getMouseY()-tMapY;
-                       System.out.println("Mouse 1 :"+realMouseX+" "+realMouseY);
-                       System.out.println("Cell X: "+(realMouseX-(WSizeX-100*32)/2)/32);
-                       System.out.println("Cell Y: "+(realMouseY-(WSizeY-100*32)/2)/32);
+                       realMouseX=(gc.getInput().getMouseX()+tMapX*tMap.getTileWidth())/tMap.getTileWidth();
+                       realMouseY=(gc.getInput().getMouseY()+tMapY*tMap.getTileHeight())/tMap.getTileHeight();
+                       System.out.println("Mouse  :"+realMouseX+" "+realMouseY);
                        
+
             }
                    
-        if( gc.getInput().isKeyDown(Input.KEY_RIGHT) )
+                if( gc.getInput().isKeyDown(Input.KEY_RIGHT) )
 		{
-			tMapX=tMapX-10;
+			if((WSizeX+tMapX*tMap.getTileWidth())<(tMap.getWidth()*tMap.getTileWidth())) tMapX++;
 		}
  
 		if( gc.getInput().isKeyDown(Input.KEY_LEFT) )
 		{
-			tMapX=tMapX+10;
+			if(tMapX>0) tMapX--;
 		}
 		if( gc.getInput().isKeyDown(Input.KEY_UP) )
 		{
-			tMapY=tMapY+10;
+			
+                    if(tMapY>0) tMapY--;
 		}
  
 		if( gc.getInput().isKeyDown(Input.KEY_DOWN) )
 		{
-			tMapY=tMapY-10;
+			if((WSizeY+tMapY*tMap.getTileHeight())<(tMap.getTileHeight()*tMap.getHeight())) tMapY++;
 		}
         }
 
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException
 	{
-                tMap.render(tMapX, tMapY, 0, 0, WSizeX, WSizeY);	
+            
+                tMap.render(0,0, tMapX, tMapY,WSizeX,WSizeY);	
+           
+                
+                
+                
+               
 	}
 
 	public static void main(String[] args)
@@ -70,7 +78,7 @@ public class Engine extends BasicGame
 		try
 		{
 			AppGameContainer appgc;
-			appgc = new AppGameContainer(new Engine("Simple Slick Game"));
+			appgc = new AppGameContainer(new Engine("Slick"));
 			appgc.setDisplayMode(WSizeX, WSizeY, false);
                         appgc.setTargetFrameRate(100);
                         appgc.start();

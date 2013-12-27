@@ -64,8 +64,12 @@ public class Noise {
             result2[i][j]=perlinNoise2[i][j];
         }
     }
-
+        
     ImageWriter.greyWriteImage(result,result2);
+    result=null;
+    result2=null;
+    perlinNoise1=null;
+    perlinNoise2=null;
 
     }
     
