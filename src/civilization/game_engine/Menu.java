@@ -17,33 +17,44 @@ import org.newdawn.slick.state.StateBasedGame;
  * @author Nicolas
  */
 public class Menu extends BasicGameState{
-    Image Jouer;
-    Image Quitter;
+    GameButton Jouer;
+    GameButton Quitter;
     
     public Menu(int State){
         
     }
 
+    
     @Override
     public int getID() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return 0;
     }
 
     @Override
-    public void init(GameContainer container, StateBasedGame game) throws SlickException {
-        Jouer = new Image("Graphics/Buttons/Jouer.png");
-        Quitter = new Image("Graphics/Buttons/Quitter.png");
+    public void init(GameContainer gc, StateBasedGame game) throws SlickException {
+        Jouer = new GameButton(100,100,new Image("Graphics/Buttons/Jouer.png"));       
+        Quitter =new GameButton(100,100,new Image("Graphics/Buttons/Quitter.png"));
     }
 
     @Override
-    public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-        Jouer.draw(100, 100);
-        Quitter.draw(100, 200);
+    public void render(GameContainer gc, StateBasedGame game, Graphics g) throws SlickException {
+        Jouer.Image.draw(100, 100);
+        Quitter.Image.draw(100, 200);
     }
 
     @Override
-    public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void update(GameContainer gc, StateBasedGame game, int delta) throws SlickException {
+       int mouseX=gc.getInput().getMouseX();
+       int mouseY=gc.getInput().getMouseY();
+       
+       if (gc.getInput().isMousePressed(0)) {
+           if((mouseX>Jouer.X && mouseX<Jouer.X+Jouer.Image.getWidth())&&(mouseY>Jouer.Y && mouseY<Jouer.Y+Jouer.Image.getHeight())){
+              game.enterState(1);
+           }
+        }
+     
+          
+           
     }
 
     

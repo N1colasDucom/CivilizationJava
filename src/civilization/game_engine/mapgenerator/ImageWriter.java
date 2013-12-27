@@ -76,7 +76,7 @@ public class ImageWriter {
         
         try {
             // retrieve image
-            File outputfile = new File("Graphics/Tileset/"+randomName()+".png");
+            File outputfile = new File("Graphics/Tileset/gameMap.png");
             System.out.println("SAved!");
             outputfile.createNewFile();
 
