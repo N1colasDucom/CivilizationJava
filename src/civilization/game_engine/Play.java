@@ -8,6 +8,7 @@ package civilization.game_engine;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
@@ -20,8 +21,9 @@ import org.newdawn.slick.tiled.TiledMap;
  */
 public class Play extends BasicGameState{
     private TiledMap tMap;
+    private Image elf,elf2;
     int tMapX=0,tMapY=0;
-    static int WSizeX=30*36,WSizeY=20*36;
+    static int WSizeX=1000,WSizeY=800;
     int realMouseX=0,realMouseY=0;
     public Play(int State){
         
@@ -35,19 +37,27 @@ public class Play extends BasicGameState{
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         tMap = new TiledMap("Graphics/Tileset/map.tmx");
-        
+        elf = new Image("Graphics/Units/Dark Elf/Blind.png");
+        elf2 = new Image("Graphics/Units/Dark Elf/Blind.png");
     }
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-        tMap.render(0,0, tMapX, tMapY,10,10);
+        tMap.render(0,0, tMapX, tMapY,25,20);
+        elf.draw((float)(20*32-32*tMapX),(float)(20*32-32*tMapY),(float)32,(float)32);
+        if (((99*32-32*tMapX<25*32)&&(99*32-32*tMapY<20*32))) {
+           elf2.draw((float)(99*32-32*tMapX),(float)(99*32-32*tMapY),(float)32,(float)32); 
+        }
+        
+                
     }
 
     @Override
     public void update(GameContainer gc, StateBasedGame game, int delta) throws SlickException {
         if( gc.getInput().isKeyDown(Input.KEY_RIGHT) )
 		{
-			if((WSizeX+tMapX*tMap.getTileWidth())<(tMap.getWidth()*tMap.getTileWidth())) tMapX++;
+			if(tMapX+25<tMap.getWidth()) tMapX++;
+                        //System.out.println("test : elf x + location x: "+(99*32-32*tMapX));
 		}
  
 		if( gc.getInput().isKeyDown(Input.KEY_LEFT) )
@@ -62,7 +72,8 @@ public class Play extends BasicGameState{
  
 		if( gc.getInput().isKeyDown(Input.KEY_DOWN) )
 		{
-			if((WSizeY+tMapY*tMap.getTileHeight())<(tMap.getTileHeight()*tMap.getHeight())) tMapY++;
+                if(tMapY+20<tMap.getHeight()) tMapY++;
+                    
 		}
     }
     

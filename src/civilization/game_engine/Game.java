@@ -20,7 +20,7 @@ public class Game extends StateBasedGame{
     public static final int menu = 0;
     public static final int prePlay = 1;
     public static final int play = 2;
-    public static final int wSizeX=1280;
+    public static final int wSizeX=1020;
     public static final int wSizeY=720;
      
     
