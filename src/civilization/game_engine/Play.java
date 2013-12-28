@@ -6,6 +6,8 @@
 
 package civilization.game_engine;
 
+import java.util.Arrays;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -25,8 +27,19 @@ public class Play extends BasicGameState{
     int tMapX=0,tMapY=0;
     static int WSizeX=1000,WSizeY=800;
     int realMouseX=0,realMouseY=0;
+    int[] square;
     public Play(int State){
         
+    }
+    
+    public void drawGrid(Graphics g){
+       g.setColor(Color.black);
+       for(int i=0;i<=25;i++){
+       g.drawLine(32*i, 0, 32*i, 640);      
+       }
+       for(int i=0;i<=20;i++){
+       g.drawLine(0,32*i,800,32*i);
+       }    
     }
     
     @Override
@@ -48,12 +61,25 @@ public class Play extends BasicGameState{
         if (((99*32-32*tMapX<25*32)&&(99*32-32*tMapY<20*32))) {
            elf2.draw((float)(99*32-32*tMapX),(float)(99*32-32*tMapY),(float)32,(float)32); 
         }
-        
+        drawGrid(g);
+        if(square!=null){
+        Color Trans = new Color(1f, 1f, 1f, 0.5f);
+        g.setColor(Trans);      
+        g.drawRect((float)(square[0]*32-32*tMapX-32+1),(float)(square[1]*32-32*tMapY-32+1), 30, 30);
+        }
                 
     }
 
     @Override
     public void update(GameContainer gc, StateBasedGame game, int delta) throws SlickException {
+                           if (gc.getInput().isMousePressed(0)) {
+                       realMouseX=(gc.getInput().getMouseX()+tMapX*tMap.getTileWidth())/tMap.getTileWidth()+1;
+                       realMouseY=(gc.getInput().getMouseY()+tMapY*tMap.getTileHeight())/tMap.getTileHeight()+1;
+                       System.out.println("Mouse  :"+realMouseX+" "+realMouseY);
+                       square=null;
+                       square=new int[]{realMouseX, realMouseY};
+                       
+            }
         if( gc.getInput().isKeyDown(Input.KEY_RIGHT) )
 		{
 			if(tMapX+25<tMap.getWidth()) tMapX++;
