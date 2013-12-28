@@ -6,10 +6,12 @@
 
 package civilization.game_engine;
 
+import civilization.Plateau;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.tiled.TiledMap;
 
 /**
  *
@@ -22,17 +24,19 @@ public class Game extends StateBasedGame{
     public static final int play = 2;
     public static final int wSizeX=1020;
     public static final int wSizeY=720;
-     
+    public static Plateau plateau;
+
     
     
     public Game(String name) {
         super(gameName);
+        this.plateau = new Plateau();
         this.addState(new Menu(menu));
         this.addState(new PrePlay(prePlay));
         this.addState(new Play(play));
         
     }
-
+    
     @Override
     public void initStatesList(GameContainer gc) throws SlickException {
         this.getState(menu).init(gc, this);

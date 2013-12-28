@@ -112,7 +112,7 @@ import java.util.Random;
              perlinNoise[i][j] /= totalAmplitude;
           }
        }
-
+       smoothNoise=null;
        return perlinNoise;
     }
 }

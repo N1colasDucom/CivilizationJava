@@ -13,6 +13,6 @@ package civilization_batiments;
 public class Tour extends Batiment{
     public Tour(){
         this.tempsConstruction=15;
-        this.pointDeVie=8;
+        this.pointsDeVie=8;
     }
 }

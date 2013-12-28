@@ -1,14 +1,18 @@
 package civilization.game_engine.mapgenerator;
 
+import civilization.Case;
+import civilization.Plateau;
 import static com.sun.corba.se.impl.util.Utility.printStackTrace;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,7 +23,7 @@ import sun.misc.BASE64Encoder;
 public class ImageWriter {
     //just convinence methods for debug
 
-    public static void greyWriteImage(double[][] data,double[][] data2){
+    public static Plateau WriteImage(double[][] data,double[][] data2){
         //this takes and array of doubles between 0 and 1 and generates a grey scale image from them
         String str1 = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
                 + "<map version=\"1.0\" orientation=\"orthogonal\" width=\"100\" height=\"100\" tilewidth=\"32\" tileheight=\"32\">\n"
@@ -35,27 +39,32 @@ public class ImageWriter {
         BufferedImage image = new BufferedImage(data.length,data[0].length, BufferedImage.TYPE_INT_RGB);
         StringBuilder sb = new StringBuilder();
         StringBuilder sb2 = new StringBuilder();
+        
+        Plateau p;
+        p = new Plateau();
+        Case c = null;
         for (int y = 0; y < data[0].length; y++)
         {
+          p.cases.add(new ArrayList<Case>());
           for (int x = 0; x < data.length; x++)
           {
 
             //  System.out.println(data[x][y]);
               Color col=null;        
-             if (data[x][y]<0.20){col=new Color(0,0,153); sb.append("1000");;}
-             else if((data[x][y]>=0.20 && data[x][y]<0.40)){col=Color.blue;sb.append("2000");;}
-             else if ((data[x][y]>=0.40 && data[x][y]<0.45)){col=new Color(255,255,204);sb.append("3000");;}
+             if (data[x][y]<0.20){col=new Color(0,0,153); sb.append("1000"); c=new Case(1); p.cases.get(y).add(c);}
+             else if((data[x][y]>=0.20 && data[x][y]<0.40)){col=Color.blue;  c=new Case(1); p.cases.get(y).add(c); sb.append("2000");}
+             else if ((data[x][y]>=0.40 && data[x][y]<0.45)){col=new Color(255,255,204); c=new Case(2); p.cases.get(y).add(c); sb.append("3000");}
              else if ((data[x][y]>=0.45 && data[x][y]<0.75)){
              if (data2[x][y]<0.6) {
-                    col=Color.green;sb.append("4000");
+                    col=Color.green;sb.append("4000"); c=new Case(3); p.cases.get(y).add(c);
                 }
                  else{
-                    col=new Color(0,102,0);sb.append("5000");
+                    col=new Color(0,102,0);sb.append("5000"); c=new Case(4); p.cases.get(y).add(c);
                 }
              }
-             else if ((data[x][y]>=0.45 && data[x][y]<0.75)&& data2[x][y]>=0.6){col=new Color(0,102,0);sb.append("5000");}
-             else if ((data[x][y]>=0.75 && data[x][y]<0.91)){col=Color.gray;sb.append("6000");}
-            else if (data[x][y]>=0.91 && data[x][y]<=1){col=Color.white;sb.append("7000");}
+             else if ((data[x][y]>=0.45 && data[x][y]<0.75)&& data2[x][y]>=0.6){col=new Color(0,102,0);sb.append("5000");c=new Case(4); p.cases.get(y).add(c);}
+             else if ((data[x][y]>=0.75 && data[x][y]<0.91)){col=Color.gray;sb.append("6000");c=new Case(5); p.cases.get(y).add(c);}
+            else if (data[x][y]>=0.91 && data[x][y]<=1){col=Color.white;sb.append("7000");c=new Case(5); p.cases.get(y).add(c);}
               
               
               
@@ -95,6 +104,9 @@ public class ImageWriter {
         } catch (IOException e) {
             //o no!
         }
+        data=null;
+        data2=null;
+        return p;
     }
 
 
@@ -140,8 +152,7 @@ public class ImageWriter {
 
       ByteArrayOutputStream buffer = new ByteArrayOutputStream();
       try {
-         OutputStream deflater = new GZIPOutputStream(buffer);
-        
+         OutputStream deflater = new GZIPOutputStream(buffer);        
            deflater.write(byteAry);
            deflater.close();
          byteAry=null;

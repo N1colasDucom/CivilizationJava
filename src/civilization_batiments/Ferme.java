@@ -14,7 +14,7 @@ public class Ferme extends Batiment{
     
     public Ferme(){
         this.tempsConstruction=2;
-        this.pointDeVie=2;
+        this.pointsDeVie=2;
     }
     
 }
