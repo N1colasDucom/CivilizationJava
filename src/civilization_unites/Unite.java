@@ -1,7 +1,11 @@
 package civilization_unites;
 
+import civilization_joueurs.Joueur;
+
 public abstract class Unite 
 {
+    public Joueur joueur;
+    
     int tempsConstruction;
     int pointsDeVie;
     int defense;
@@ -18,7 +22,10 @@ public abstract class Unite
     int consommeFer;
     int consommeOr;
 
-    public Unite() {
+    public Unite(Joueur _joueur) {
+        this.joueur = _joueur;
+        this.joueur.ajouterUnite(this);
+        
         this.defense = 1;
         this.niveau = 1;
         
@@ -34,9 +41,16 @@ public abstract class Unite
         this.consommeOr = 0;
     }
     
+    public boolean peutAttaquer(Unite unite)
+    {
+        return false;
+
+    }
+    
     @Override public String toString()
     {
-        String str = "    [DEF]1    [LEV]1\n";
+        String str = "    [OWN] "+this.joueur.pseudo+"\n";
+        str += "    [DEF] 1    [LEV] 1\n";
         str += "    [REQ] BOIS:"+this.requisBois+" NOUR:"+this.requisNourriture+" FER:"+this.requisFer+" OR:"+this.requisOr+ " LVL:"+this.requisNiveau+ " TPS:"+this.tempsConstruction+ "\n";
         str += "    [CNS] BOIS:"+this.consommeBois+" NOUR:"+this.consommeNourriture+" FER:"+this.consommeFer+" OR:"+this.consommeOr+"\n";
         

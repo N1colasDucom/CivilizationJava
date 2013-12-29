@@ -1,22 +1,22 @@
 package civilization;
 
 
-import civilization_unites.UCM_BateaudePeche;
-import civilization_unites.UCT_Ouvrier;
-import civilization_unites.UMM_Sousmarin;
+import civilization_joueurs.Joueur;
+import civilization_unites.*;
+
 
 public class Civilization {
 
     public static void main(String[] args) 
     {
-        UCM_BateaudePeche monBateau = new UCM_BateaudePeche();
-        System.out.println(monBateau);
+
+        Joueur j1 = new Joueur("Nicolas");
+        Joueur j2 = new Joueur("Valentin");
         
-        UCT_Ouvrier monOuvrier = new UCT_Ouvrier();
-        System.out.println(monOuvrier);
+        UCA_AviondeLigne unAvion = new UCA_AviondeLigne(j2);
         
-        UMM_Sousmarin monSM = new UMM_Sousmarin();
-        System.out.println(monSM);
+        System.out.println(j2);
+
     }
 
 }
