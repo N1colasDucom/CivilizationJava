@@ -1,18 +1,18 @@
 package civilization_unites;
 
+import civilization_joueurs.Joueur;
+
 public class UCT_Ouvrier extends UniteCivileTerrestre
 {
-    public UCT_Ouvrier()
+    public UCT_Ouvrier(Joueur _joueur)
     {
+        super(_joueur);
+        
+        this.requisOr = 1;
+        this.requisBois = 0;
+        this.requisFer = 0;
+        this.requisNourriture = 2;
         this.tempsConstruction = 2;
-        this.pointsDeVie = 10;
         this.defense = 2;
-        this.niveau = 1;
-        
-        this.requisBois = 1;
-        this.requisFer = 1;
-        this.requisOr = 1;   
-        
-        this.peutConstruire = true;
     }
 }
