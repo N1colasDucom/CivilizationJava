@@ -6,13 +6,6 @@ public class UCM_BateaudeCroisiere extends UniteCivileMaritime
 {
     public UCM_BateaudeCroisiere(Joueur _joueur)
     {
-        super(_joueur);
-        
-        this.requisOr = 4;
-        this.requisBois = 4;
-        this.requisFer = 2;
-        this.requisNourriture = 0;
-        this.tempsConstruction = 6;
-        this.defense = 5;
+        super(_joueur, 4, 4, 2, 0, 6, 5);
     }
 }

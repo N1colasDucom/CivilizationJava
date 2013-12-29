@@ -72,6 +72,24 @@ public class Joueur
                 this.unitesMilitaires.add((UniteMilitaire) unite);
                 break;
         }
+        
+        this.consommerLesRessourcesNecessairesPour(unite);
+    }
+    
+    public boolean disposeDesRessourcesNessairesPourAcheter(Unite unite) 
+    {
+        if (this.ressourcesOr >= unite.requisOr && this.ressourcesBois >= unite.requisBois && this.ressourcesFer >= unite.requisFer && this.ressourcesNourriture >= unite.requisNourriture) {
+            return true;
+        }
+        
+        return false;
+    }
+    
+    private void consommerLesRessourcesNecessairesPour(Unite unite) {
+        this.ressourcesBois -= unite.requisBois;
+        this.ressourcesFer -= unite.requisFer;
+        this.ressourcesNourriture -= unite.requisNourriture;
+        this.ressourcesOr -= unite.requisOr;
     }
     
     public void ajouterBatiment(Batiment aThis) 

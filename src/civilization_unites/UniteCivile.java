@@ -16,8 +16,9 @@ public abstract class UniteCivile extends Unite
     int produitFer;
     int produitOr;
 
-    public UniteCivile(Joueur joueur) {
-        super(joueur);
+    public UniteCivile(Joueur joueur, int or, int bois, int fer, int nourriture, int tpsConstruction, int defense) 
+    {
+        super(joueur, or, bois, fer, nourriture, tpsConstruction, defense);
         this.peutObtenirNourriture = false;
         this.peutObtenirFer = false;
         this.peutObtenirBois = false;
