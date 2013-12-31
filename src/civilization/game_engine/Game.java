@@ -20,8 +20,8 @@ import org.newdawn.slick.tiled.TiledMap;
  */
 public class Game extends StateBasedGame{
     public static final String gameName = "Civilisation";
-    Joueur j1 = new Joueur("Nicolas");
-    Joueur j2 = new Joueur("Valentin");
+    public static Joueur j1 = new Joueur("Nicolas");
+    public static Joueur j2 = new Joueur("Valentin");
     public static final int menu = 0;
     public static final int prePlay = 1;
     public static final int play = 2;

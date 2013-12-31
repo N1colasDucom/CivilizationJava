@@ -51,20 +51,20 @@ public class ImageWriter {
 
             //  System.out.println(data[x][y]);
               Color col=null;        
-             if (data[x][y]<0.20){col=new Color(0,0,153); sb.append("1000"); c=new Case(1); p.cases.get(y).add(c);}
-             else if((data[x][y]>=0.20 && data[x][y]<0.40)){col=Color.blue;  c=new Case(1); p.cases.get(y).add(c); sb.append("2000");}
-             else if ((data[x][y]>=0.40 && data[x][y]<0.45)){col=new Color(255,255,204); c=new Case(2); p.cases.get(y).add(c); sb.append("3000");}
+             if (data[x][y]<0.20){col=new Color(0,0,153); sb.append("1000"); c=new Case(1,x,y); p.cases.get(y).add(c);}
+             else if((data[x][y]>=0.20 && data[x][y]<0.40)){col=Color.blue;  c=new Case(1,x,y); p.cases.get(y).add(c); sb.append("2000");}
+             else if ((data[x][y]>=0.40 && data[x][y]<0.45)){col=new Color(255,255,204); c=new Case(2,x,y); p.cases.get(y).add(c); sb.append("3000");}
              else if ((data[x][y]>=0.45 && data[x][y]<0.75)){
              if (data2[x][y]<0.6) {
-                    col=Color.green;sb.append("4000"); c=new Case(3); p.cases.get(y).add(c);
+                    col=Color.green;sb.append("4000"); c=new Case(3,x,y); p.cases.get(y).add(c);
                 }
                  else{
-                    col=new Color(0,102,0);sb.append("5000"); c=new Case(4); p.cases.get(y).add(c);
+                    col=new Color(0,102,0);sb.append("5000"); c=new Case(4,x,y); p.cases.get(y).add(c);
                 }
              }
-             else if ((data[x][y]>=0.45 && data[x][y]<0.75)&& data2[x][y]>=0.6){col=new Color(0,102,0);sb.append("5000");c=new Case(4); p.cases.get(y).add(c);}
-             else if ((data[x][y]>=0.75 && data[x][y]<0.91)){col=Color.gray;sb.append("6000");c=new Case(5); p.cases.get(y).add(c);}
-            else if (data[x][y]>=0.91 && data[x][y]<=1){col=Color.white;sb.append("7000");c=new Case(5); p.cases.get(y).add(c);}
+             else if ((data[x][y]>=0.45 && data[x][y]<0.75)&& data2[x][y]>=0.6){col=new Color(0,102,0);sb.append("5000");c=new Case(4,x,y); p.cases.get(y).add(c);}
+             else if ((data[x][y]>=0.75 && data[x][y]<0.91)){col=Color.gray;sb.append("6000");c=new Case(5,x,y); p.cases.get(y).add(c);}
+            else if (data[x][y]>=0.91 && data[x][y]<=1){col=Color.white;sb.append("7000");c=new Case(5,x,y); p.cases.get(y).add(c);}
               
               
               

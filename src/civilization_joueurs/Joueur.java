@@ -92,7 +92,7 @@ public class Joueur
         
         /*
          * Liste de TOUTES les Unités
-         */
+         */ 
         str += "    [UNITES]     ("+this.unites.size()+") ";
         for (Unite u : this.unites) {
             str += u.getClass().getSimpleName()+" ";

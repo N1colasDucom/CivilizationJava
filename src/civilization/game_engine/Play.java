@@ -9,6 +9,7 @@ package civilization.game_engine;
 import civilization.Case;
 import civilization.Plateau;
 import civilization.game_engine.mapgenerator.ImageWriter;
+import civilization_unites.*;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -34,8 +35,10 @@ import org.newdawn.slick.util.pathfinding.AStarPathFinder;
  * @author Nicolas
  */
 public class Play extends BasicGameState{
+    UCA_AviondeLigne unAvion;
+    
     private TiledMap tMap=null;
-    private Image elf,elf2;
+    private Image elf2;
     int tMapX=0,tMapY=0;
     static int WSizeX=1000,WSizeY=800;
     int realMouseX=0,realMouseY=0;
@@ -54,6 +57,12 @@ public class Play extends BasicGameState{
        for(int i=0;i<=20;i++){
        g.drawLine(0,32*i,800,32*i);
        }    
+    }
+    
+    public boolean clickInMap(GameContainer gc){
+        int x=gc.getInput().getMouseX();
+        int y=gc.getInput().getMouseY();
+        return ((x>0&&x<tMap.getTileWidth()*25)&&(y>0&&y<tMap.getTileHeight()*20))?true:false;
     }
     
     public void writeType(int x, int y){
@@ -92,14 +101,14 @@ public class Play extends BasicGameState{
         this.movableTiles = new ArrayList<>();
         int[] tiles=null;
         xStart=(x-l>0)?(x-l):1;
-        yStart=(x-l>0)?(y-l):1;
+        yStart=(y-l>0)?(y-l):1;
         xFinish=(x+l<tMap.getWidth())?(x+l):100;
         yFinish=(y+l<tMap.getHeight())?(y+l):100;
-        System.out.println(xStart+" "+xFinish);
-        System.out.println(yStart+" "+yFinish);
+        //System.out.println(xStart+" "+xFinish);
+       // System.out.println(yStart+" "+yFinish);
         for(int i=xStart;i<=xFinish;i++){
             for(int j=yStart;j<=yFinish;j++){
-                if((Math.abs(x-i)+Math.abs(y-j))<=l){
+                if((Math.abs(x-i)+Math.abs(y-j))<=l&&(Game.plateau.cases.get(j-1).get(i-1).type()!="Montagne"&&Game.plateau.cases.get(j-1).get(i-1).type()!="Eau")){
                     tiles=new int[2];
                     tiles[0]=i;
                    tiles[1]=j;
@@ -108,7 +117,7 @@ public class Play extends BasicGameState{
                 }
             }
         }
-        printMovableTiles();
+      //  printMovableTiles();
     }
     
     public void printMovableTiles(){
@@ -120,7 +129,9 @@ public class Play extends BasicGameState{
     public void drawMovableTiles(Graphics g){
         Color Fill = new Color(0.5f, 0.5f, 0.5f, 0.5f);        
         for(int i=0;i<this.movableTiles.size();i++){
-          g.fillRect((float)(this.movableTiles.get(i)[0]*32-32*tMapX-32),(float)(this.movableTiles.get(i)[1]*32-32*tMapY-32), 30, 30);
+            if ((((this.movableTiles.get(i)[0]-1)*32-32*tMapX<25*32)&&((this.movableTiles.get(i)[1]-1)*32-32*tMapY<20*32))) {
+          g.fillRect((float)(this.movableTiles.get(i)[0]*32-32*tMapX-31),(float)(this.movableTiles.get(i)[1]*32-32*tMapY-31), 31, 31);
+          }
        }
        
     }
@@ -132,15 +143,17 @@ public class Play extends BasicGameState{
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
-        elf = new Image("Graphics/Units/Dark Elf/Blind.png");
+       
         elf2 = new Image("Graphics/Units/Dark Elf/Blind.png");
+         unAvion = new UCA_AviondeLigne(Game.j1);
         
+               
     }
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         tMap.render(0,0, tMapX, tMapY,25,20);
-        elf.draw((float)(20*32-32*tMapX),(float)(20*32-32*tMapY),(float)32,(float)32);
+        
         if (((99*32-32*tMapX<25*32)&&(99*32-32*tMapY<20*32))) {
            elf2.draw((float)(99*32-32*tMapX),(float)(99*32-32*tMapY),(float)32,(float)32); 
         }
@@ -162,13 +175,18 @@ public class Play extends BasicGameState{
             this.setMap();
         }
         if (gc.getInput().isMousePressed(0)) {
+           
         realMouseX=(gc.getInput().getMouseX()+tMapX*tMap.getTileWidth())/tMap.getTileWidth()+1;
         realMouseY=(gc.getInput().getMouseY()+tMapY*tMap.getTileHeight())/tMap.getTileHeight()+1;
-        System.out.println("Mouse  :"+realMouseX+" "+realMouseY);
+       // System.out.println("Mouse  :"+realMouseX+" "+realMouseY);
         square=null;
         square=new int[]{realMouseX, realMouseY};
-        this.setMovableTiles(realMouseX, realMouseY, 4);
-        this.writeType(realMouseX, realMouseY);
+        if(clickInMap(gc)){
+        this.setMovableTiles(realMouseX, realMouseY, 7);
+            System.out.println(Game.plateau.getCase(realMouseX, realMouseY).toString());
+        }
+        else{unAvion.setCaseParent(Game.plateau.getCase(10, 20));}
+        //this.writeType(realMouseX, realMouseY);
                 try {
                     writeArrayListCases();
                 } catch (IOException ex) {

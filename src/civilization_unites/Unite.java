@@ -1,5 +1,7 @@
 package civilization_unites;
 
+import civilization.Case;
+import civilization_batiments.Batiment;
 import civilization_joueurs.Joueur;
 
 public abstract class Unite 
@@ -22,6 +24,9 @@ public abstract class Unite
     int consommeFer;
     int consommeOr;
 
+    Case caseParent;
+    Batiment batimentParent;
+    
     public Unite(Joueur _joueur) {
         this.joueur = _joueur;
         this.joueur.ajouterUnite(this);
@@ -39,12 +44,41 @@ public abstract class Unite
         this.consommeBois = 0;
         this.consommeFer = 0;
         this.consommeOr = 0;
+        
+        this.caseParent = null;
+        this.batimentParent = null;
     }
     
     public boolean peutAttaquer(Unite unite)
     {
         return false;
 
+    }
+    
+    public void setCaseParent(Case c){
+        if (this.caseParent!=null) {
+            this.caseParent.occupant=null;
+        }      
+        this.caseParent=c;
+        this.caseParent.occupant=this;
+    }
+    
+    public void setBatimentParent(Batiment b){
+        this.caseParent.occupant=null;
+        this.caseParent=null;
+        this.batimentParent=b;
+    }
+    
+    public void deplacer(Case nvCase){
+        setCaseParent(nvCase);
+    }
+    
+    public int positionX(){
+        return this.caseParent.X;
+    }
+    
+    public int positionY(){
+        return this.caseParent.Y;
     }
     
     @Override public String toString()
