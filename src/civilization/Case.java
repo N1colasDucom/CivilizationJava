@@ -6,7 +6,10 @@
 
 package civilization;
 
+import civilization.game_engine.GameButton;
+import civilization_batiments.Batiment;
 import civilization_unites.Unite;
+import java.util.List;
 
 /**
  *
@@ -41,6 +44,25 @@ public class Case {
             break;                  
         }
         return null;          
+    }
+    
+    public List<GameButton> getOccupantMenu(){
+        String occupantClass = this.getOccupantType(); 
+        System.out.println(occupantClass);
+        if(occupantClass.equals("Unite")) return ((Unite)occupant).getMenu();
+       // else if(occupantClass=="Batiment") return (Batiment)this.occupant.getMenu();
+       return null;
+    }
+    
+    public String getOccupantType(){
+        if(this.occupant!=null){
+        Class c = occupant.getClass();
+        while(c!=null){
+            if(c.getSimpleName().equals("Unite")) return c.getSimpleName();
+            else if(c.getSimpleName()=="Batiment") return c.getSimpleName();
+            c=c.getSuperclass();
+        }}
+        return "Erreur Classe Occupant";        
     }
     
     @Override

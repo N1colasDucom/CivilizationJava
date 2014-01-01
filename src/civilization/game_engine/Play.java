@@ -36,14 +36,17 @@ import org.newdawn.slick.util.pathfinding.AStarPathFinder;
  */
 public class Play extends BasicGameState{
     UCA_AviondeLigne unAvion;
+    UMT_Soldat unSoldat;
+    UMA_Chasseur unChasseur;
     
     private TiledMap tMap=null;
-    private Image elf2;
     int tMapX=0,tMapY=0;
     static int WSizeX=1000,WSizeY=800;
     int realMouseX=0,realMouseY=0;
     int[] square;
     private List<int[]> movableTiles=null;
+    private List<GameButton> actionButtons;
+    String state;
     
     public Play(int State){
         
@@ -59,10 +62,57 @@ public class Play extends BasicGameState{
        }    
     }
     
+    public void clickInTile(GameContainer gc){
+        this.actionButtons.clear();
+        if(Game.plateau.getCase(realMouseX, realMouseY).occupant!=null){ 
+            this.actionButtons=Game.plateau.getCase(realMouseX, realMouseY).getOccupantMenu();       
+            state="unite";
+        }     
+        else{
+            state="normal";
+        }
+    }
+    
+    public void drawActionMenu(Graphics g){        
+        for(int i=0;i<this.actionButtons.size();i++){
+            (this.actionButtons.get(i).Image).draw(this.actionButtons.get(i).X, this.actionButtons.get(i).Y);            
+          }
+    }
+    
+    public void drawUnits(Graphics g){
+        for(int i=0;i<Game.j1.unites.size();i++){   
+        if ((((Game.j1.unites.get(i).positionX())*32-32*tMapX<25*32)&&(Game.j1.unites.get(i).positionY()*32-32*tMapY<20*32))) {
+            Game.j1.unites.get(i).getSprite().draw((float)(Game.j1.unites.get(i).positionX()*32-32*tMapX),(float)(Game.j1.unites.get(i).positionY()*32-32*tMapY),(float)32,(float)32);
+        }
+        }
+    }
+    
     public boolean clickInMap(GameContainer gc){
         int x=gc.getInput().getMouseX();
         int y=gc.getInput().getMouseY();
         return ((x>0&&x<tMap.getTileWidth()*25)&&(y>0&&y<tMap.getTileHeight()*20))?true:false;
+    }
+    
+    public void getClickInGameButton(GameContainer gc){
+        int x=gc.getInput().getMouseX();
+        int y=gc.getInput().getMouseY();
+        for(int i=0;i<this.actionButtons.size();i++){
+            if(this.actionButtons.get(i).clickOnMe(x, y)){
+                this.actionButtons.get(i).doAction();
+            }
+        }
+    }
+    
+    public boolean clickInSideMenu(GameContainer gc){
+        int x=gc.getInput().getMouseX();
+        int y=gc.getInput().getMouseY();
+        return ((x>tMap.getTileWidth()*25&&x<WSizeX)&&(y>0&&y<tMap.getTileHeight()*20))?true:false;
+    }
+    
+    public boolean clickInBottomPane(GameContainer gc){
+        int x=gc.getInput().getMouseX();
+        int y=gc.getInput().getMouseY();
+        return ((x>0&&x<tMap.getTileWidth()*25)&&(y>tMap.getTileHeight()*20&&x<WSizeY))?true:false;
     }
     
     public void writeType(int x, int y){
@@ -92,7 +142,7 @@ public class Play extends BasicGameState{
     }
     
     public void setMap() throws SlickException{
-        tMap = new TiledMap("Graphics/Tileset/map.tmx");       
+       // tMap = new TiledMap("Graphics/Tileset/map.tmx");       
     }
     
     public void setMovableTiles(int x, int y,int l){
@@ -132,8 +182,7 @@ public class Play extends BasicGameState{
             if ((((this.movableTiles.get(i)[0]-1)*32-32*tMapX<25*32)&&((this.movableTiles.get(i)[1]-1)*32-32*tMapY<20*32))) {
           g.fillRect((float)(this.movableTiles.get(i)[0]*32-32*tMapX-31),(float)(this.movableTiles.get(i)[1]*32-32*tMapY-31), 31, 31);
           }
-       }
-       
+       } 
     }
     
     @Override
@@ -143,20 +192,16 @@ public class Play extends BasicGameState{
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
-       
-        elf2 = new Image("Graphics/Units/Dark Elf/Blind.png");
-         unAvion = new UCA_AviondeLigne(Game.j1);
+         
+         this.actionButtons = new ArrayList<>();
         
                
     }
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-        tMap.render(0,0, tMapX, tMapY,25,20);
-        
-        if (((99*32-32*tMapX<25*32)&&(99*32-32*tMapY<20*32))) {
-           elf2.draw((float)(99*32-32*tMapX),(float)(99*32-32*tMapY),(float)32,(float)32); 
-        }
+      //  tMap.render(0,0, tMapX, tMapY,25,20);
+       
         drawGrid(g);
         if(square!=null){
         Color Trans = new Color(1f, 1f, 1f, 0.5f);
@@ -166,11 +211,18 @@ public class Play extends BasicGameState{
         if(this.movableTiles!=null){
             this.drawMovableTiles(g);
         }
+       if(this.actionButtons.size()!=0){
+           drawActionMenu(g);
+       }
+      // if(Game.j1.unites.size()!=0){
+        //   this.drawUnits(g);
+      // }
                 
     }
 
     @Override
     public void update(GameContainer gc, StateBasedGame game, int delta) throws SlickException {
+        GameButton gb;
         if(this.tMap==null){
             this.setMap();
         }
@@ -178,14 +230,27 @@ public class Play extends BasicGameState{
            
         realMouseX=(gc.getInput().getMouseX()+tMapX*tMap.getTileWidth())/tMap.getTileWidth()+1;
         realMouseY=(gc.getInput().getMouseY()+tMapY*tMap.getTileHeight())/tMap.getTileHeight()+1;
-       // System.out.println("Mouse  :"+realMouseX+" "+realMouseY);
-        square=null;
-        square=new int[]{realMouseX, realMouseY};
+       System.out.println("Mouse  :"+gc.getInput().getMouseX()+" "+gc.getInput().getMouseY());
         if(clickInMap(gc)){
+            square=null;
+        square=new int[]{realMouseX, realMouseY};
         this.setMovableTiles(realMouseX, realMouseY, 7);
             System.out.println(Game.plateau.getCase(realMouseX, realMouseY).toString());
+            System.out.println(Game.j1.unites.size());
+            this.clickInTile(gc);
         }
-        else{unAvion.setCaseParent(Game.plateau.getCase(10, 20));}
+        if(clickInBottomPane(gc)){
+            unAvion = new UCA_AviondeLigne(Game.j1);
+            unAvion.setCaseParent(Game.plateau.getCase(100, 100));
+            unChasseur = new UMA_Chasseur(Game.j1);
+            unChasseur.setCaseParent(Game.plateau.getCase(50, 20));
+            unSoldat = new UMT_Soldat(Game.j1);
+            unSoldat.setCaseParent(Game.plateau.getCase(10, 80));
+        }
+        if(clickInSideMenu(gc)){
+            getClickInGameButton(gc);
+        }  
+        
         //this.writeType(realMouseX, realMouseY);
                 try {
                     writeArrayListCases();
@@ -197,7 +262,6 @@ public class Play extends BasicGameState{
         if( gc.getInput().isKeyDown(Input.KEY_RIGHT) )
 		{
 			if(tMapX+25<tMap.getWidth()) tMapX++;
-                        //System.out.println("test : elf x + location x: "+(99*32-32*tMapX));
 		}
  
 		if( gc.getInput().isKeyDown(Input.KEY_LEFT) )

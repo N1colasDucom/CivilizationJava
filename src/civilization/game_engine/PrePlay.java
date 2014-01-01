@@ -41,8 +41,8 @@ public class PrePlay extends BasicGameState{
         this.game=game;
         randomMap = new GameButton(100, 100, new Image("Graphics/Buttons/Generer.png"));
         startGame = new GameButton(100, 200, new Image("Graphics/Buttons/Jouer.png"));
-        Game.plateau= civilization.game_engine.mapgenerator.Noise.GenerateMap();
-        map = new Image("Graphics/Tileset/gameMap.png");
+      //  Game.plateau= civilization.game_engine.mapgenerator.Noise.GenerateMap();
+       // map = new Image("Graphics/Tileset/gameMap.png");
        
     }
 
@@ -50,7 +50,7 @@ public class PrePlay extends BasicGameState{
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         randomMap.Image.draw(100, 100);
         startGame.Image.draw(100,200);
-        map.draw(200,100);
+      //  map.draw(200,100);
     }
 
     @Override
@@ -59,9 +59,9 @@ public class PrePlay extends BasicGameState{
        int mouseY=gc.getInput().getMouseY();
             if (gc.getInput().isMousePressed(0)) {
            if((mouseX>randomMap.X && mouseX<randomMap.X+randomMap.Image.getWidth())&&(mouseY>randomMap.Y && mouseY<randomMap.Y+randomMap.Image.getHeight())){
-             Game.plateau=civilization.game_engine.mapgenerator.Noise.GenerateMap(); 
-             map.destroy();
-             map = new Image("Graphics/Tileset/gameMap.png");
+             //Game.plateau=civilization.game_engine.mapgenerator.Noise.GenerateMap(); 
+            // map.destroy();
+            // map = new Image("Graphics/Tileset/gameMap.png");
               
            }
            else if((mouseX>startGame.X && mouseX<startGame.X+startGame.Image.getWidth())&&(mouseY>startGame.Y && mouseY<startGame.Y+startGame.Image.getHeight())){

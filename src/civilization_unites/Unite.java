@@ -1,8 +1,15 @@
 package civilization_unites;
 
 import civilization.Case;
+import civilization.game_engine.GameButton;
 import civilization_batiments.Batiment;
 import civilization_joueurs.Joueur;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 
 public abstract class Unite 
 {
@@ -47,6 +54,7 @@ public abstract class Unite
         
         this.caseParent = null;
         this.batimentParent = null;
+        
     }
     
     public boolean peutAttaquer(Unite unite)
@@ -79,6 +87,25 @@ public abstract class Unite
     
     public int positionY(){
         return this.caseParent.Y;
+    }
+    
+    public List<GameButton> getMenu(){
+      List<GameButton> list = new ArrayList<>();
+        try {
+            list.add(new GameButton(810, 100, new Image("Graphics/Buttons/Deplacer.png"), "deplacer",this));
+        } catch (SlickException ex) {
+            System.out.println("Erreur Creation Menu Action");
+        }
+      return list;
+    }
+    
+    public Image getSprite(){
+        try {
+            return new Image("Graphics/Units/Unites/"+this.getClass().getSimpleName()+"/sprite.png");
+        } catch (SlickException ex) {
+            System.out.println("Erreur image:"+this.getClass().getSimpleName());
+        }
+        return null;
     }
     
     @Override public String toString()
