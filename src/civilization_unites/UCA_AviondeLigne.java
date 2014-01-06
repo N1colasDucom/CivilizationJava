@@ -4,12 +4,10 @@ import civilization_joueurs.Joueur;
 
 public class UCA_AviondeLigne extends UniteCivileAerien
 {    
-    /**
-     * Crée une un Avion de Ligne, Unité Civile Aérienne.
-     * @param _joueur
-     */
-    public UCA_AviondeLigne(Joueur _joueur)
+    public static String nom = "Avion de ligne";
+    
+    public UCA_AviondeLigne(Joueur _joueur, int x, int y)
     {
-        super(_joueur, 5, 0, 6, 0, 10, 6);
+        super(_joueur, UCA_AviondeLigne.nom, 5, 0, 6, 0, 10, 6, x, y, 5);
     }
 }

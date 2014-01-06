@@ -4,8 +4,10 @@ import civilization_joueurs.Joueur;
 
 public class UCM_BateaudeCroisiere extends UniteCivileMaritime
 {
-    public UCM_BateaudeCroisiere(Joueur _joueur)
+    public static String nom = "Bateau de Croisière";
+    
+    public UCM_BateaudeCroisiere(Joueur _joueur, int x, int y)
     {
-        super(_joueur, 4, 4, 2, 0, 6, 5);
+        super(_joueur, UCM_BateaudeCroisiere.nom, 4, 4, 2, 0, 6, 5, x, y, 10);
     }
 }

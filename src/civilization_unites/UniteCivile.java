@@ -16,9 +16,13 @@ public abstract class UniteCivile extends Unite
     int produitFer;
     int produitOr;
 
-    public UniteCivile(Joueur joueur, int or, int bois, int fer, int nourriture, int tpsConstruction, int defense) 
+    public UniteCivile(Joueur joueur, 
+            String nom, 
+            int or, int bois, int fer, int nourriture, int tpsConstruction, int defense, 
+            int coordX, int coordY,
+            int dist) 
     {
-        super(joueur, or, bois, fer, nourriture, tpsConstruction, defense);
+        super(joueur, nom, or, bois, fer, nourriture, tpsConstruction, defense, coordX, coordY, dist);
         this.peutObtenirNourriture = false;
         this.peutObtenirFer = false;
         this.peutObtenirBois = false;
@@ -28,6 +32,6 @@ public abstract class UniteCivile extends Unite
     
     @Override public String toString()
     {
-        return this.getClass().getSimpleName() + " (" + this.getClass().getSuperclass().getSimpleName() + ")\n" + super.toString();
+        return this.nom + " (" + this.getClass().getSimpleName() + " >> " + this.getClass().getSuperclass().getSimpleName() + ")\n" + super.toString();
     }
 }

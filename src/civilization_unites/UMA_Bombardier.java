@@ -4,8 +4,10 @@ import civilization_joueurs.Joueur;
 
 public class UMA_Bombardier extends UniteMilitaireAerien
 {
-    public UMA_Bombardier(Joueur _joueur)
+    public static String nom = "Bombardier";
+    
+    public UMA_Bombardier(Joueur _joueur, int x, int y)
     {
-        super(_joueur, 6, 0, 8, 0, 10, 12, 10, 10, 2);
+        super(_joueur, UMA_Bombardier.nom, 6, 0, 8, 0, 10, 12, 10, 10, 2, x, y, 10);
     }
 }

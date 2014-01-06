@@ -1,20 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package civilization_batiments;
 
-/**
- *
- * @author Nicolas
- */
-public class Port extends Batiment{
+import civilization_unites.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class Port extends Batiment
+{
+    public static ArrayList<Class<? extends Unite>> unitesDisponiblesPourConstruction = new ArrayList<>(
+            Arrays.asList(UCM_BateaudeCroisiere.class, UCM_BateaudePeche.class, UMM_Croiseur.class, UMM_Destroyer.class, UMM_PorteAvions.class, UMM_Sousmarin.class)
+    );
     
-    public Port(){
+    public Port()
+    {
         this.tempsConstruction=10;
         this.pointsDeVie=5;
     }
-    
 }
