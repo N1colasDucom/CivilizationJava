@@ -6,17 +6,6 @@ public class UMT_Tank extends UniteMilitaireTerrestre
 {
     public UMT_Tank(Joueur _joueur)
     {
-        super(_joueur);
-        
-        this.requisOr = 9;
-        this.requisBois = 0;
-        this.requisFer = 12;
-        this.requisNourriture = 0;
-        this.tempsConstruction = 10;
-        this.defense = 12;
-        
-        this.attaqueDistance = 6;
-        this.attaquePoints = 3;
-        this.attaqueZones = 3;
+        super(_joueur, 9, 0, 12, 0, 10, 12, 6, 3, 3);
     }
 }

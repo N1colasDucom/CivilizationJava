@@ -3,9 +3,9 @@ import civilization_joueurs.Joueur;
 
 public abstract class UniteMilitaireMaritime extends UniteMilitaire
 {
-    public UniteMilitaireMaritime(Joueur joueur)
+    public UniteMilitaireMaritime(Joueur joueur, int or, int bois, int fer, int nourriture, int tpsConstruction, int defense, int attDist, int attPts, int attZones)
     {
-        super(joueur);
+        super(joueur, or, bois, fer, nourriture, tpsConstruction, defense, attDist, attPts, attZones);
     }
     
     @Override public boolean peutAttaquer(Unite unite)

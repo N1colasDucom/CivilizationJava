@@ -6,13 +6,6 @@ public class UCA_Helicoptere extends UniteCivileAerien
 {
     public UCA_Helicoptere(Joueur _joueur)
     {
-        super(_joueur);
-        
-        this.requisOr = 4;
-        this.requisBois = 0;
-        this.requisFer = 5;
-        this.requisNourriture = 0;
-        this.tempsConstruction = 8;
-        this.defense = 5;
+        super(_joueur, 4, 0, 5, 0, 8, 5);
     }
 }

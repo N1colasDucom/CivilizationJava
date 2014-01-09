@@ -6,17 +6,6 @@ public class UMM_Croiseur extends UniteMilitaireMaritime
 {
     public UMM_Croiseur(Joueur _joueur)
     {
-        super(_joueur);
-        
-        this.requisOr = 8;
-        this.requisBois = 0;
-        this.requisFer = 10;
-        this.requisNourriture = 0;
-        this.tempsConstruction = 11;
-        this.defense = 12;
-        
-        this.attaqueDistance = 10;
-        this.attaquePoints = 4;
-        this.attaqueZones = 1;
+        super(_joueur, 8, 0, 10, 0, 11, 12, 10, 4, 1);
     }
 }

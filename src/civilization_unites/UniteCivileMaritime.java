@@ -5,9 +5,9 @@ public abstract class UniteCivileMaritime extends UniteCivile
 {
     boolean peutNaviguer = true;
     
-    public UniteCivileMaritime(Joueur joueur)
+    public UniteCivileMaritime(Joueur joueur, int or, int bois, int fer, int nourriture, int tpsConstruction, int defense)
     {
-        super(joueur);
+        super(joueur, or, bois, fer, nourriture, tpsConstruction, defense);
     }
 }
 
