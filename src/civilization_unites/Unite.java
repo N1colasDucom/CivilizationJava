@@ -11,31 +11,31 @@ import java.util.logging.Logger;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import civilization_exceptions.*;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public abstract class Unite 
 {
     public Joueur joueur;
     
-    public int tempsConstruction;
-    public int pointsDeVie;
-    public int defense;
-    
-    public int requisNourriture;
-    public int requisBois;
-    public int requisFer;
-    public int requisOr;
-    
-    public int consommeNourriture;
-    public int consommeBois;
-    public int consommeFer;
-    public int consommeOr;
-    
+    public String nom, statut;
+  
     Case caseParent;
     Batiment batimentParent;
-    
 
-    public Unite(Joueur _joueur, int or, int bois, int fer, int nourriture, int tpsConstruction, int defense) 
-    {                     
+    public int pointsDeVie, defense, distanceDeMvt;
+    public int requisNourriture, requisBois, requisFer, requisOr, tempsConstruction;
+    public int consommeNourriture, consommeBois, consommeFer, consommeOr;
+        
+    public Unite(Joueur _joueur, 
+            String nom, 
+            int or, int bois, int fer, int nourriture, int tpsConstruction, int defense, 
+            int dist) 
+    {              
+        this.nom = nom;        
+
         this.requisNourriture = nourriture;
         this.requisBois = bois;
         this.requisFer = fer;
@@ -51,6 +51,10 @@ public abstract class Unite
         this.caseParent = null;
         this.batimentParent = null;
         
+        this.distanceDeMvt = dist;
+        this.statut = "En cours de création...";
+                
+
         try {
             if (_joueur.disposeDesRessourcesNessairesPourAcheter(this)) {
                 this.joueur = _joueur;
@@ -62,11 +66,16 @@ public abstract class Unite
             System.out.println(e.getMessage());
         }
     }
-    
+        
     public boolean peutAttaquer(Unite unite)
     {
-        return false;
-
+        if (this.equals(unite)) {
+            return false;
+        } else if (unite.joueur.equals(this)) {
+            return false;
+        } else {
+            return true;
+        }
     }
     
     public void setCaseParent(Case c){
@@ -116,7 +125,8 @@ public abstract class Unite
     
     @Override public String toString()
     {
-        String str = "    [OWN] "+this.joueur.pseudo+"\n";
+        String str = "";
+        str += "    [OWN] "+this.joueur.pseudo+"\n";
         str += "    [DEF] "+this.defense+"\n";
         str += "    [REQ] BOIS:"+this.requisBois+" NOUR:"+this.requisNourriture+" FER:"+this.requisFer+" OR:"+this.requisOr+ " TPS:"+this.tempsConstruction+ "\n";
         str += "    [CNS] BOIS:"+this.consommeBois+" NOUR:"+this.consommeNourriture+" FER:"+this.consommeFer+" OR:"+this.consommeOr+"\n";

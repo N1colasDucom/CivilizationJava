@@ -73,7 +73,12 @@ public class Joueur
                 break;
         }
         
-        this.consommerLesRessourcesNecessairesPour(unite);
+        this.consommerLesRessourcesNecessairesPourConstruire(unite);
+    }
+    
+    public void ajouterBatiment(Batiment batiment) 
+    {
+        this.batiments.add(batiment);        
     }
     
     public boolean disposeDesRessourcesNessairesPourAcheter(Unite unite) 
@@ -85,17 +90,20 @@ public class Joueur
         return false;
     }
     
-    private void consommerLesRessourcesNecessairesPour(Unite unite) {
+    private void consommerLesRessourcesNecessairesPourConstruire(Unite unite) 
+    {
         this.ressourcesBois -= unite.requisBois;
         this.ressourcesFer -= unite.requisFer;
         this.ressourcesNourriture -= unite.requisNourriture;
         this.ressourcesOr -= unite.requisOr;
     }
     
-    public void ajouterBatiment(Batiment aThis) 
+    private void consommerLesRessourcesNecessairesPourVivre(Unite unite) 
     {
-        //TODO Par Nico
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.ressourcesBois -= unite.consommeBois;
+        this.ressourcesFer -= unite.consommeFer;
+        this.ressourcesNourriture -= unite.consommeNourriture;
+        this.ressourcesOr -= unite.consommeOr;
     }
     
     @Override public String toString()
