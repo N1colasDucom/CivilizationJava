@@ -8,6 +8,6 @@ public class UMA_Chasseur extends UniteMilitaireAerien
     
     public UMA_Chasseur(Joueur _joueur, int x, int y)
     {
-        super(_joueur, UMA_Chasseur.nom, 8, 0, 9, 0, 11, 10, 9, 12, 1, x, y, 10);
+        super(_joueur, UMA_Chasseur.nom, 8, 0, 9, 0, 11, 10, 9, 12, 1, 10);
     }
 }

@@ -8,8 +8,8 @@ public class UMA_Helicoptere extends UniteMilitaireAerien
 {
     public static String nom = "Hélicoptère de combat";
     
-    public UMA_Helicoptere(Joueur _joueur, int x, int y)
+    public UMA_Helicoptere(Joueur _joueur)
     {
-        super(_joueur, UMA_Helicoptere.nom, 5, 0, 6, 0, 8, 8, 7, 7, 2, x, y, 10);
+        super(_joueur, UMA_Helicoptere.nom, 5, 0, 6, 0, 8, 8, 7, 7, 2, 10);
     }
 }

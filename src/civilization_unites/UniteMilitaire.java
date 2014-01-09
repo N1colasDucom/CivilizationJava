@@ -12,10 +12,9 @@ public abstract class UniteMilitaire extends Unite
             String nom, 
             int or, int bois, int fer, int nourriture, int tpsConstruction, 
             int defense, int attDist, int attPts, int attZones,
-            int coordX, int coordY,
             int dist)
     {
-        super(joueur, nom, or, bois, fer, nourriture, tpsConstruction, defense, coordX, coordY, dist);
+        super(joueur, nom, or, bois, fer, nourriture, tpsConstruction, defense, dist);
     }
     
     @Override public String toString()

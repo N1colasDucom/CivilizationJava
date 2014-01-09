@@ -8,10 +8,9 @@ public abstract class UniteMilitaireMaritime extends UniteMilitaire
             String nom, 
             int or, int bois, int fer, int nourriture, int tpsConstruction, int defense, 
             int attDist, int attPts, int attZones,
-            int coordX, int coordY,
             int dist)
     {
-        super(joueur, nom, or, bois, fer, nourriture, tpsConstruction, defense, attDist, attPts, attZones, coordX, coordY, dist);
+        super(joueur, nom, or, bois, fer, nourriture, tpsConstruction, defense, attDist, attPts, attZones, dist);
     }
     
     @Override public boolean peutAttaquer(Unite unite)

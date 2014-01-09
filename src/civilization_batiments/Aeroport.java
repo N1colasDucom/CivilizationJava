@@ -15,4 +15,11 @@ public class Aeroport extends Batiment
         this.tempsConstruction = 15;
         this.pointsDeVie = 7;
     }
+    
+    public ArrayList<Class> getUnitesDisponiblesPourConstruction()
+    {
+        return new ArrayList<Class>(
+            Arrays.asList(UCA_AviondeLigne.class, UCA_Helicoptere.class, UMA_Bombardier.class, UMA_Chasseur.class, UMA_Helicoptere.class)
+        );
+    }
 }

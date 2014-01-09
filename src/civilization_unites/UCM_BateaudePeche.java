@@ -8,6 +8,6 @@ public class UCM_BateaudePeche extends UniteCivileMaritime
     
     public UCM_BateaudePeche(Joueur _joueur, int x, int y)
     {
-        super(_joueur, UCM_BateaudePeche.nom, 3, 4, 2, 0, 5, 4, x, y, 10);
+        super(_joueur, UCM_BateaudePeche.nom, 3, 4, 2, 0, 5, 4, 10);
     }
 }
