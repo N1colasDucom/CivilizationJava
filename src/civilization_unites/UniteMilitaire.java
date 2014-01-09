@@ -8,13 +8,17 @@ public abstract class UniteMilitaire extends Unite
     int attaqueDistance;
     int attaqueZones;
     
-    public UniteMilitaire(Joueur joueur, int or, int bois, int fer, int nourriture, int tpsConstruction, int defense, int attDist, int attPts, int attZones)
+    public UniteMilitaire(Joueur joueur, 
+            String nom, 
+            int or, int bois, int fer, int nourriture, int tpsConstruction, 
+            int defense, int attDist, int attPts, int attZones,
+            int dist)
     {
-        super(joueur, or, bois, fer, nourriture, tpsConstruction, defense);
+        super(joueur, nom, or, bois, fer, nourriture, tpsConstruction, defense, dist);
     }
     
     @Override public String toString()
     {
-        return this.getClass().getSimpleName() + " (" + this.getClass().getSuperclass().getSimpleName() + ")\n" + super.toString();
+        return this.nom + " (" + this.getClass().getSimpleName() + " >> " + this.getClass().getSuperclass().getSimpleName() + ")\n" + super.toString();
     }
 }

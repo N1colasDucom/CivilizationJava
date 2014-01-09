@@ -4,8 +4,10 @@ import civilization_joueurs.Joueur;
 
 public class UCT_Paysan extends UniteCivileTerrestre
 {
-    public UCT_Paysan(Joueur _joueur)
+    public static String nom = "Paysan";
+    
+    public UCT_Paysan(Joueur _joueur, int x, int y)
     {
-        super(_joueur, 1, 0, 0, 1, 1, 2);
+        super(_joueur, UCT_Paysan.nom, 1, 0, 0, 1, 1, 2, 10);
     }
 }

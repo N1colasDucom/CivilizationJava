@@ -6,6 +6,6 @@ public class UMT_Tank extends UniteMilitaireTerrestre
 {
     public UMT_Tank(Joueur _joueur)
     {
-        super(_joueur, 9, 0, 12, 0, 10, 12, 6, 3, 3);
+        super(_joueur, "Tank", 9, 0, 12, 0, 10, 12, 6, 3, 3, 10);
     }
 }
