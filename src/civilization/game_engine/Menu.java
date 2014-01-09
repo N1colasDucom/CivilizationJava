@@ -19,6 +19,8 @@ import org.newdawn.slick.state.StateBasedGame;
 public class Menu extends BasicGameState{
     GameButton Jouer;
     GameButton Quitter;
+    Image Background;
+    Image Background2;
     
     public Menu(int State){
         
@@ -34,10 +36,14 @@ public class Menu extends BasicGameState{
     public void init(GameContainer gc, StateBasedGame game) throws SlickException {
         Jouer = new GameButton(100,100,new Image("Graphics/Buttons/Jouer.png"));       
         Quitter =new GameButton(100,100,new Image("Graphics/Buttons/Quitter.png"));
+        Background2=new Image("Graphics/Images/layer2.png");
+        Background= new Image("Graphics/Images/layer1.png");
     }
 
     @Override
     public void render(GameContainer gc, StateBasedGame game, Graphics g) throws SlickException {
+        Background.draw(0,0);
+        Background2.draw(0,0);
         Jouer.Image.draw(100, 100);
         Quitter.Image.draw(100, 200);
     }

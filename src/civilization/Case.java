@@ -59,7 +59,7 @@ public class Case {
         Class c = occupant.getClass();
         while(c!=null){
             if(c.getSimpleName().equals("Unite")) return c.getSimpleName();
-            else if(c.getSimpleName()=="Batiment") return c.getSimpleName();
+            else if(c.getSimpleName().equals("Batiment")) return c.getSimpleName();
             c=c.getSuperclass();
         }}
         return "Erreur Classe Occupant";        
@@ -67,7 +67,7 @@ public class Case {
     
     @Override
     public String toString(){
-        return "Case["+this.X+"]["+this.Y+"]("+this.type()+")->"+(Unite)this.occupant;
+        return "Case["+this.X+"]["+this.Y+"]("+this.type()+")->";//+((Unite)this.occupant).toString();
         
     }
 }

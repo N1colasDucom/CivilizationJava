@@ -142,7 +142,7 @@ public class Play extends BasicGameState{
     }
     
     public void setMap() throws SlickException{
-       // tMap = new TiledMap("Graphics/Tileset/map.tmx");       
+       ;tMap = new TiledMap("Graphics/Tileset/map.tmx");       
     }
     
     public void setMovableTiles(int x, int y,int l){
@@ -200,7 +200,7 @@ public class Play extends BasicGameState{
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-      //  tMap.render(0,0, tMapX, tMapY,25,20);
+        tMap.render(0,0, tMapX, tMapY,25,20);
        
         drawGrid(g);
         if(square!=null){
@@ -214,9 +214,9 @@ public class Play extends BasicGameState{
        if(this.actionButtons.size()!=0){
            drawActionMenu(g);
        }
-      // if(Game.j1.unites.size()!=0){
-        //   this.drawUnits(g);
-      // }
+       if(Game.j1.unites.size()!=0){
+           this.drawUnits(g);
+       }
                 
     }
 
@@ -230,7 +230,7 @@ public class Play extends BasicGameState{
            
         realMouseX=(gc.getInput().getMouseX()+tMapX*tMap.getTileWidth())/tMap.getTileWidth()+1;
         realMouseY=(gc.getInput().getMouseY()+tMapY*tMap.getTileHeight())/tMap.getTileHeight()+1;
-       System.out.println("Mouse  :"+gc.getInput().getMouseX()+" "+gc.getInput().getMouseY());
+        System.out.println("Mouse  :"+gc.getInput().getMouseX()+" "+gc.getInput().getMouseY());
         if(clickInMap(gc)){
             square=null;
         square=new int[]{realMouseX, realMouseY};
