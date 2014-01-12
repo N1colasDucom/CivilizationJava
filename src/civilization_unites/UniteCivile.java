@@ -2,6 +2,7 @@ package civilization_unites;
 
 import civilization_joueurs.Joueur;
 
+
 public abstract class UniteCivile extends Unite
 {
     boolean peutConstruire;
@@ -15,7 +16,7 @@ public abstract class UniteCivile extends Unite
     int produitBois;
     int produitFer;
     int produitOr;
-
+    
     public UniteCivile(Joueur joueur, 
             String nom, 
             int or, int bois, int fer, int nourriture, int tpsConstruction, int defense, 

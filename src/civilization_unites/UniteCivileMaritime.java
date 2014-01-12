@@ -1,5 +1,4 @@
 package civilization_unites;
-
 import civilization_joueurs.Joueur;
 
 public abstract class UniteCivileMaritime extends UniteCivile
@@ -14,3 +13,4 @@ public abstract class UniteCivileMaritime extends UniteCivile
         super(joueur, nom, or, bois, fer, nourriture, tpsConstruction, defense, dist);
     }
 }
+

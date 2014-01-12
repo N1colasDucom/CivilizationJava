@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="100" height="100" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="map" tilewidth="32" tileheight="32">
+  <image source="map.png" width="96" height="96"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="100" height="100">
+  <data encoding="base64" compression="gzip">
+H4sIAAAAAAAAAO3d23LcIAwG4G3XSd7/jdubnfEwIP06C+ILblLbgL4gDutsv16v11dQ+SbKj6Ig
+91J1UvXPrtH2+1qU9//ylylRFpyH1EUTT0nd0R6IRQcPa9FacPdXjI1ojyyT7h7vRh7ZJh71Wfpq
+scjyWLlEeFl/H6x93MkjegxZ6/G2uHt0yldZJpY6PNpv9Xg3MOjg4dV+yoIyuf97tYGXy2Woy7Pt
+nAdXPvdWG8z6JbHo1AeNQ3ePmcl1+/msVLfX4jB6dOjPzINqX3XbPeI/zi3VFlTdlEeH8cHFdjVn
+d81Xlt//6pw1izu3rt3NQxJj6fUZHkjp6mGxQO7P8JBaoB4VY8NiYnGs9uBMqiwkHtrS1aPr/pyK
+YWcX7dyxw/mVNS+d5NHhfDc6Z0k9kLxxskeGicRBup/ezQM9P/WMsfT6WYyrTCLmdc1nDN655xLE
+1Lqn3mVOl37e4+FxvzYijlF5qkO+WnkhHpwbda4XGc/uHkhOQ8eLZBx1j3tnD85Ek9cejxgPqcPj
+sa/HH7BkelSdY0WuiREP1CLbpuq8t8pD65DltIuHdP9OjY8Oce+WszI8vE1OnkMicxVqIrHJsuju
+oXHQmFAu0XHv4IEWq4d2LxLpMc7Xd5cTLcbnWM4Po9ZOqzae5rF6VuR+HTk3RuNs8UBjkeWB9DPa
+gvpsC+mzdXxEWZzgock/nT0kJmg/Iy2uSX3S2Hp4RFlQJtJneHvcDbi1hKadVXO65vNczTWeHuOY
+8JxDqy28/6aS6mNEnopcz1RZRJpI31+grpvNFyd7eJtoxgS6XjrJw+PvyBGLHT06zB0R4yPaw2PN
+R7W7g4fn82ceiNEs7oiFl8e9DZUm3s++x546y5DM19Y9KerxaUu2x8ck6tlczuE8qGdHe1C5s8Ip
+2oMbHxUWo8dvMdHsuzNy1cyDamd1bD1MkH5WWaAenU0kZ7sRHt792dlDc96umTseD7kHFxt0bYXW
+FXU+squHNj4rE+m6KqpfJ3lITTr0b9x/7ejhMceu9u/VHuj7RVXtla49NXmrymN2ViR5B6+izRqP
+TBNLPGbnd5L3IrM9tBZZHpZxtTrb7jw+oj1mJtKxYYmJ1SPbJNtD2j6PeUe7vjrVpNpjLEjsK03Q
++Fo9NG2j7tXuHdGxQJ0xdDiXt3hY6kLOH708tJ8drPoYsea/32+Jg9bccy5DPGZx1MwvlK1XztDE
+gruG8s70GGMk8RjvR8eX1kJrglxDPTfCxCuellxnGSPjPd75yssDbZNXPKVrgco1tLR4WSAF9ZBa
+3J8jtauOf4UD53GPkdZCO5aqXSocunmsTKpsqjy4/bfVQ3p/F5NKD27vvYodchbpsS6rMKn2WO3R
+VrFEv+PDa03wW0wssULHh+e8cnrOssYr8zvsMi2qTDLXTzt6ZJs8Ho9HZ48xPtke1bHu5JE9V+zo
+kbG2qjbI9LCsv5D94DX52a4W3T1WLs/4qPUYXU7OWRke3iYnzyNZHl7fn2odI5fQI9upwsPiIvVY
+xbjL+PhO9uBMIt8fXsWgQ84a32/v5uH9jj0Vi2qP2XfpoB4ec7Hn/yGAeCAxyTDhvudrZpIxPlAX
+r/HRwWJmwjlle6x8JPfsNn+M8zWXsyo9NOWkPeFs7PwDC3KXGUCcAAA=
+</data>
+ </layer>
+</map>

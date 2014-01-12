@@ -1,5 +1,4 @@
 package civilization_unites;
-
 import civilization_joueurs.Joueur;
 
 public abstract class UniteMilitaireMaritime extends UniteMilitaire

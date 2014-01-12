@@ -1,5 +1,6 @@
 package civilization;
 
+
 import civilization_joueurs.Joueur;
 import civilization_unites.*;
 import civilization_batiments.*;
@@ -8,10 +9,12 @@ import java.lang.reflect.Method;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 public class Civilization {
 
     public static void main(String[] args) throws InstantiationException, IllegalAccessException, NoSuchFieldException 
     {
+
         Joueur j1 = new Joueur();
         Joueur j2 = new Joueur();
         
@@ -31,5 +34,7 @@ public class Civilization {
                 System.out.println("   "+mth.getName());
             }
         }*/
+
     }
+
 }

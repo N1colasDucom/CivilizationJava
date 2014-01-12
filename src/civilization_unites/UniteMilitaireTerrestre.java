@@ -31,3 +31,4 @@ public abstract class UniteMilitaireTerrestre extends UniteMilitaire
         return false;
     }
 }
+

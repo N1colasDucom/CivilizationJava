@@ -1,5 +1,4 @@
 package civilization_unites;
-
 import civilization_joueurs.Joueur;
 
 public class UCT_Paysan extends UniteCivileTerrestre

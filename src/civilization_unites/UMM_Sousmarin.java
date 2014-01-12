@@ -1,5 +1,4 @@
 package civilization_unites;
-
 import civilization_joueurs.Joueur;
 
 public class UMM_Sousmarin extends UniteMilitaireMaritime

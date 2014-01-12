@@ -1,5 +1,4 @@
 package civilization_unites;
-
 import civilization_joueurs.Joueur;
 
 public abstract class UniteMilitaireAerien extends UniteMilitaire
@@ -42,4 +41,5 @@ public abstract class UniteMilitaireAerien extends UniteMilitaire
                 return false;
         }
     }
+
 }
