@@ -4,37 +4,42 @@ package civilization;
 import civilization_joueurs.Joueur;
 import civilization_unites.*;
 import civilization_batiments.*;
-import java.lang.reflect.Field;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-public class Civilization {
-
+public class Civilization 
+{
     public static void main(String[] args) throws InstantiationException, IllegalAccessException, NoSuchFieldException 
     {
-
         Joueur j1 = new Joueur();
         Joueur j2 = new Joueur();
         
-        UCA_AviondeLigne monAvion = new UCA_AviondeLigne(j2);
-        Aeroport monAeroport = new Aeroport();
+        //Aeroport monAeroport = new Aeroport();
+        Aeroport monMur = new Aeroport();
         
-        for (Class unite : monAeroport.getUnitesDisponiblesPourConstruction()) {
-            System.out.println(unite.getField("nom").get(unite));
-        }
-        
-        //monAvion.test();
-        
-        /*for (Class u : Aeroport.unitesDisponiblesPourConstruction) {
-            System.out.println(u.getField("nom").get(u));
-            
-            for (Method mth : u.getDeclaredMethods()) {
-                System.out.println("   "+mth.getName());
+        /*
+        // Pour executer les constructeurs
+        for (Constructor c : monAeroport.getConstructions().values()) {
+            try {
+                System.out.println(c.newInstance(j1, null, null));
+            } catch (IllegalArgumentException | InvocationTargetException ex) {
+                Logger.getLogger(Civilization.class.getName()).log(Level.SEVERE, null, ex);
             }
         }*/
-
+        
+        /*
+        // Pour lister + executer les actions
+        for (Method m : monMur.getActions().values()) {
+            try {
+                System.out.println(m.getName());
+                m.invoke(monMur);
+            } catch (IllegalArgumentException | InvocationTargetException ex) {
+                Logger.getLogger(Civilization.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }*/
     }
-
 }

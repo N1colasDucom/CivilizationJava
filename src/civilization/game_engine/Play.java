@@ -240,11 +240,11 @@ public class Play extends BasicGameState{
             this.clickInTile(gc);
         }
         if(clickInBottomPane(gc)){
-            unAvion = new UCA_AviondeLigne(Game.j1);
+            unAvion = new UCA_AviondeLigne(Game.j1, null, null);
             unAvion.setCaseParent(Game.plateau.getCase(100, 100));
-            unChasseur = new UMA_Chasseur(Game.j1);
+            unChasseur = new UMA_Chasseur(Game.j1, null, null);
             unChasseur.setCaseParent(Game.plateau.getCase(50, 20));
-            unSoldat = new UMT_Soldat(Game.j1);
+            unSoldat = new UMT_Soldat(Game.j1, null, null);
             unSoldat.setCaseParent(Game.plateau.getCase(10, 80));
         }
         if(clickInSideMenu(gc)){

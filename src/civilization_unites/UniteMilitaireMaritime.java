@@ -1,4 +1,6 @@
 package civilization_unites;
+import civilization.Case;
+import civilization_batiments.Batiment;
 import civilization_joueurs.Joueur;
 
 public abstract class UniteMilitaireMaritime extends UniteMilitaire
@@ -7,9 +9,10 @@ public abstract class UniteMilitaireMaritime extends UniteMilitaire
             String nom, 
             int or, int bois, int fer, int nourriture, int tpsConstruction, int defense, 
             int attDist, int attPts, int attZones,
-            int dist)
+            int dist,
+            Case caseParent, Batiment batimentParent)
     {
-        super(joueur, nom, or, bois, fer, nourriture, tpsConstruction, defense, attDist, attPts, attZones, dist);
+        super(joueur, nom, or, bois, fer, nourriture, tpsConstruction, defense, attDist, attPts, attZones, dist, caseParent, batimentParent);
     }
     
     @Override public boolean peutAttaquer(Unite unite)

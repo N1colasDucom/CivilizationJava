@@ -26,7 +26,8 @@ public abstract class Unite
     public Unite(Joueur _joueur, 
             String nom, 
             int or, int bois, int fer, int nourriture, int tpsConstruction, int defense, 
-            int dist) 
+            int dist,
+            Case caseParent, Batiment batimentParent) 
     {              
         this.nom = nom;        
 
