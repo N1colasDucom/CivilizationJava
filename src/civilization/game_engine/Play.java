@@ -9,6 +9,7 @@ package civilization.game_engine;
 import civilization.Case;
 import civilization.Plateau;
 import civilization.game_engine.mapgenerator.ImageWriter;
+import civilization.game_engine.pathfinder.AStar;
 import civilization_unites.*;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -28,7 +29,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
-import org.newdawn.slick.util.pathfinding.AStarPathFinder;
+import org.newdawn.slick.util.pathfinding.*;
 
 /**
  *
@@ -142,7 +143,7 @@ public class Play extends BasicGameState{
     }
     
     public void setMap() throws SlickException{
-       ;tMap = new TiledMap("Graphics/Tileset/map.tmx");       
+       tMap = new TiledMap("Graphics/Tileset/map.tmx");       
     }
     
     public void setMovableTiles(int x, int y,int l){
@@ -167,7 +168,13 @@ public class Play extends BasicGameState{
                 }
             }
         }
-      //  printMovableTiles();
+        List<String> nonMovableTypes= new ArrayList<>();
+        nonMovableTypes.add("Eau");
+        nonMovableTypes.add("Montagne");
+        
+        AStar paths= new AStar(this.tMap.getHeight(), this.tMap.getWidth(), x, y, l, Game.plateau, nonMovableTypes, movableTiles);
+        movableTiles=paths.pathfind();
+        paths=null;
     }
     
     public void printMovableTiles(){
@@ -234,7 +241,7 @@ public class Play extends BasicGameState{
         if(clickInMap(gc)){
             square=null;
         square=new int[]{realMouseX, realMouseY};
-        this.setMovableTiles(realMouseX, realMouseY, 7);
+        this.setMovableTiles(realMouseX, realMouseY, 5);
             System.out.println(Game.plateau.getCase(realMouseX, realMouseY).toString());
             System.out.println(Game.j1.unites.size());
             this.clickInTile(gc);
