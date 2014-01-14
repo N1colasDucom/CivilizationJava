@@ -1,10 +1,7 @@
-<<<<<<< HEAD
 nbproject/project.properties
 nbproject/private.properties
 nbproject/private
 /dist/
 Graphics/Tileset/gameMap.png
 Graphics/Tileset/map.tmx
-=======
-/nbproject/private/private.properties
->>>>>>> master
+
