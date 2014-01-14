@@ -241,7 +241,7 @@ public class Play extends BasicGameState{
         if(clickInMap(gc)){
             square=null;
         square=new int[]{realMouseX, realMouseY};
-        this.setMovableTiles(realMouseX, realMouseY, 5);
+        this.setMovableTiles(realMouseX, realMouseY, 8);
             System.out.println(Game.plateau.getCase(realMouseX, realMouseY).toString());
             System.out.println(Game.j1.unites.size());
             this.clickInTile(gc);
