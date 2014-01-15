@@ -1,22 +1,14 @@
 package civilization_unites;
 
+import civilization.Case;
+import civilization_batiments.Batiment;
 import civilization_joueurs.Joueur;
-import java.lang.reflect.Method;
 
 public class UCA_AviondeLigne extends UniteCivileAerien
-{    
-    public static String nom = "Avion de ligne";
-    
-    public UCA_AviondeLigne(Joueur _joueur)
+{        
+    public UCA_AviondeLigne(Joueur _joueur, Case caseParent, Batiment batimentParent)
     {
-        super(_joueur, UCA_AviondeLigne.nom, 5, 0, 6, 0, 10, 6, 5);
-    }
-    
-    public void test()
-    {
-        for (Method m : this.getClass().getDeclaredMethods()) {
-            System.out.println(m.getName());
-        }
+        super(_joueur, "Avion de ligne", 5, 0, 6, 0, 10, 6, 5, caseParent, batimentParent);
     }
     
     public void rejoindreAeroport()

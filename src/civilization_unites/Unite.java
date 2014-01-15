@@ -1,20 +1,19 @@
 package civilization_unites;
 
 import civilization.Case;
+import civilization.game_engine.Game;
 import civilization.game_engine.GameButton;
+import civilization.game_engine.Play;
+import civilization.game_engine.pathfinder.AStar;
 import civilization_batiments.Batiment;
 import civilization_joueurs.Joueur;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import civilization_exceptions.*;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public abstract class Unite 
 {
@@ -32,7 +31,8 @@ public abstract class Unite
     public Unite(Joueur _joueur, 
             String nom, 
             int or, int bois, int fer, int nourriture, int tpsConstruction, int defense, 
-            int dist) 
+            int dist,
+            Case caseParent, Batiment batimentParent) 
     {              
         this.nom = nom;        
 
@@ -84,6 +84,7 @@ public abstract class Unite
         }      
         this.caseParent=c;
         this.caseParent.occupant=this;
+        System.out.println(this.getClass().getSimpleName());
     }
     
     public void setBatimentParent(Batiment b){
@@ -98,16 +99,57 @@ public abstract class Unite
     
     public int positionX(){
         return this.caseParent.X;
+       
     }
     
     public int positionY(){
         return this.caseParent.Y;
     }
     
+    public void setMovableTiles(){
+        int xStart,yStart,xFinish,yFinish;
+        int x=this.positionX()+1;
+        int y=this.positionY()+1;
+        int l=this.distanceDeMvt;
+        List<int[]> movableTiles = new ArrayList<>();
+        int[] tiles=null;
+        xStart=(x-l>0)?(x-l):1;
+        yStart=(y-l>0)?(y-l):1;
+        xFinish=(x+l<Play.tMap.getWidth())?(x+l):100;
+        yFinish=(y+l<Play.tMap.getHeight())?(y+l):100;
+        for(int i=xStart;i<=xFinish;i++){
+            for(int j=yStart;j<=yFinish;j++){
+                if((Math.abs(x-i)+Math.abs(y-j))<=l&&(Game.plateau.cases.get(j-1).get(i-1).type()!="Montagne"&&Game.plateau.cases.get(j-1).get(i-1).type()!="Eau")){
+                    tiles=new int[2];
+                    tiles[0]=i;
+                   tiles[1]=j;
+                    movableTiles.add(tiles);
+                    tiles=null;
+                }
+            }
+        }
+        List<String> nonMovableTypes= new ArrayList<>();
+        nonMovableTypes.add("Eau");
+        nonMovableTypes.add("Montagne");
+        
+        AStar paths= new AStar(Play.tMap.getHeight(), Play.tMap.getWidth(), x, y, l, Game.plateau, nonMovableTypes, movableTiles);
+        movableTiles=paths.pathfind();
+        Play.movableTiles=movableTiles;
+        Play.state="Deplacement";
+    }
+    
+    public void predeplacer(){
+        System.out.println("WOUHOUUU!");
+    }
+    
     public List<GameButton> getMenu(){
       List<GameButton> list = new ArrayList<>();
         try {
-            list.add(new GameButton(810, 100, new Image("Graphics/Buttons/Deplacer.png"), "deplacer",this));
+          try {
+              list.add(new GameButton(810, 100, new Image("Graphics/Buttons/Deplacer.png"),"deplacer",Unite.class.getDeclaredMethod("setMovableTiles"),this));
+          } catch (NoSuchMethodException |SecurityException ex) {
+              Logger.getLogger(Unite.class.getName()).log(Level.SEVERE, null, ex);
+          }
         } catch (SlickException ex) {
             System.out.println("Erreur Creation Menu Action");
         }

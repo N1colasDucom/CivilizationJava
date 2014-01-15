@@ -40,17 +40,22 @@ public class Play extends BasicGameState{
     UMT_Soldat unSoldat;
     UMA_Chasseur unChasseur;
     
-    private TiledMap tMap=null;
+    public static TiledMap tMap=null;
     int tMapX=0,tMapY=0;
     static int WSizeX=1000,WSizeY=800;
     int realMouseX=0,realMouseY=0;
     int[] square;
-    private List<int[]> movableTiles=null;
+    public static List<int[]> movableTiles=null;
     private List<GameButton> actionButtons;
-    String state;
+    public static String state;
+    public static Case pastTile;
     
     public Play(int State){
         
+    }
+    
+    public void setMovableTiles(List<int[]> mt){
+        movableTiles=mt;
     }
     
     public void drawGrid(Graphics g){
@@ -69,9 +74,6 @@ public class Play extends BasicGameState{
             this.actionButtons=Game.plateau.getCase(realMouseX, realMouseY).getOccupantMenu();       
             state="unite";
         }     
-        else{
-            state="normal";
-        }
     }
     
     public void drawActionMenu(Graphics g){        
@@ -146,41 +148,21 @@ public class Play extends BasicGameState{
        tMap = new TiledMap("Graphics/Tileset/map.tmx");       
     }
     
-    public void setMovableTiles(int x, int y,int l){
-        int xStart,yStart,xFinish,yFinish;
-        if(this.movableTiles!=null)this.movableTiles.clear(); 
-        this.movableTiles = new ArrayList<>();
-        int[] tiles=null;
-        xStart=(x-l>0)?(x-l):1;
-        yStart=(y-l>0)?(y-l):1;
-        xFinish=(x+l<tMap.getWidth())?(x+l):100;
-        yFinish=(y+l<tMap.getHeight())?(y+l):100;
-        //System.out.println(xStart+" "+xFinish);
-       // System.out.println(yStart+" "+yFinish);
-        for(int i=xStart;i<=xFinish;i++){
-            for(int j=yStart;j<=yFinish;j++){
-                if((Math.abs(x-i)+Math.abs(y-j))<=l&&(Game.plateau.cases.get(j-1).get(i-1).type()!="Montagne"&&Game.plateau.cases.get(j-1).get(i-1).type()!="Eau")){
-                    tiles=new int[2];
-                    tiles[0]=i;
-                   tiles[1]=j;
-                    this.movableTiles.add(tiles);
-                    tiles=null;
-                }
-            }
-        }
-        List<String> nonMovableTypes= new ArrayList<>();
-        nonMovableTypes.add("Eau");
-        nonMovableTypes.add("Montagne");
-        
-        AStar paths= new AStar(this.tMap.getHeight(), this.tMap.getWidth(), x, y, l, Game.plateau, nonMovableTypes, movableTiles);
-        movableTiles=paths.pathfind();
-        paths=null;
-    }
-    
     public void printMovableTiles(){
         System.out.println("Movable:");
         System.out.println("Empty:"+this.movableTiles.isEmpty());
         System.out.println("Size:"+this.movableTiles.size());
+        for(int[] tile:movableTiles){
+            System.out.println("Tiles");
+        }  
+    }
+    
+    public boolean isMovable(int[] tile){
+        for(int[] tileTemp:movableTiles){
+            System.out.println(tileTemp[0]+":"+tileTemp[1]+"/"+tile[0]+":"+tile[1]);
+            if(tileTemp[0]==tile[0]&&tileTemp[1]==tile[1]) return true;
+        }  
+        return false;
     }
     
     public void drawMovableTiles(Graphics g){
@@ -192,6 +174,48 @@ public class Play extends BasicGameState{
        } 
     }
     
+    public void deplacer(GameContainer gc){
+        int[] tileTemp= new int[2];
+        tileTemp[0]=realMouseX;
+        tileTemp[1]=realMouseY;
+        if(state.equals("Deplacement")&&isMovable(tileTemp)){
+            ((Unite)pastTile.occupant).deplacer(Game.plateau.getCase(realMouseX, realMouseY));
+            if(movableTiles!=null){
+            movableTiles.clear();}
+        }
+        else{
+            if(movableTiles!=null){
+            movableTiles.clear();}
+            state="normal";
+            System.out.println("Deplacer : "+state);
+        }
+    }
+    
+    public void updatePastTile(GameContainer gc){
+        pastTile=Game.plateau.getCase(realMouseX, realMouseY);
+    }
+    
+    public void moveMap(GameContainer gc){
+        if( gc.getInput().isKeyDown(Input.KEY_RIGHT) )
+        {
+            if(tMapX+25<tMap.getWidth()) tMapX++;
+        }
+
+        if( gc.getInput().isKeyDown(Input.KEY_LEFT) )
+        {
+            if(tMapX>0) tMapX--;
+        }
+        if( gc.getInput().isKeyDown(Input.KEY_UP) )
+        {
+            if(tMapY>0) tMapY--;
+        }
+
+        if( gc.getInput().isKeyDown(Input.KEY_DOWN) )
+        {
+            if(tMapY+20<tMap.getHeight()) tMapY++;
+        }
+    }
+    
     @Override
     public int getID() {
         return 2;
@@ -199,10 +223,10 @@ public class Play extends BasicGameState{
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
-         
-         this.actionButtons = new ArrayList<>();
-        
-               
+         this.actionButtons = new ArrayList<>();  
+         movableTiles= new ArrayList<>();
+         System.out.println(Game.j1);
+         state="normal";
     }
 
     @Override
@@ -238,54 +262,44 @@ public class Play extends BasicGameState{
         realMouseX=(gc.getInput().getMouseX()+tMapX*tMap.getTileWidth())/tMap.getTileWidth()+1;
         realMouseY=(gc.getInput().getMouseY()+tMapY*tMap.getTileHeight())/tMap.getTileHeight()+1;
         System.out.println("Mouse  :"+gc.getInput().getMouseX()+" "+gc.getInput().getMouseY());
+        
         if(clickInMap(gc)){
+           
             square=null;
         square=new int[]{realMouseX, realMouseY};
-        this.setMovableTiles(realMouseX, realMouseY, 8);
+        //this.setMovableTiles(realMouseX, realMouseY, 8);
             System.out.println(Game.plateau.getCase(realMouseX, realMouseY).toString());
             System.out.println(Game.j1.unites.size());
             this.clickInTile(gc);
+            deplacer(gc);
+            updatePastTile(gc);
+            if(pastTile!=null){
+            if(realMouseX!=pastTile.X||realMouseY!=pastTile.Y)  System.out.println("("+realMouseX+":"+realMouseY+")("+pastTile.X+":"+pastTile.Y+")");
+            }
+            
         }
         if(clickInBottomPane(gc)){
-            unAvion = new UCA_AviondeLigne(Game.j1);
+            unAvion = new UCA_AviondeLigne(Game.j1, null, null);
             unAvion.setCaseParent(Game.plateau.getCase(100, 100));
-            unChasseur = new UMA_Chasseur(Game.j1);
+            unChasseur = new UMA_Chasseur(Game.j1, null, null);
             unChasseur.setCaseParent(Game.plateau.getCase(50, 20));
-            unSoldat = new UMT_Soldat(Game.j1);
+            unSoldat = new UMT_Soldat(Game.j1, null, null);
             unSoldat.setCaseParent(Game.plateau.getCase(10, 80));
         }
         if(clickInSideMenu(gc)){
-            getClickInGameButton(gc);
+            getClickInGameButton(gc);   
         }  
         
         //this.writeType(realMouseX, realMouseY);
-                try {
+              /*  try {
                     writeArrayListCases();
-                } catch (IOException ex) {
+               } catch (IOException ex) {
                     Logger.getLogger(Play.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                      
+                }*/
+            System.out.println("\n"+state);
             }
-        if( gc.getInput().isKeyDown(Input.KEY_RIGHT) )
-		{
-			if(tMapX+25<tMap.getWidth()) tMapX++;
-		}
- 
-		if( gc.getInput().isKeyDown(Input.KEY_LEFT) )
-		{
-			if(tMapX>0) tMapX--;
-		}
-		if( gc.getInput().isKeyDown(Input.KEY_UP) )
-		{
-			
-                    if(tMapY>0) tMapY--;
-		}
- 
-		if( gc.getInput().isKeyDown(Input.KEY_DOWN) )
-		{
-                if(tMapY+20<tMap.getHeight()) tMapY++;
-                    
-		}
+        moveMap(gc);
+                
     }
     
 }
