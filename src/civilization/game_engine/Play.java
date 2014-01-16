@@ -37,7 +37,9 @@ import org.newdawn.slick.util.pathfinding.*;
  * @author Nicolas
  */
 public class Play extends BasicGameState{
-    Aeroport unAeroport, unAeroport2,unAeroport1;
+    Aeroport unAeroport, unAeroport2;
+    UMT_Artillerie uneArtillerie;
+    Port unPort;
     
     public static TiledMap tMap=null;
     int tMapX=0,tMapY=0;
@@ -69,6 +71,7 @@ public class Play extends BasicGameState{
     
     public void clickInTile(GameContainer gc){
         this.actionButtons.clear();
+        System.out.println(Game.j1.batiments.size());
         if(Game.plateau.getCase(realMouseX, realMouseY).occupant!=null){ 
             this.actionButtons=Game.plateau.getCase(realMouseX, realMouseY).getOccupantMenu();       
             state="unite";
@@ -297,8 +300,11 @@ public class Play extends BasicGameState{
             unAeroport.setCaseParent(Game.plateau.getCase(50, 50));
             unAeroport2=new Aeroport(Game.j1);
             unAeroport2.setCaseParent(Game.plateau.getCase(60, 60));
-            unAeroport1=new Aeroport(Game.j1);
-            unAeroport1.setCaseParent(Game.plateau.getCase(50, 60));
+            unPort=new Port(Game.j1);
+            unPort.setCaseParent(Game.plateau.getCase(5, 5));
+            uneArtillerie=new UMT_Artillerie(Game.j1, Game.plateau.getCase(55, 55),null);
+            uneArtillerie.caseParent.occupant=uneArtillerie;
+            uneArtillerie.statut="normal";
         }
         if(clickInSideMenu(gc)){
             getClickInGameButton(gc);   

@@ -21,8 +21,8 @@ public abstract class Unite
     
     public String nom, statut;
   
-    Case caseParent;
-    Batiment batimentParent;
+    public Case caseParent;
+    public Batiment batimentParent;
 
     public int pointsDeVie, defense, distanceDeMvt;
     public int requisNourriture, requisBois, requisFer, requisOr, tempsConstruction;

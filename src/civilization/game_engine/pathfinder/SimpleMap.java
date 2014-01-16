@@ -35,12 +35,12 @@ public class SimpleMap implements TileBasedMap{
 
     @Override
     public boolean blocked(PathFindingContext context, int tx, int ty) {
-        return MAP[tx][ty]!=0;
+        return MAP[tx][ty]==1;
     }
 
     @Override
     public float getCost(PathFindingContext context, int tx, int ty) {
-        return 1.0f;
+            return 1.0f;
     }
     
     private void BuildMap(Plateau p, List<String> nonMovableTypes){

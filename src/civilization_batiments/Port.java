@@ -16,8 +16,10 @@ import java.util.logging.Logger;
 
 public class Port extends Batiment
 {   
-    public Port()
+    public Port(Joueur j)
     {
+        this.joueur=j;
+        this.joueur.ajouterBatiment(this);
         this.tempsConstruction=10;
         this.pointsDeVie=5;
     }
