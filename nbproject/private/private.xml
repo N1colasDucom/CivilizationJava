@@ -3,21 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-
+            <file>file:/C:/Users/Nicolas/Documents/NetBeansProjects/Civilization/CivilizationJava/src/civilization/game_engine/pathfinder/SimpleMap.java</file>
+            <file>file:/C:/Users/Nicolas/Documents/NetBeansProjects/Civilization/CivilizationJava/src/civilization_joueurs/Joueur.java</file>
+            <file>file:/C:/Users/Nicolas/Documents/NetBeansProjects/Civilization/CivilizationJava/src/civilization_exceptions/RessourcesInsuffisantesException.java</file>
+            <file>file:/C:/Users/Nicolas/Documents/NetBeansProjects/Civilization/CivilizationJava/src/civilization/game_engine/Menu.java</file>
+            <file>file:/C:/Users/Nicolas/Documents/NetBeansProjects/Civilization/CivilizationJava/src/civilization/game_engine/Play.java</file>
+            <file>file:/C:/Users/Nicolas/Documents/NetBeansProjects/Civilization/CivilizationJava/src/civilization/Plateau.java</file>
+            <file>file:/C:/Users/Nicolas/Documents/NetBeansProjects/Civilization/CivilizationJava/src/civilization_unites/Unite.java</file>
+            <file>file:/C:/Users/Nicolas/Documents/NetBeansProjects/Civilization/CivilizationJava/src/civilization_batiments/Batiment.java</file>
+            <file>file:/C:/Users/Nicolas/Documents/NetBeansProjects/Civilization/CivilizationJava/src/civilization/Case.java</file>
+            <file>file:/C:/Users/Nicolas/Documents/NetBeansProjects/Civilization/CivilizationJava/src/civilization_unites/UMA_Bombardier.java</file>
             <file>file:/C:/Users/Nicolas/Documents/NetBeansProjects/Civilization/CivilizationJava/src/civilization_batiments/Caserne.java</file>
             <file>file:/C:/Users/Nicolas/Documents/NetBeansProjects/Civilization/CivilizationJava/src/civilization_batiments/Aeroport.java</file>
-            <file>file:/C:/Users/Nicolas/Documents/NetBeansProjects/Civilization/CivilizationJava/src/civilization_unites/UMA_Bombardier.java</file>
-            <file>file:/C:/Users/Nicolas/Documents/NetBeansProjects/Civilization/CivilizationJava/src/civilization/game_engine/Menu.java</file>
             <file>file:/C:/Users/Nicolas/Documents/NetBeansProjects/Civilization/CivilizationJava/src/civilization/game_engine/GameButton.java</file>
-            <file>file:/C:/Users/Nicolas/Documents/NetBeansProjects/Civilization/CivilizationJava/src/civilization_unites/UMA_Chasseur.java</file>
-            <file>file:/C:/Users/Nicolas/Documents/NetBeansProjects/Civilization/CivilizationJava/src/civilization_unites/UCT_Paysan.java</file>
             <file>file:/C:/Users/Nicolas/Documents/NetBeansProjects/Civilization/CivilizationJava/src/civilization/game_engine/Game.java</file>
-            <file>file:/C:/Users/Nicolas/Documents/NetBeansProjects/Civilization/CivilizationJava/src/civilization/Plateau.java</file>
-            <file>file:/C:/Users/Nicolas/Documents/NetBeansProjects/Civilization/CivilizationJava/src/civilization/game_engine/Play.java</file>
-            <file>file:/C:/Users/Nicolas/Documents/NetBeansProjects/Civilization/CivilizationJava/src/civilization_unites/UMM_Sousmarin.java</file>
-            <file>file:/C:/Users/Nicolas/Documents/NetBeansProjects/Civilization/CivilizationJava/src/civilization_unites/Unite.java</file>
             <file>file:/C:/Users/Nicolas/Documents/NetBeansProjects/Civilization/CivilizationJava/src/civilization/Civilization.java</file>
-
         </group>
     </open-files>
 </project-private>

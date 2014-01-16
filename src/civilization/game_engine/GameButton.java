@@ -58,10 +58,19 @@ public class GameButton {
        parent=p;
    } 
    
+   /**
+    * retourne Vrai le clique a eu lieu sur ce bouton
+    * @param mouseX
+    * @param mouseY
+    * @return 
+    */
    public boolean clickOnMe(int mouseX,int mouseY){
        return ((mouseX>X&&mouseX<(X+Image.getWidth()))&(mouseY>Y&&mouseY<(Y+Image.getHeight())))?(true):(false);
    }
    
+   /**
+    * Appelle l'action liee a ce bouton, que ce soit un affichage de String, une Methode ou un Constructeur
+    */
    public void doAction(){
       // System.out.println(this.action+"{}{}{}{}{}"+this.parent.getClass().getSimpleName());
        System.out.println(method);
@@ -75,7 +84,8 @@ public class GameButton {
        }
        else if(construct!=null){
            try {
-               construct.newInstance(((Batiment)parent).joueur, null, null);
+               System.out.println(construct.getName());
+               construct.newInstance(((Batiment)parent).joueur, null, (Batiment)this.parent);
            } catch (InstantiationException |IllegalAccessException| IllegalArgumentException| InvocationTargetException ex) {
                Logger.getLogger(GameButton.class.getName()).log(Level.SEVERE, null, ex);
            }
@@ -83,6 +93,10 @@ public class GameButton {
        
    }
    
+   /**
+    * retourne le type d'unite auquel est lie le bouton
+    * @return 
+    */
    public String getParentType(){
         if(this.parent!=null){
         Class c = parent.getClass();

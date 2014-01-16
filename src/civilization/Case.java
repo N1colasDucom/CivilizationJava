@@ -27,6 +27,10 @@ public class Case {
         Y=y;
     }
     
+    /**
+     * Type de terrain en fonction du code terrain
+     * @return 
+     */
     public String type(){
         switch(this.typeCase){
             case 1:
@@ -46,14 +50,22 @@ public class Case {
         return null;          
     }
     
+    /**
+     * retourne une liste de boutons correspondant aux actions que peut effectuer l'occupant
+     * @return 
+     */
     public List<GameButton> getOccupantMenu(){
         String occupantClass = this.getOccupantType(); 
         System.out.println(occupantClass);
         if(occupantClass.equals("Unite")) return ((Unite)occupant).getMenu();
-       // else if(occupantClass=="Batiment") return (Batiment)this.occupant.getMenu();
+        else if(occupantClass.equals("Batiment")) return ((Batiment)this.occupant).getMenu();
        return null;
     }
-    
+   
+    /**
+     * Retourne Unite ou Batiment en fonction du type de l'occupant
+     * @return 
+     */
     public String getOccupantType(){
         if(this.occupant!=null){
         Class c = occupant.getClass();
@@ -65,6 +77,10 @@ public class Case {
         return "Erreur Classe Occupant";        
     }
     
+    /**
+     * toString()
+     * @return 
+     */
     @Override
     public String toString(){
         return "Case["+this.X+"]["+this.Y+"]("+this.type()+")->";//+((Unite)this.occupant).toString();

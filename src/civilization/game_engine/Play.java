@@ -10,6 +10,7 @@ import civilization.Case;
 import civilization.Plateau;
 import civilization.game_engine.mapgenerator.ImageWriter;
 import civilization.game_engine.pathfinder.AStar;
+import civilization_batiments.*;
 import civilization_unites.*;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -36,9 +37,7 @@ import org.newdawn.slick.util.pathfinding.*;
  * @author Nicolas
  */
 public class Play extends BasicGameState{
-    UCA_AviondeLigne unAvion;
-    UMT_Soldat unSoldat;
-    UMA_Chasseur unChasseur;
+    Aeroport unAeroport, unAeroport2,unAeroport1;
     
     public static TiledMap tMap=null;
     int tMapX=0,tMapY=0;
@@ -73,7 +72,7 @@ public class Play extends BasicGameState{
         if(Game.plateau.getCase(realMouseX, realMouseY).occupant!=null){ 
             this.actionButtons=Game.plateau.getCase(realMouseX, realMouseY).getOccupantMenu();       
             state="unite";
-        }     
+        }
     }
     
     public void drawActionMenu(Graphics g){        
@@ -83,10 +82,24 @@ public class Play extends BasicGameState{
     }
     
     public void drawUnits(Graphics g){
-        for(int i=0;i<Game.j1.unites.size();i++){   
-        if ((((Game.j1.unites.get(i).positionX())*32-32*tMapX<25*32)&&(Game.j1.unites.get(i).positionY()*32-32*tMapY<20*32))) {
-            Game.j1.unites.get(i).getSprite().draw((float)(Game.j1.unites.get(i).positionX()*32-32*tMapX),(float)(Game.j1.unites.get(i).positionY()*32-32*tMapY),(float)32,(float)32);
+        if(!Game.j1.unites.isEmpty()){
+            for(int i=0;i<Game.j1.unites.size();i++){   
+                if(!Game.j1.unites.get(i).statut.equals("construction")){
+                    if ((((Game.j1.unites.get(i).positionX())*32-32*tMapX<25*32)&&(Game.j1.unites.get(i).positionY()*32-32*tMapY<20*32))) {
+                        Game.j1.unites.get(i).getSprite().draw((float)(Game.j1.unites.get(i).positionX()*32-32*tMapX),(float)(Game.j1.unites.get(i).positionY()*32-32*tMapY),(float)32,(float)32);
+                    }
+                }
+            }
         }
+    }
+    
+    public void drawBuildings(Graphics g){
+        if(!Game.j1.batiments.isEmpty()){
+            for(int i=0;i<Game.j1.batiments.size();i++){   
+                if ((((Game.j1.batiments.get(i).positionX())*32-32*tMapX<25*32)&&(Game.j1.batiments.get(i).positionY()*32-32*tMapY<20*32))) {
+                    Game.j1.batiments.get(i).getSprite().draw((float)(Game.j1.batiments.get(i).positionX()*32-32*tMapX),(float)(Game.j1.batiments.get(i).positionY()*32-32*tMapY),(float)32,(float)32);
+                }
+            }
         }
     }
     
@@ -245,9 +258,10 @@ public class Play extends BasicGameState{
        if(this.actionButtons.size()!=0){
            drawActionMenu(g);
        }
-       if(Game.j1.unites.size()!=0){
+       
            this.drawUnits(g);
-       }
+           this.drawBuildings(g);
+       
                 
     }
 
@@ -279,12 +293,12 @@ public class Play extends BasicGameState{
             
         }
         if(clickInBottomPane(gc)){
-            unAvion = new UCA_AviondeLigne(Game.j1, null, null);
-            unAvion.setCaseParent(Game.plateau.getCase(100, 100));
-            unChasseur = new UMA_Chasseur(Game.j1, null, null);
-            unChasseur.setCaseParent(Game.plateau.getCase(50, 20));
-            unSoldat = new UMT_Soldat(Game.j1, null, null);
-            unSoldat.setCaseParent(Game.plateau.getCase(10, 80));
+            unAeroport=new Aeroport(Game.j1);
+            unAeroport.setCaseParent(Game.plateau.getCase(50, 50));
+            unAeroport2=new Aeroport(Game.j1);
+            unAeroport2.setCaseParent(Game.plateau.getCase(60, 60));
+            unAeroport1=new Aeroport(Game.j1);
+            unAeroport1.setCaseParent(Game.plateau.getCase(50, 60));
         }
         if(clickInSideMenu(gc)){
             getClickInGameButton(gc);   

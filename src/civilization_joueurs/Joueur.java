@@ -40,10 +40,10 @@ public class Joueur
     public Joueur(String _pseudo)
     {
         this.pseudo = _pseudo;
-        this.ressourcesBois = 100;
-        this.ressourcesFer = 100;
-        this.ressourcesNourriture = 100;
-        this.ressourcesOr = 100;
+        this.ressourcesBois = 1000;
+        this.ressourcesFer = 1000;
+        this.ressourcesNourriture = 1000;
+        this.ressourcesOr = 1000;
     }
     
     /**

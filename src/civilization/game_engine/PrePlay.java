@@ -58,13 +58,13 @@ public class PrePlay extends BasicGameState{
        int mouseX=gc.getInput().getMouseX();
        int mouseY=gc.getInput().getMouseY();
             if (gc.getInput().isMousePressed(0)) {
-           if((mouseX>randomMap.X && mouseX<randomMap.X+randomMap.Image.getWidth())&&(mouseY>randomMap.Y && mouseY<randomMap.Y+randomMap.Image.getHeight())){
+           if(randomMap.clickOnMe(mouseX, mouseY)){
              Game.plateau=civilization.game_engine.mapgenerator.Noise.GenerateMap(); 
              map.destroy();
              map = new Image("Graphics/Tileset/gameMap.png");
               
            }
-           else if((mouseX>startGame.X && mouseX<startGame.X+startGame.Image.getWidth())&&(mouseY>startGame.Y && mouseY<startGame.Y+startGame.Image.getHeight())){
+           else if(startGame.clickOnMe(mouseX, mouseY)){
              
               game.enterState(2);
            }

@@ -47,12 +47,12 @@ public class SimpleMap implements TileBasedMap{
         MAP = new int[100][100];
        for(int i=0;i<width;i++){
            for(int j=0;j<height;j++){
-               if(nonMovableTypes.contains(p.getCase(i+1,j+1).type())){
-                   MAP[i][j]=1;
+               if(nonMovableTypes.contains(p.getCase(i+1,j+1).type())&&p.getCase(i+1,j+1).occupant==null){
+                   MAP[i][j]=0;
                    
                }
                else{
-                   MAP[i][j]=0;
+                   MAP[i][j]=1;
                }
            }
        }

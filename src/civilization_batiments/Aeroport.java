@@ -12,8 +12,10 @@ import java.util.logging.Logger;
 
 public class Aeroport extends Batiment
 {   
-    public Aeroport()
+    public Aeroport(Joueur j)
     {
+        this.joueur=j;
+        this.joueur.ajouterBatiment(this);
         this.tempsConstruction = 15;
         this.pointsDeVie = 7;
     }
