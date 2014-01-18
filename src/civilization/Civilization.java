@@ -2,7 +2,6 @@ package civilization;
 
 import civilization_batiments.Aeroport;
 import civilization_joueurs.Joueur;
-import civilization_unites.UMT_BombeNucleaire;
 
 public class Civilization 
 {

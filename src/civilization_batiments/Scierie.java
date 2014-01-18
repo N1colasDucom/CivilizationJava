@@ -13,7 +13,7 @@ public class Scierie extends Batiment
 {
     public Scierie(Joueur j,Case c)
     {
-        super(j, c, 4, 4, 6, 2, 3, 0, 2);      
+        super(j, c, 4, 4, 6, 2, 3, 0, 2, 0, 4, 0, 0);      
     }
     
     public static final Map<String, Method> actions = new LinkedHashMap<>();

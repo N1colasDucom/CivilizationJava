@@ -117,6 +117,11 @@ public class Joueur
         return (this.ressourcesOr >= unite.requisOr && this.ressourcesBois >= unite.requisBois && this.ressourcesFer >= unite.requisFer && this.ressourcesNourriture >= unite.requisNourriture);
     }
     
+    /**
+     * Vérifie que le joueur est en capacité d'acheter un bâtiment
+     * @param batiment
+     * @return 
+     */
     public boolean disposeDesRessourcesNessairesPourAcheter(Batiment batiment)
     {
         return (this.ressourcesOr >= batiment.requisOr && this.ressourcesBois >= batiment.requisBois && this.ressourcesFer >= batiment.requisFer && this.ressourcesNourriture >= batiment.requisNourriture);
@@ -157,7 +162,7 @@ public class Joueur
         this.ressourcesNourriture -= unite.consommeNourriture;
         this.ressourcesOr -= unite.consommeOr;
     }
-    
+        
     @Override public String toString()
     {
         String str = "";

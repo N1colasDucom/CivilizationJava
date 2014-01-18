@@ -393,7 +393,7 @@ public class Play extends BasicGameState
         actionButtons = new ArrayList<>();  
         movableTiles= new ArrayList<>();
         placeableTiles = new ArrayList<>();
-        System.out.println(Game.j1);
+        System.out.println(Game.joueurs.get(0));
         try {
             prochainTour = new GameButton(800, 640, new Image("Graphics/Buttons/Button.png"),"Fin Tour", Play.class.getDeclaredMethod("newTour"), this);
         } catch (NoSuchMethodException | SecurityException ex) {
@@ -420,11 +420,11 @@ public class Play extends BasicGameState
            drawActionMenu(g);
        }
        
-           this.drawUnits(g,Game.j1);
-           this.drawUnits(g,Game.j2);
-           this.drawBuildings(g,Game.j1);
-           this.drawBuildings(g,Game.j2);
-       
+           
+       for (Joueur j : Game.joueurs) {
+           this.drawUnits(g, j);
+           this.drawBuildings(g, j);
+       }
                 
     }
 
@@ -446,7 +446,7 @@ public class Play extends BasicGameState
         square=new int[]{realMouseX, realMouseY};
         //this.setMovableTiles(realMouseX, realMouseY, 8);
             System.out.println(Game.plateau.getCase(realMouseX, realMouseY).toString());
-            System.out.println(Game.j1.unites.size());
+            //System.out.println(Game.j1.unites.size());
             this.clickInTile(gc);
             stateActions(gc);
             updatePastTile(gc);
@@ -457,13 +457,13 @@ public class Play extends BasicGameState
         }
         if(clickInBottomPane(gc)){
             //unAeroport=new Aeroport(Game.j1,Game.plateau.getCase(50, 50));
-            unAeroport2=new Aeroport(Game.j1,Game.plateau.getCase(60, 60));
-            unPort=new Port(Game.j1,Game.plateau.getCase(5, 5));
-            uneCaserne = new Caserne(Game.j1, Game.plateau.getCase(95, 95));
-            uneArtillerie=new UMT_Artillerie(Game.j1, Game.plateau.getCase(55, 55),null);
+            unAeroport2=new Aeroport(Game.joueurs.get(0),Game.plateau.getCase(60, 60));
+            unPort=new Port(Game.joueurs.get(0),Game.plateau.getCase(5, 5));
+            uneCaserne = new Caserne(Game.joueurs.get(0), Game.plateau.getCase(95, 95));
+            uneArtillerie=new UMT_Artillerie(Game.joueurs.get(0), Game.plateau.getCase(55, 55),null);
             uneArtillerie.caseParent.occupant=uneArtillerie;
             uneArtillerie.statut="normal";
-            unOuvrier=new UCT_Ouvrier(Game.j1, Game.plateau.getCase(50, 50),null);
+            unOuvrier=new UCT_Ouvrier(Game.joueurs.get(0), Game.plateau.getCase(50, 50),null);
             unOuvrier.caseParent.occupant=unOuvrier;
             unOuvrier.statut="normal";
         }

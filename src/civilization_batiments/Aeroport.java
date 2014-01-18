@@ -14,7 +14,7 @@ public class Aeroport extends Batiment
 {   
     public Aeroport(Joueur j, Case c)
     {
-        super(j, c, 15, 7, 10, 4, 5, 0, 5);
+        super(j, c, 15, 7, 10, 4, 5, 0, 5, 0, 0, 0, 0);
     }
     
     public static final Map<String, Constructor> constructions = new LinkedHashMap<>();

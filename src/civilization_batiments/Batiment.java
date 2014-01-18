@@ -18,13 +18,14 @@ public abstract class Batiment
 {    
     public Joueur joueur;
     public int pointsDeVie, pointsDeVieRestants;
-    public int requisNourriture, requisBois, requisFer, requisOr, tempsConstruction, ouvriersMax;
+    public int requisNourriture, requisBois, requisFer, requisOr, prodOr, prodBois, prodFer, prodNourriture, tempsConstruction, ouvriersMax;
     public ArrayList<UCT_Ouvrier> ouvriersQuiConstruisent = new ArrayList<>();
     
     public Case caseParent;
         
     public Batiment(Joueur j, Case c, int t, int p,
-            int or, int bois, int fer, int nourriture, int ouvriersMax
+            int or, int bois, int fer, int nourriture, int ouvriersMax,
+            int prodOr, int prodBois, int prodFer, int prodNourriture
             )
     {
        this.pointsDeVie = p;
@@ -33,6 +34,10 @@ public abstract class Batiment
        this.requisBois = bois;
        this.requisFer = fer;
        this.requisNourriture = nourriture;
+       this.prodOr = prodOr;
+       this.prodBois = prodBois;
+       this.prodFer = prodFer;
+       this.prodNourriture = prodNourriture;
        this.ouvriersMax = ouvriersMax;
        this.tempsConstruction = t;
        
@@ -58,11 +63,20 @@ public abstract class Batiment
         System.out.println("REPARATION DE : \n" + this.toString());
         return true;
     }
+    
     public boolean detruire()
     {
-        this.caseParent.occupant=null;
+        this.caseParent.occupant = null;
         this.joueur.batiments.remove(this);
         return true;
+    }
+    
+    public void produireDesRessources(Joueur joueur)
+    {
+        joueur.ressourcesOr += this.prodOr;
+        joueur.ressourcesBois += this.prodBois;
+        joueur.ressourcesFer += this.prodFer;
+        joueur.ressourcesNourriture += this.prodNourriture;
     }
     
     /**

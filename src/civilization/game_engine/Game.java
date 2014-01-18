@@ -2,6 +2,7 @@ package civilization.game_engine;
 
 import civilization.Plateau;
 import civilization_joueurs.Joueur;
+import java.util.ArrayList;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
@@ -10,8 +11,12 @@ import org.newdawn.slick.state.StateBasedGame;
 public class Game extends StateBasedGame
 {
     public static final String gameName = "Civilisation";
-    public static Joueur j1 = new Joueur();
-    public static Joueur j2 = new Joueur();
+    //public static Joueur j1 = new Joueur();
+    //public static Joueur j2 = new Joueur();
+    public static ArrayList<Joueur> joueurs = new ArrayList<Joueur>() {{
+        add(new Joueur());
+        add(new Joueur());
+    }};
     public static final int menu = 0;
     public static final int prePlay = 1;
     public static final int play = 2;

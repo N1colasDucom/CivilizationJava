@@ -13,7 +13,7 @@ public class Tour extends Batiment
 {
     public Tour(Joueur j, Case c)
     {
-        super(j, c, 15, 7, 2, 2, 2, 0, 2);
+        super(j, c, 15, 7, 2, 2, 2, 0, 2, 0, 0, 0, 0);
         this.tempsConstruction=15;
         this.pointsDeVie=8;
     }
