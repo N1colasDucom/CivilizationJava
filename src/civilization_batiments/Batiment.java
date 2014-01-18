@@ -5,7 +5,6 @@ import civilization.game_engine.GameButton;
 import civilization_exceptions.RessourcesInsuffisantesException;
 import civilization_joueurs.Joueur;
 import civilization_unites.UCT_Ouvrier;
-
 import java.util.ArrayList;
 import java.util.List;
 import org.newdawn.slick.Image;
@@ -25,6 +24,22 @@ public abstract class Batiment
     public abstract Map<String, Constructor> getConstructions();
     public abstract Map<String, Method> getActions();
         
+    /**
+     * Construit un batiment
+     * @param j Propriétaire du batiment (Joueur)
+     * @param c Case sur laquelle sera contruit le bâtiment
+     * @param t Temps de construction
+     * @param p Points de vie du bâtiment
+     * @param or Quantité d'or requise
+     * @param bois Quantité de boise requise
+     * @param fer Quantité de fer requise
+     * @param nourriture Quantité de nourriture requise
+     * @param ouvriersMax Nombre d'ouvriers pouvant participer à la construction du bâtiment
+     * @param prodOr Quantité d'or produite par tour
+     * @param prodBois Quantité de bois produite par tour
+     * @param prodFer Quantité de fer produite par tour
+     * @param prodNourriture Quantité de nourriture produite par tour
+     */
     public Batiment(
             Joueur j, Case c, int t, int p,
             int or, int bois, int fer, int nourriture, int ouvriersMax,
@@ -63,10 +78,15 @@ public abstract class Batiment
         return true;
     }
     
+    /**
+     * Détruit un bâtiment
+     * @return boolean
+     */
     public boolean detruire()
     {
         this.caseParent.occupant = null;
         this.joueur.batiments.remove(this);
+        
         return true;
     }
     

@@ -17,7 +17,6 @@ public class Menu extends BasicGameState
     {
         
     }
-
     
     @Override
     public int getID() 
