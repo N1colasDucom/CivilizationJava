@@ -39,7 +39,12 @@ public class Game extends StateBasedGame{
         this.addState(new Play(play));
         
     }
-    
+   
+    /**
+     * Initialise les trois etats de JEu
+     * @param gc
+     * @throws SlickException 
+     */
     @Override
     public void initStatesList(GameContainer gc) throws SlickException {
         this.getState(menu).init(gc, this);

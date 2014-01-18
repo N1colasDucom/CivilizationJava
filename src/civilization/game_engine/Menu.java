@@ -35,7 +35,7 @@ public class Menu extends BasicGameState{
     @Override
     public void init(GameContainer gc, StateBasedGame game) throws SlickException {
         Jouer = new GameButton(100,100,new Image("Graphics/Buttons/Jouer.png"));       
-        Quitter =new GameButton(100,100,new Image("Graphics/Buttons/Quitter.png"));
+        Quitter =new GameButton(100,200,new Image("Graphics/Buttons/Quitter.png"));
         Background2=new Image("Graphics/Images/layer2.png");
         Background= new Image("Graphics/Images/layer1.png");
     }
@@ -54,8 +54,11 @@ public class Menu extends BasicGameState{
        int mouseY=gc.getInput().getMouseY();
        
        if (gc.getInput().isMousePressed(0)) {
-           if((mouseX>Jouer.X && mouseX<Jouer.X+Jouer.Image.getWidth())&&(mouseY>Jouer.Y && mouseY<Jouer.Y+Jouer.Image.getHeight())){
+           if(Jouer.clickOnMe(mouseX, mouseY)){
               game.enterState(1);
+           }
+           else if (Quitter.clickOnMe(mouseX, mouseY)){
+               gc.exit();
            }
         }
      

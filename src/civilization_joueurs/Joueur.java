@@ -1,5 +1,6 @@
 package civilization_joueurs;
 
+import civilization.game_engine.Game;
 import civilization_batiments.*;
 import civilization_unites.*;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ public class Joueur
     public int ressourcesBois;
     public int ressourcesFer;
     public int ressourcesNourriture;
+    public Game jeu;
     
     public ArrayList<Batiment> batiments = new ArrayList<>();
     public ArrayList<Unite> unites = new ArrayList<>();
@@ -38,10 +40,10 @@ public class Joueur
     public Joueur(String _pseudo)
     {
         this.pseudo = _pseudo;
-        this.ressourcesBois = 100;
-        this.ressourcesFer = 100;
-        this.ressourcesNourriture = 100;
-        this.ressourcesOr = 100;
+        this.ressourcesBois = 1000;
+        this.ressourcesFer = 1000;
+        this.ressourcesNourriture = 1000;
+        this.ressourcesOr = 1000;
     }
     
     /**
@@ -59,6 +61,21 @@ public class Joueur
         this.ressourcesBois = _bois;
         this.ressourcesFer = _fer;
         this.ressourcesNourriture = _nourriture;
+    }
+    
+    /**
+     * Crée un joueur avec un pseudo et un jeu.
+     * @param _pseudo (required) pseudo du joueur
+     * @param g (required) Jeu auquel appartient le joueur
+     */
+    public Joueur(String _pseudo, Game g)
+    {
+        this.pseudo = _pseudo;
+        this.ressourcesBois = 100;
+        this.ressourcesFer = 100;
+        this.ressourcesNourriture = 100;
+        this.ressourcesOr = 100;
+        this.jeu=g;
     }
 
     public void ajouterUnite(Unite unite)
