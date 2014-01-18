@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package civilization.game_engine;
 
 import org.newdawn.slick.GameContainer;
@@ -12,10 +6,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
-/**
- *
- * @author Nicolas
- */
+
 public class Menu extends BasicGameState
 {
     GameButton Jouer;
@@ -59,8 +50,7 @@ public class Menu extends BasicGameState
        if (gc.getInput().isMousePressed(0)) {
            if (Jouer.clickOnMe(mouseX, mouseY)) {
               game.enterState(1);
-           }
-           else if (Quitter.clickOnMe(mouseX, mouseY)){
+           } else if (Quitter.clickOnMe(mouseX, mouseY)){
                gc.exit();
            }
         }   

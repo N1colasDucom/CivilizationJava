@@ -20,26 +20,28 @@ public abstract class Batiment
     public int pointsDeVie, pointsDeVieRestants;
     public int requisNourriture, requisBois, requisFer, requisOr, prodOr, prodBois, prodFer, prodNourriture, tempsConstruction, ouvriersMax;
     public ArrayList<UCT_Ouvrier> ouvriersQuiConstruisent = new ArrayList<>();
-    
     public Case caseParent;
+    
+    public abstract Map<String, Constructor> getConstructions();
+    public abstract Map<String, Method> getActions();
         
-    public Batiment(Joueur j, Case c, int t, int p,
+    public Batiment(
+            Joueur j, Case c, int t, int p,
             int or, int bois, int fer, int nourriture, int ouvriersMax,
             int prodOr, int prodBois, int prodFer, int prodNourriture
-            )
-    {
-       this.pointsDeVie = p;
-       this.pointsDeVieRestants = this.pointsDeVie;
-       this.requisOr = or;
-       this.requisBois = bois;
-       this.requisFer = fer;
-       this.requisNourriture = nourriture;
-       this.prodOr = prodOr;
-       this.prodBois = prodBois;
-       this.prodFer = prodFer;
-       this.prodNourriture = prodNourriture;
-       this.ouvriersMax = ouvriersMax;
-       this.tempsConstruction = t;
+    ) {
+        this.pointsDeVie = p;
+        this.pointsDeVieRestants = this.pointsDeVie;
+        this.requisOr = or;
+        this.requisBois = bois;
+        this.requisFer = fer;
+        this.requisNourriture = nourriture;
+        this.prodOr = prodOr;
+        this.prodBois = prodBois;
+        this.prodFer = prodFer;
+        this.prodNourriture = prodNourriture;
+        this.ouvriersMax = ouvriersMax;
+        this.tempsConstruction = t;
        
        try {
             if (j.disposeDesRessourcesNessairesPourAcheter(this)) {
@@ -55,9 +57,6 @@ public abstract class Batiment
         }
     }
     
-    public abstract Map<String, Constructor> getConstructions();
-    public abstract Map<String, Method> getActions();
-    
     public boolean reparer()
     {
         System.out.println("REPARATION DE : \n" + this.toString());
@@ -71,6 +70,10 @@ public abstract class Batiment
         return true;
     }
     
+    /**
+     * Ajoute les ressources produits par un batiment à un joueur.
+     * @param joueur 
+     */
     public void produireDesRessources(Joueur joueur)
     {
         joueur.ressourcesOr += this.prodOr;
@@ -83,12 +86,14 @@ public abstract class Batiment
      * retourne la Sprite du batiment
      * @return 
      */
-    public Image getSprite(){
+    public Image getSprite()
+    {
         try {
             return new Image("Graphics/Units/Batiments/"+this.getClass().getSimpleName()+"/sprite.png");
         } catch (SlickException ex) {
             System.out.println("Erreur image:"+this.getClass().getSimpleName());
         }
+        
         return null;
     }
     
@@ -96,7 +101,8 @@ public abstract class Batiment
      * Attribue une case parent a un batiment
      * @param c 
      */
-    public void setCaseParent(Case c){
+    public void setCaseParent(Case c)
+    {
         if (this.caseParent!=null) {
             this.caseParent.occupant=null;
         }      
@@ -109,24 +115,26 @@ public abstract class Batiment
      * retourne la position X d'une unite
      * @return 
      */
-    public int positionX(){
+    public int positionX()
+    {
         return this.caseParent.X;
-       
     }
     
     /**
      * retourne la position X d'une unite
      * @return 
      */
-    public int positionY(){
+    public int positionY()
+    {
         return this.caseParent.Y;
     }
     
-        /**
+    /**
      * retourne une liste de boutons correspondant aux actions que peut effectuer ce batiment
      * @return 
      */
-    public List<GameButton> getMenu(){
+    public List<GameButton> getMenu()
+    {
       List<GameButton> list = new ArrayList<>();
       int posY=100;
         try {

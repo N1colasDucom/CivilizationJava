@@ -75,11 +75,18 @@ public abstract class Unite
     }
     
     /**
-     * Retourne vrai si l'unite peut attaquer
+     * Retourne vrai si l'unite peut attaquer une unité donnée.
      * @param unite
      * @return 
      */
     public abstract boolean peutAttaquer(Unite unite);
+    
+    /**
+     * Retourne vrai si l'unité peut attaquer un bâtiment donné.
+     * @param batiment
+     * @return 
+     */
+    public abstract boolean peutAttaquer(Batiment batiment);
     
     /**
      * Change le statut de l'unite

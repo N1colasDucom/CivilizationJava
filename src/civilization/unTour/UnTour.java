@@ -10,6 +10,9 @@ public class UnTour
     public static Joueur joueurActif = Game.joueurs.get(0);
     public static int numero = 0;
     
+    /**
+     * Passe au joueur suivant une fois le tour terminé.
+     */
     public UnTour()
     {
         ajouterLesRessourcesProduitesDuJoueurEnCours();
@@ -21,13 +24,13 @@ public class UnTour
         Play.state="Nouveau Tour";
     }
     
+    /**
+     * Ajoute les ressources créeés par les batiments d'un joueur au dit joueur.
+     */
     private void ajouterLesRessourcesProduitesDuJoueurEnCours()
     {
         for (Batiment b : joueurActif.batiments) {
-            joueurActif.ressourcesBois += b.prodBois;
-            joueurActif.ressourcesFer += b.prodFer;
-            joueurActif.ressourcesNourriture += b.prodNourriture;
-            joueurActif.ressourcesOr += b.prodOr;
+            b.produireDesRessources(joueurActif);
         }
     }
        
