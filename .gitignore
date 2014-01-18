@@ -1,11 +1,6 @@
-/nbproject/project.properties
-/nbproject/private/
+/nbproject
 /dist/
 /Graphics/Tileset/gameMap.png
 /Graphics/Tileset/map.tmx
 /nbproject/private/private.properties
-/build/*
-<<<<<<< HEAD
 /build
-=======
->>>>>>> actions-boutons
