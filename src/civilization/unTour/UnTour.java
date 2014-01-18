@@ -2,6 +2,7 @@ package civilization.unTour;
 
 import civilization.game_engine.Game;
 import civilization.game_engine.Play;
+import civilization_batiments.Batiment;
 import civilization_joueurs.Joueur;
 
 public class UnTour 
@@ -11,12 +12,23 @@ public class UnTour
     
     public UnTour()
     {
-        //joueurActif=(joueurActif.equals(Game.j1))?Game.j2:Game.j1;
-        int joueurSuivant = ( (Game.joueurs.indexOf(joueurActif) + 1) == Game.joueurs.size() ) ? 0 : Game.joueurs.indexOf(joueurActif) + 1;
-        joueurActif = Game.joueurs.get(joueurSuivant);
+        ajouterLesRessourcesProduitesDuJoueurEnCours();
+        
+        joueurActif = Game.joueurs.get(((Game.joueurs.indexOf(joueurActif) + 1) == Game.joueurs.size()) ? 0 : (Game.joueurs.indexOf(joueurActif) + 1));
         numero++;
+        
         System.out.println(this.toString());
         Play.state="Nouveau Tour";
+    }
+    
+    private void ajouterLesRessourcesProduitesDuJoueurEnCours()
+    {
+        for (Batiment b : joueurActif.batiments) {
+            joueurActif.ressourcesBois += b.prodBois;
+            joueurActif.ressourcesFer += b.prodFer;
+            joueurActif.ressourcesNourriture += b.prodNourriture;
+            joueurActif.ressourcesOr += b.prodOr;
+        }
     }
        
     @Override
