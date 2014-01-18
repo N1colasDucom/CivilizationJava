@@ -35,36 +35,34 @@ public class Menu extends BasicGameState
     }
 
     @Override
-    public void init(GameContainer gc, StateBasedGame game) throws SlickException {
-        Jouer = new GameButton(100,100,new Image("Graphics/Buttons/Jouer.png"));       
-        Quitter =new GameButton(100,200,new Image("Graphics/Buttons/Quitter.png"));
+    public void init(GameContainer gc, StateBasedGame game) throws SlickException 
+    {
+        Jouer = new GameButton(434, 362, new Image("Graphics/Images/Bouton.png"));       
+        Quitter = new GameButton(434, 448, new Image("Graphics/Images/Bouton.png"));
         Background = new Image("Graphics/Images/MenuPrincipal.png");
     }
 
     @Override
-    public void render(GameContainer gc, StateBasedGame game, Graphics g) throws SlickException {
+    public void render(GameContainer gc, StateBasedGame game, Graphics g) throws SlickException 
+    {
         Background.draw(0,0);
-        Jouer.Image.draw(100, 100);
-        Quitter.Image.draw(100, 200);
+        Jouer.Image.draw(434, 362);
+        Quitter.Image.draw(434, 448);
     }
 
     @Override
-    public void update(GameContainer gc, StateBasedGame game, int delta) throws SlickException {
+    public void update(GameContainer gc, StateBasedGame game, int delta) throws SlickException 
+    {
        int mouseX=gc.getInput().getMouseX();
        int mouseY=gc.getInput().getMouseY();
        
        if (gc.getInput().isMousePressed(0)) {
-           if(Jouer.clickOnMe(mouseX, mouseY)){
+           if (Jouer.clickOnMe(mouseX, mouseY)) {
               game.enterState(1);
            }
            else if (Quitter.clickOnMe(mouseX, mouseY)){
                gc.exit();
            }
-        }
-     
-          
-           
-    }
-
-    
+        }   
+    }   
 }

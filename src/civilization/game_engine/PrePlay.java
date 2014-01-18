@@ -13,8 +13,7 @@ import org.newdawn.slick.state.StateBasedGame;
  */
 public class PrePlay extends BasicGameState
 {
-    GameButton randomMap;
-    GameButton startGame;
+    GameButton randomMap, startGame, quitGame;
     Image Background, map;
     StateBasedGame game;
     
@@ -34,8 +33,9 @@ public class PrePlay extends BasicGameState
     public void init(GameContainer container, StateBasedGame game) throws SlickException 
     {
         this.game=game;
-        randomMap = new GameButton(100, 100, new Image("Graphics/Buttons/Generer.png"));
-        startGame = new GameButton(100, 200, new Image("Graphics/Buttons/Jouer.png"));
+        randomMap = new GameButton(578, 378, new Image("Graphics/Images/Bouton.png"));
+        startGame = new GameButton(622, 464, new Image("Graphics/Images/Bouton.png"));
+        quitGame = new GameButton(678, 548, new Image("Graphics/Images/Bouton.png"));
         Game.plateau= civilization.game_engine.mapgenerator.Noise.GenerateMap();
         map = new Image("Graphics/Tileset/gameMap.png");
         Background = new Image("Graphics/Images/MenuSecondaire.png");
@@ -44,10 +44,11 @@ public class PrePlay extends BasicGameState
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException 
     {
-        map.draw(586,355,3);
+        map.draw(162, 335, 3);
         Background.draw(0, 0);
-        randomMap.Image.draw(100, 100);
-        startGame.Image.draw(100, 200);
+        randomMap.Image.draw(578, 378);
+        startGame.Image.draw(622, 464);
+        quitGame.Image.draw(678, 548);
     }
 
     @Override
