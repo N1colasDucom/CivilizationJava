@@ -12,13 +12,13 @@ import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
-import org.newdawn.slick.tiled.TiledMap;
 
 /**
  *
  * @author Nicolas
  */
-public class Game extends StateBasedGame{
+public class Game extends StateBasedGame
+{
     public static final String gameName = "Civilisation";
     public static Joueur j1 = new Joueur("Nicolas");
     public static Joueur j2 = new Joueur("Valentin");
@@ -28,12 +28,11 @@ public class Game extends StateBasedGame{
     public static final int wSizeX=1020;
     public static final int wSizeY=720;
     public static Plateau plateau;
-
     
-    
-    public Game(String name) {
+    public Game(String name) 
+    {
         super(gameName);
-        this.plateau = new Plateau();
+        plateau = new Plateau();
         this.addState(new Menu(menu));
         this.addState(new PrePlay(prePlay));
         this.addState(new Play(play));

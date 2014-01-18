@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package civilization.game_engine;
 
 import civilization.Case;
@@ -33,7 +27,8 @@ import org.newdawn.slick.tiled.TiledMap;
  *
  * @author Nicolas
  */
-public class Play extends BasicGameState{
+public class Play extends BasicGameState
+{
     Aeroport unAeroport, unAeroport2;
     Caserne uneCaserne;
     UMT_Artillerie uneArtillerie;
@@ -52,7 +47,7 @@ public class Play extends BasicGameState{
     private GameButton prochainTour;
     public static String state;
     public static Case pastTile;
-    Image map;
+    Image Background, map;
     
     public Play(int State){
         
@@ -392,25 +387,26 @@ public class Play extends BasicGameState{
     }
 
     @Override
-    public void init(GameContainer container, StateBasedGame game) throws SlickException {
-         this.actionButtons = new ArrayList<>();  
-         movableTiles= new ArrayList<>();
-         placeableTiles = new ArrayList<>();
-         System.out.println(Game.j1);
+    public void init(GameContainer container, StateBasedGame game) throws SlickException 
+    {
+        Background = new Image("Graphics/Images/Jeu.png");
+        actionButtons = new ArrayList<>();  
+        movableTiles= new ArrayList<>();
+        placeableTiles = new ArrayList<>();
+        System.out.println(Game.j1);
         try {
             prochainTour = new GameButton(800, 640, new Image("Graphics/Buttons/Button.png"),"Fin Tour", Play.class.getDeclaredMethod("newTour"), this);
-        } catch (NoSuchMethodException ex) {
-            Logger.getLogger(Play.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SecurityException ex) {
+        } catch (NoSuchMethodException | SecurityException ex) {
             Logger.getLogger(Play.class.getName()).log(Level.SEVERE, null, ex);
         }
-         state="normal";
+        state="normal";
     }
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         tMap.render(0,0, tMapX, tMapY,25,20);
         map.draw(0,640,0.8f);
+        Background.draw(0, 0);
         prochainTour.draw(g);
         drawGrid(g);
         if(square!=null){

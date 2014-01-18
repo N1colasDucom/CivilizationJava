@@ -7,13 +7,13 @@ import civilization.game_engine.Play;
 import civilization.game_engine.pathfinder.AStar;
 import civilization_batiments.Batiment;
 import civilization_joueurs.Joueur;
-import java.util.List;
+import civilization_exceptions.*;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
-import civilization_exceptions.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.List;
 
 public abstract class Unite 
 {
@@ -24,7 +24,7 @@ public abstract class Unite
     public Case caseParent;
     public Batiment batimentParent;
 
-    public int pointsDeVie, pointsDeVieRestants, defense, distanceDeMvt;
+    public int pointsDeVie, pointsDeVieRestants, defense, distanceDeMvt, niveau;
     public int requisNourriture, requisBois, requisFer, requisOr, tempsConstruction;
     public int consommeNourriture, consommeBois, consommeFer, consommeOr;
         
@@ -38,6 +38,7 @@ public abstract class Unite
         this.nom = nom;        
 
         this.pointsDeVieRestants = ptVie;
+        this.niveau = 1;
         
         this.requisNourriture = nourriture;
         this.requisBois = bois;
