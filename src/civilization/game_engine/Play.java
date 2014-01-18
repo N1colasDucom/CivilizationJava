@@ -128,7 +128,7 @@ public class Play extends BasicGameState
     {
         if(!j.unites.isEmpty()) {
             for(int i=0;i<j.unites.size();i++) {   
-                if(!j.unites.get(i).statut.equals("construction")) {
+                if(j.unites.get(i).statut.equals("normal")) {
                     if ((((j.unites.get(i).positionX())*32-32*tMapX<25*32)&&(j.unites.get(i).positionY()*32-32*tMapY<20*32))) {
                         j.unites.get(i).getSprite().draw((float)(j.unites.get(i).positionX()*32-32*tMapX),(float)(j.unites.get(i).positionY()*32-32*tMapY),(float)32,(float)32);
                     }
@@ -143,7 +143,7 @@ public class Play extends BasicGameState
      */
     public void drawBuildings(Graphics g, Joueur j)
     {
-        if(!j.batiments.isEmpty()) {
+        if (!j.batiments.isEmpty()) {
             for(int i=0;i<j.batiments.size();i++) {   
                 if ((((j.batiments.get(i).positionX())*32-32*tMapX<25*32)&&(j.batiments.get(i).positionY()*32-32*tMapY<20*32))) {
                     j.batiments.get(i).getSprite().draw((float)(j.batiments.get(i).positionX()*32-32*tMapX),(float)(j.batiments.get(i).positionY()*32-32*tMapY),(float)32,(float)32);
