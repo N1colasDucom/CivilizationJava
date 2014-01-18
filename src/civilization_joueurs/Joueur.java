@@ -19,7 +19,7 @@ public class Joueur
     public ArrayList<Unite> unites = new ArrayList<>();
     public ArrayList<UniteCivile> unitesCiviles = new ArrayList<>();
     public ArrayList<UniteMilitaire> unitesMilitaires = new ArrayList<>();
-    
+        
     /**
      * Crée un joueur avec un pseudo aléatoire.
      */
@@ -78,6 +78,10 @@ public class Joueur
         this.jeu=g;
     }
 
+    /**
+     * Ajoute une unité au joueur
+     * @param unite 
+     */
     public void ajouterUnite(Unite unite)
     {
         this.unites.add(unite);
@@ -93,20 +97,29 @@ public class Joueur
         this.consommerLesRessourcesNecessairesPourConstruire(unite);
     }
     
+    /**
+     * Ajoute un batiment au joueur
+     * @param batiment 
+     */
     public void ajouterBatiment(Batiment batiment) 
     {
         this.batiments.add(batiment);        
     }
     
+    /**
+     * Vérifie que le joueur est en capacité d'acheter une unité
+     * @param unite
+     * @return boolean
+     */
     public boolean disposeDesRessourcesNessairesPourAcheter(Unite unite) 
     {
-        if (this.ressourcesOr >= unite.requisOr && this.ressourcesBois >= unite.requisBois && this.ressourcesFer >= unite.requisFer && this.ressourcesNourriture >= unite.requisNourriture) {
-            return true;
-        }
-        
-        return false;
+        return (this.ressourcesOr >= unite.requisOr && this.ressourcesBois >= unite.requisBois && this.ressourcesFer >= unite.requisFer && this.ressourcesNourriture >= unite.requisNourriture);
     }
     
+    /**
+     * Consomme les ressources d'un joueur nécessaires à la construction d'une unité
+     * @param unite 
+     */
     private void consommerLesRessourcesNecessairesPourConstruire(Unite unite) 
     {
         this.ressourcesBois -= unite.requisBois;
@@ -115,6 +128,10 @@ public class Joueur
         this.ressourcesOr -= unite.requisOr;
     }
     
+    /**
+     * Consomme les ressources d'un joueur nécessaires pour la survie d'une unité
+     * @param unite 
+     */
     private void consommerLesRessourcesNecessairesPourVivre(Unite unite) 
     {
         this.ressourcesBois -= unite.consommeBois;
@@ -154,7 +171,7 @@ public class Joueur
         /*
          * Liste des Unités MILITAIRES
          */
-        str += "    [UNITES MIL] ("+this.unitesMilitaires.size()+")";
+        str += "    [UNITES MIL] ("+this.unitesMilitaires.size()+") ";
         for (UniteMilitaire um : this.unitesMilitaires) {
             str += um.getClass().getSimpleName()+" ";
         }

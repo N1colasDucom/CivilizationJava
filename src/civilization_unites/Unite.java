@@ -69,10 +69,10 @@ public abstract class Unite
         } catch (RessourcesInsuffisantesException e) {
             System.out.println(e.getMessage());
         }
+        
         if (batimentParent!=null) {
-         this.finirConstruction(); 
+            this.finirConstruction(); 
         }
-      
     }
     
     /**
@@ -176,7 +176,8 @@ public abstract class Unite
         Play.state="Deplacement";
     }
     
-    public Case findExitTile(){
+    public Case findExitTile()
+    {
         for (int k = 0; k < 10; k++) {                  
           for (int i = 0; i < k*2+3; i++) {
                 for (int j = 0; j < k*2+3; j++) {

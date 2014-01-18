@@ -1,10 +1,7 @@
 package civilization;
 
-
 import civilization_joueurs.Joueur;
-import civilization_unites.UCT_Ouvrier;
-import civilization_unites.UMT_Soldat;
-
+import civilization_unites.UMT_BombeNucleaire;
 
 public class Civilization 
 {
@@ -13,9 +10,14 @@ public class Civilization
         Joueur j1 = new Joueur();
         Joueur j2 = new Joueur();
         
-        UMT_Soldat monSoldat = new UMT_Soldat(j2, null, null);
-        UCT_Ouvrier sonOuvrier = new UCT_Ouvrier(j1, null, null);
-        System.out.println(sonOuvrier.peutAttaquer(monSoldat));
+        for (int i = 0; i < 10; i++) {
+            System.out.println(i);
+            UMT_BombeNucleaire bn1 = new UMT_BombeNucleaire(j1, null, null);
+        }
+        
+        System.out.println(j1);
+        
+        
         
         //Aeroport monAeroport = new Aeroport();
        // Aeroport monAeroport = new Aeroport(j1);
