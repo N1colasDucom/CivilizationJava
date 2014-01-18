@@ -6,11 +6,7 @@ import civilization_joueurs.Joueur;
 
 public class UMM_Destroyer extends UniteMilitaireMaritime
 {
-<<<<<<< HEAD
-    public UMM_Destroyer(Joueur _joueur)
-=======
     public UMM_Destroyer(Joueur _joueur, Case caseParent, Batiment batimentParent)
->>>>>>> 13b6b0003f1125a10090daae83537f690ff68754
     {
         super(_joueur, "Destroyer", 6, 0, 8, 0, 10, 14, 8, 3, 1, 10, caseParent, batimentParent);
     }

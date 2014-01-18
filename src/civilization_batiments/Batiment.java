@@ -3,18 +3,14 @@ package civilization_batiments;
 import civilization.Case;
 import civilization.game_engine.GameButton;
 import civilization_joueurs.Joueur;
-import civilization_unites.Unite;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Method;
+
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.Action;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+import java.util.Map;
 
 public abstract class Batiment 
 {    
@@ -118,4 +114,3 @@ public abstract class Batiment
       return list;
     }
 }
-

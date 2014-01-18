@@ -7,9 +7,7 @@
 package civilization.game_engine;
 
 import civilization.Case;
-import civilization.Plateau;
 import civilization.game_engine.mapgenerator.ImageWriter;
-import civilization.game_engine.pathfinder.AStar;
 import civilization.unTour.UnTour;
 import civilization_batiments.*;
 import civilization_joueurs.Joueur;
@@ -18,8 +16,6 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,7 +28,6 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
-import org.newdawn.slick.util.pathfinding.*;
 
 /**
  *

@@ -31,6 +31,6 @@ public abstract class UniteMilitaire extends Unite
     
     @Override public String toString()
     {
-return this.nom + " (" + this.getClass().getSimpleName() + " >> " + this.getClass().getSuperclass().getSimpleName() + ")\n" + super.toString();
+        return this.nom + " (" + this.getClass().getSimpleName() + " >> " + this.getClass().getSuperclass().getSimpleName() + ")\n" + super.toString();
     }
 }

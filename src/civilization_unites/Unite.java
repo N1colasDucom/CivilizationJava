@@ -12,11 +12,8 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import civilization_exceptions.*;
 import java.util.ArrayList;
-<<<<<<< HEAD
-=======
 import java.util.logging.Level;
 import java.util.logging.Logger;
->>>>>>> 13b6b0003f1125a10090daae83537f690ff68754
 
 public abstract class Unite 
 {

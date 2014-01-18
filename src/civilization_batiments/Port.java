@@ -1,14 +1,10 @@
 package civilization_batiments;
 
 import civilization.Case;
-import static civilization_batiments.HotelDeVille.actions;
-import static civilization_batiments.HotelDeVille.constructions;
 import civilization_joueurs.Joueur;
 import civilization_unites.*;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.logging.Level;

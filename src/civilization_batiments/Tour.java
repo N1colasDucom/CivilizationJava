@@ -1,7 +1,6 @@
 package civilization_batiments;
 
 import civilization.Case;
-import static civilization_batiments.Maison.actions;
 import civilization_joueurs.Joueur;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
