@@ -24,7 +24,7 @@ public abstract class Unite
     public Case caseParent;
     public Batiment batimentParent;
 
-    public int pointsDeVie,pointsDeVieRestants, defense, distanceDeMvt;
+    public int pointsDeVie, pointsDeVieRestants, defense, distanceDeMvt;
     public int requisNourriture, requisBois, requisFer, requisOr, tempsConstruction;
     public int consommeNourriture, consommeBois, consommeFer, consommeOr;
         
@@ -32,11 +32,12 @@ public abstract class Unite
             String nom, 
             int or, int bois, int fer, int nourriture, int tpsConstruction, int defense, 
             int dist,
-            Case caseParent, Batiment batimentParent) 
+            Case caseParent, Batiment batimentParent,
+            int ptVie) 
     {              
         this.nom = nom;        
 
-        this.pointsDeVieRestants=this.pointsDeVie;
+        this.pointsDeVieRestants = ptVie;
         
         this.requisNourriture = nourriture;
         this.requisBois = bois;
@@ -84,7 +85,7 @@ public abstract class Unite
             return false;
         } else if (unite.joueur.equals(this)) {
             return false;
-        }else {
+        } else {
             return true;
         }
     }
@@ -93,20 +94,22 @@ public abstract class Unite
      * Change le statut de l'unite
      * @param s 
      */
-    public void changerStatut(String s){
-        statut=s;
+    public void changerStatut(String s)
+    {
+        statut = s;
     }
     
     /**
      * Attribue une case parent a une unite (change de case si l'unite a deja un parent)
      * @param c 
      */
-    public void setCaseParent(Case c){
-        if (this.caseParent!=null) {
-            this.caseParent.occupant=null;
+    public void setCaseParent(Case c) 
+    {
+        if (this.caseParent != null) {
+            this.caseParent.occupant = null;
         }      
-        this.caseParent=c;
-        this.caseParent.occupant=this;
+        this.caseParent = c;
+        this.caseParent.occupant = this;
         System.out.println(this.getClass().getSimpleName());
     }
     
@@ -114,17 +117,19 @@ public abstract class Unite
      * Attribue un batiment parent a une unite (change de batiment si l'unite a deja un parent)
      * @param b 
      */
-    public void setBatimentParent(Batiment b){
-        this.batimentParent=null;
-        this.caseParent=null;
-        this.batimentParent=b;
+    public void setBatimentParent(Batiment b)
+    {
+        this.batimentParent = null;
+        this.caseParent = null;
+        this.batimentParent = b;
     }
     
     /**
      * deplace l'unite vers une nouvelle case
      * @param nvCase 
      */
-    public void deplacer(Case nvCase){
+    public void deplacer(Case nvCase)
+    {
         setCaseParent(nvCase);
     }
     
@@ -132,23 +137,25 @@ public abstract class Unite
      * retourne la position X d'une unite
      * @return 
      */
-    public int positionX(){
+    public int positionX()
+    {
         return this.caseParent.X;
-       
     }
     
     /**
      * retourne la position X d'une unite
      * @return 
      */
-    public int positionY(){
+    public int positionY()
+    {
         return this.caseParent.Y;
     }
     
     /**
      * retourne une liste de coordonnees correspondant au cases vers lesquelles l'unite peut se deplacer
      */
-    public void setMovableTiles(){
+    public void setMovableTiles()
+    {
         int xStart,yStart,xFinish,yFinish;
         int x=this.positionX()+1;
         int y=this.positionY()+1;
@@ -192,11 +199,13 @@ public abstract class Unite
         return null;
     }
     
-    public void exitParent(){
+    public void exitParent()
+    {
         deplacer(findExitTile());
     }
     
-    public void predeplacer(){
+    public void predeplacer()
+    {
         System.out.println("WOUHOUUU!");
     }
     
@@ -204,7 +213,8 @@ public abstract class Unite
      * retourne une liste de boutons correspondant aux actions que peut effectuer cette unite
      * @return 
      */
-    public List<GameButton> getMenu(){
+    public List<GameButton> getMenu()
+    {
       List<GameButton> list = new ArrayList<>();
         try {
           try {
@@ -222,7 +232,8 @@ public abstract class Unite
      * retourne la Sprite de l'unite
      * @return 
      */
-    public Image getSprite(){
+    public Image getSprite()
+    {
         try {
             return new Image("Graphics/Units/Unites/"+this.getClass().getSimpleName()+"/sprite.png");
         } catch (SlickException ex) {
@@ -231,12 +242,14 @@ public abstract class Unite
         return null;
     }
     
-   public List<String> movableTypes(){
+   public List<String> movableTypes()
+   {
        List<String> types=new ArrayList<>();
        return types;
    }
    
-   public void finirConstruction(){
+   public void finirConstruction()
+   {
        this.changerStatut("normal");
        this.exitParent();
    }

@@ -8,7 +8,7 @@ public class UMT_BombeNucleaire extends UniteMilitaireTerrestre
 {
     public UMT_BombeNucleaire(Joueur _joueur, Case caseParent, Batiment batimentParent)
     {
-        super(_joueur, "Bombe nucléaire", 40, 0, 25, 0, 20, 13, 40, 10, 10, 5, caseParent, batimentParent);
+        super(_joueur, "Bombe nucléaire", 40, 0, 25, 0, 20, 13, 40, 10, 10, 5, caseParent, batimentParent, 5);
     }
     
     @Override public boolean peutAttaquer(Unite unite)

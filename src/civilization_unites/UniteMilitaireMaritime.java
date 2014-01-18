@@ -12,9 +12,10 @@ public abstract class UniteMilitaireMaritime extends UniteMilitaire
             int or, int bois, int fer, int nourriture, int tpsConstruction, int defense, 
             int attDist, int attPts, int attZones,
             int dist,
-            Case caseParent, Batiment batimentParent)
+            Case caseParent, Batiment batimentParent,
+            int ptVie)
     {
-        super(joueur, nom, or, bois, fer, nourriture, tpsConstruction, defense, attDist, attPts, attZones, dist, caseParent, batimentParent);
+        super(joueur, nom, or, bois, fer, nourriture, tpsConstruction, defense, attDist, attPts, attZones, dist, caseParent, batimentParent, ptVie);
     }
     
     @Override
