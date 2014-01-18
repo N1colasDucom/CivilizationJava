@@ -31,33 +31,29 @@ public abstract class UniteMilitaireAerien extends UniteMilitaire
     {
         super(joueur, nom, or, bois, fer, nourriture, tpsConstruction, defense, attDist, attPts, attZones, dist, caseParent, batimentParent, ptVie);
     }
-    
-    @Override
-   public List<String> movableTypes(){
-       List<String> types=new ArrayList<>(); 
-       types.add("Eau");
-       types.add("Sable");
-       types.add("Terre");
-       types.add("Foret");
-       types.add("Montagne");
-       return types;
-   }
-    
-    
-    @Override public boolean peutAttaquer(Unite unite)
+   
+    @Override 
+    public boolean peutAttaquer(Unite unite)
     {
-        String typeUnite = this.getClass().getSuperclass().getSimpleName();
-        switch (typeUnite) {
-            case "UniteMilitaireAerien":
-            case "UniteMilitaireMaritime":
-            case "UniteMilitaireTerrestre":
-            case "UniteCivileAerien":
-            case "UniteCivileTerrestre":
-            case "UniteCivileMaritime":
-                return true;
-            default:
-                return false;
+        switch (unite.getClass().getSuperclass().getSimpleName()) {
+            case "UniteCivileAerien" : 
+            case "UniteCivileMaritime" : 
+            case "UniteCivileTerrestre" : 
+            case "UniteMilitaireAerien" : 
+            case "UniteMilitaireMaritime" : 
+            case "UniteMilitaireTerrestre" : return true;
+            default: return false;
         }
     }
-
+    
+    @Override
+    public List<String> movableTypes(){
+        List<String> types=new ArrayList<>(); 
+        types.add("Eau");
+        types.add("Sable");
+        types.add("Terre");
+        types.add("Foret");
+        types.add("Montagne");
+        return types;
+    }
 }

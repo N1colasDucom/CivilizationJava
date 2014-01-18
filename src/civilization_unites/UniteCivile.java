@@ -4,7 +4,6 @@ import civilization.Case;
 import civilization_batiments.Batiment;
 import civilization_joueurs.Joueur;
 
-
 public abstract class UniteCivile extends Unite
 {
     boolean peutConstruire;
@@ -32,6 +31,12 @@ public abstract class UniteCivile extends Unite
         this.peutObtenirBois = false;
         this.peutTransporter = false;
         this.peutConstruire = false;
+    }
+    
+    @Override 
+    public final boolean peutAttaquer(Unite unite)
+    {
+        return false;
     }
     
     @Override public String toString()

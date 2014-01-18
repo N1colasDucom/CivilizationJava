@@ -4,9 +4,7 @@ import civilization.Case;
 import civilization_batiments.Batiment;
 import civilization_joueurs.Joueur;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public abstract class UniteMilitaireTerrestre extends UniteMilitaire
 {
@@ -21,6 +19,20 @@ public abstract class UniteMilitaireTerrestre extends UniteMilitaire
         super(joueur, nom, or, bois, fer, nourriture, tpsConstruction, defense, attDist, attPts, attZones, dist, caseParent, batimentParent, ptVie);
     }
     
+    @Override 
+    public boolean peutAttaquer(Unite unite)
+    {
+        switch (unite.getClass().getSuperclass().getSimpleName()) {
+            case "UniteCivileAerien" : return false;
+            case "UniteCivileMaritime" : return false;
+            case "UniteCivileTerrestre" : return true;
+            case "UniteMilitaireAerien" : return false;
+            case "UniteMilitaireMaritime" : return false;
+            case "UniteMilitaireTerrestre" : return true;
+            default: return false;
+        }
+    }
+    
     @Override
     public List<String> movableTypes(){
        List<String> types=new ArrayList<>();
@@ -29,21 +41,5 @@ public abstract class UniteMilitaireTerrestre extends UniteMilitaire
        types.add("Foret");
        return types;
      }
-    
-    @Override public boolean peutAttaquer(Unite unite)
-    {
-        if (super.peutAttaquer(unite)) {
-            String typeUnite = this.getClass().getSuperclass().getSimpleName();
-            switch (typeUnite) {
-                case "UniteMilitaireTerreste":
-                case "UniteCivileTerreste":
-                    return true;
-                default:
-                    return false;
-            }
-        }
-        
-        return false;
-    }
 }
 

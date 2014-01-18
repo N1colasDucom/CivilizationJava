@@ -79,16 +79,7 @@ public abstract class Unite
      * @param unite
      * @return 
      */
-    public boolean peutAttaquer(Unite unite)
-    {
-        if (this.equals(unite)) {
-            return false;
-        } else if (unite.joueur.equals(this)) {
-            return false;
-        } else {
-            return true;
-        }
-    }
+    public abstract boolean peutAttaquer(Unite unite);
     
     /**
      * Change le statut de l'unite
