@@ -3,6 +3,7 @@ package civilization_batiments;
 import civilization.Case;
 import static civilization_batiments.Maison.actions;
 import civilization_joueurs.Joueur;
+import static civilization_batiments.Maison.actions;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.LinkedHashMap;
@@ -14,7 +15,7 @@ public class Mine extends Batiment
 {    
     public Mine(Joueur j,Case c)
     {
-        super(j,c,5,5);    
+        super(j, c, 5, 5, 2, 2, 1, 0, 2, 2, 0, 3, 0);    
     }
 
     public static final Map<String, Method> actions = new LinkedHashMap<>();

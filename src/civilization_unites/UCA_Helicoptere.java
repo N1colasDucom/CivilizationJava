@@ -8,6 +8,6 @@ public class UCA_Helicoptere extends UniteCivileAerien
 {    
     public UCA_Helicoptere(Joueur _joueur, Case caseParent, Batiment batimentParent)
     {
-        super(_joueur, "Hélicoptère", 4, 0, 5, 0, 8, 5, 10, caseParent, batimentParent);
+        super(_joueur, "Hélicoptère", 4, 0, 5, 0, 8, 5, 10, caseParent, batimentParent, 13);
     }
 }

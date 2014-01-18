@@ -5,12 +5,10 @@ import civilization.game_engine.Game;
 import civilization.game_engine.GameButton;
 import civilization.game_engine.Play;
 import civilization_batiments.*;
-import static civilization_batiments.Aeroport.constructions;
 import civilization_batiments.Batiment;
 import civilization_joueurs.Joueur;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -27,7 +25,7 @@ public class UCT_Ouvrier extends UniteCivileTerrestre
     
     public UCT_Ouvrier(Joueur _joueur, Case caseParent, Batiment batimentParent)
     {
-        super(_joueur, "Ouvrier", 1, 0, 0, 2, 2, 2, 10, caseParent, batimentParent);
+        super(_joueur, "Ouvrier", 1, 0, 0, 2, 2, 2, 10, caseParent, batimentParent, 5);
     }
     
         public static final Map<String, Constructor> constructions = new LinkedHashMap<>(); 

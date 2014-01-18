@@ -22,7 +22,7 @@ public class Maison extends Batiment
     
     public Maison(Joueur j,Case c)
     {
-        super(j,c,5,4);    
+        super(j, c, 5, 4, 1, 1, 1, 0, 1, 0, 0, 0, 0);    
     }
 
     public static final Map<String, Constructor> constructions = new LinkedHashMap<>();

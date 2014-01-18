@@ -1,15 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package civilization.game_engine;
 
 import civilization.Case;
-import civilization.Plateau;
 import civilization.game_engine.mapgenerator.ImageWriter;
-import civilization.game_engine.pathfinder.AStar;
 import civilization.unTour.UnTour;
 import civilization_batiments.*;
 import civilization_joueurs.Joueur;
@@ -18,8 +10,6 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,7 +24,6 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
-import org.newdawn.slick.util.pathfinding.*;
 
 /**
  *
@@ -60,7 +49,7 @@ public class Play extends BasicGameState implements MusicListener{
     private GameButton prochainTour;
     public static String state;
     public static Case pastTile;
-    Image map;
+    Image Background, map;
     
     public Play(int State){
         
@@ -309,6 +298,16 @@ public class Play extends BasicGameState implements MusicListener{
        } 
     }
     
+    public void drawSquare(Graphics g){
+        if(square!=null){
+              if (((square[0]*32-32*tMapX<25*32)&&(square[1]*32-32*tMapY<20*32))) {
+        Color Trans = new Color(1f, 1f, 1f, 0.5f);
+        g.setColor(Trans);      
+        g.drawRect((float)(square[0]*32-32*tMapX-32+1),(float)(square[1]*32-32*tMapY-32+1), 30, 30);
+              }
+        }
+    }
+    
     /**
      * 
      * @param gc 
@@ -400,49 +399,46 @@ public class Play extends BasicGameState implements MusicListener{
     }
 
     @Override
-    public void init(GameContainer container, StateBasedGame game) throws SlickException {
-         this.actionButtons = new ArrayList<>();  
-         movableTiles= new ArrayList<>();
-         placeableTiles = new ArrayList<>();
-         System.out.println(Game.j1);
+    public void init(GameContainer container, StateBasedGame game) throws SlickException 
+    {
+        Background = new Image("Graphics/Images/Jeu.png");
+        actionButtons = new ArrayList<>();  
+        movableTiles= new ArrayList<>();
+        placeableTiles = new ArrayList<>();
+        System.out.println(Game.joueurs.get(0));
         try {
             prochainTour = new GameButton(800, 640, new Image("Graphics/Buttons/Button.png"),"Fin Tour", Play.class.getDeclaredMethod("newTour"), this);
-        } catch (NoSuchMethodException ex) {
-            Logger.getLogger(Play.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SecurityException ex) {
+        } catch (NoSuchMethodException | SecurityException ex) {
             Logger.getLogger(Play.class.getName()).log(Level.SEVERE, null, ex);
         }
          state="normal";
          music= new Music("Music/Guile.ogg");
          music.addListener(this);
          music.setVolume(0.5f);
-         music.play();
+     //    music.play();
          
-         music.loop();
+        // music.loop();
     }
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         tMap.render(0,0, tMapX, tMapY,25,20);
         map.draw(0,640,0.8f);
+        Background.draw(0, 0);
         prochainTour.draw(g);
         drawGrid(g);
-        if(square!=null){
-        Color Trans = new Color(1f, 1f, 1f, 0.5f);
-        g.setColor(Trans);      
-        g.drawRect((float)(square[0]*32-32*tMapX-32+1),(float)(square[1]*32-32*tMapY-32+1), 30, 30);
-        }
         /*if(state.equals("Deplacement"))*/ this.drawMovableTiles(g);
         /*if(state.equals("Construction"))*/ this.drawPlaceableTiles(g);
        if(!this.actionButtons.isEmpty()){
            drawActionMenu(g);
        }
+        drawSquare(g);
        
-           this.drawUnits(g,Game.j1);
-           this.drawUnits(g,Game.j2);
-           this.drawBuildings(g,Game.j1);
-           this.drawBuildings(g,Game.j2);
-       
+           
+       for (Joueur j : Game.joueurs) {
+           this.drawUnits(g, j);
+           this.drawBuildings(g, j);
+       }
                 
     }
 
@@ -464,7 +460,7 @@ public class Play extends BasicGameState implements MusicListener{
         square=new int[]{realMouseX, realMouseY};
         //this.setMovableTiles(realMouseX, realMouseY, 8);
             System.out.println(Game.plateau.getCase(realMouseX, realMouseY).toString());
-            System.out.println(Game.j1.unites.size());
+            //System.out.println(Game.j1.unites.size());
             this.clickInTile(gc);
             stateActions(gc);
             updatePastTile(gc);
@@ -475,13 +471,13 @@ public class Play extends BasicGameState implements MusicListener{
         }
         if(clickInBottomPane(gc)){
             //unAeroport=new Aeroport(Game.j1,Game.plateau.getCase(50, 50));
-            unAeroport2=new Aeroport(Game.j1,Game.plateau.getCase(60, 60));
-            unPort=new Port(Game.j1,Game.plateau.getCase(5, 5));
-            uneCaserne = new Caserne(Game.j1, Game.plateau.getCase(95, 95));
-            uneArtillerie=new UMT_Artillerie(Game.j1, Game.plateau.getCase(55, 55),null);
+            unAeroport2=new Aeroport(Game.joueurs.get(0),Game.plateau.getCase(60, 60));
+            unPort=new Port(Game.joueurs.get(0),Game.plateau.getCase(5, 5));
+            uneCaserne = new Caserne(Game.joueurs.get(0), Game.plateau.getCase(95, 95));
+            uneArtillerie=new UMT_Artillerie(Game.joueurs.get(0), Game.plateau.getCase(55, 55),null);
             uneArtillerie.caseParent.occupant=uneArtillerie;
             uneArtillerie.statut="normal";
-            unOuvrier=new UCT_Ouvrier(Game.j1, Game.plateau.getCase(50, 50),null);
+            unOuvrier=new UCT_Ouvrier(Game.joueurs.get(0), Game.plateau.getCase(50, 50),null);
             unOuvrier.caseParent.occupant=unOuvrier;
             unOuvrier.statut="normal";
         }

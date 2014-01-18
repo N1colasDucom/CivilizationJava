@@ -1,14 +1,10 @@
 package civilization_batiments;
 
 import civilization.Case;
-import static civilization_batiments.HotelDeVille.actions;
-import static civilization_batiments.HotelDeVille.constructions;
 import civilization_joueurs.Joueur;
 import civilization_unites.*;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -18,7 +14,7 @@ public class Port extends Batiment
 {   
     public Port(Joueur j,Case c)
     {
-        super(j,c,10,5);     
+        super(j, c, 10, 5, 8, 4, 4, 0, 4, 0, 0, 0, 1);     
     }
     
     public static final Map<String, Constructor> constructions = new LinkedHashMap<>();

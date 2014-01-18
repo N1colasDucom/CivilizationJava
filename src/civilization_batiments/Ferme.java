@@ -14,7 +14,7 @@ public class Ferme extends Batiment
 {    
     public Ferme(Joueur j,Case c)
     {
-        super(j,c,2,2);
+        super(j, c, 2, 2, 3, 3, 1, 2, 2, 0, 0, 0, 2);
     }
 
     public static final Map<String, Constructor> constructions = new LinkedHashMap<>();

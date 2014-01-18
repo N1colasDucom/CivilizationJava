@@ -81,9 +81,9 @@ public class GameButton {
    
    public void draw(Graphics g){
        this.Image.draw(this.X, this.Y);
-       g.setColor(Color.white);
+       g.setColor(Color.black);
        if(this.action!=null){
-           g.drawString(action, X, Y+10);
+           g.drawString(action, X+10, Y+10);
        }
    }
    
