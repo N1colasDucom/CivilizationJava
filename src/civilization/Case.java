@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package civilization;
 
 import civilization.game_engine.GameButton;
@@ -11,27 +5,26 @@ import civilization_batiments.Batiment;
 import civilization_unites.Unite;
 import java.util.List;
 
-/**
- *
- * @author Nicolas
- */
-public class Case {
+public class Case 
+{
     public Object occupant;
     public int typeCase;
     public int X;
     public int Y;
     
-    public Case(int t,int x,int y){
-        typeCase=t;
-        X=x;
-        Y=y;
+    public Case(int t,int x,int y)
+    {
+        typeCase = t;
+        X = x;
+        Y = y;
     }
     
     /**
      * Type de terrain en fonction du code terrain
      * @return 
      */
-    public String type(){
+    public String type()
+    {
         switch(this.typeCase){
             case 1:
                 return "Eau";
@@ -47,6 +40,7 @@ public class Case {
             System.out.println("Erreur type case");
             break;                  
         }
+        
         return null;          
     }
     
@@ -54,19 +48,25 @@ public class Case {
      * retourne une liste de boutons correspondant aux actions que peut effectuer l'occupant
      * @return 
      */
-    public List<GameButton> getOccupantMenu(){
+    public List<GameButton> getOccupantMenu()
+    {
         String occupantClass = this.getOccupantType(); 
         System.out.println(occupantClass);
-        if(occupantClass.equals("Unite")) return ((Unite)occupant).getMenu();
-        else if(occupantClass.equals("Batiment")) return ((Batiment)this.occupant).getMenu();
-       return null;
+        if (occupantClass.equals("Unite")) {
+            return ((Unite)occupant).getMenu();
+        } else if(occupantClass.equals("Batiment")) {
+            return ((Batiment)this.occupant).getMenu();
+        }
+       
+        return null;
     }
    
     /**
      * Retourne Unite ou Batiment en fonction du type de l'occupant
      * @return 
      */
-    public String getOccupantType(){
+    public String getOccupantType()
+    {
         if(this.occupant!=null){
         Class c = occupant.getClass();
         while(c!=null){
@@ -82,8 +82,8 @@ public class Case {
      * @return 
      */
     @Override
-    public String toString(){
+    public String toString()
+    {
         return "Case["+this.X+"]["+this.Y+"]("+this.type()+")->";//+((Unite)this.occupant).toString();
-        
     }
 }

@@ -1,5 +1,6 @@
 package civilization;
 
+import civilization_batiments.Aeroport;
 import civilization_joueurs.Joueur;
 import civilization_unites.UMT_BombeNucleaire;
 
@@ -10,9 +11,10 @@ public class Civilization
         Joueur j1 = new Joueur();
         Joueur j2 = new Joueur();
         
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 15; i++) {
             System.out.println(i);
-            UMT_BombeNucleaire bn1 = new UMT_BombeNucleaire(j1, null, null);
+            Case maCase = new Case(i, i, i);
+            Aeroport aero = new Aeroport(j1, maCase);
         }
         
         System.out.println(j1);

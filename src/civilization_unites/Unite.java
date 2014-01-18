@@ -58,7 +58,6 @@ public abstract class Unite
         this.distanceDeMvt = dist;
         this.statut = "construction";
                 
-
         try {
             if (_joueur.disposeDesRessourcesNessairesPourAcheter(this)) {
                 this.joueur = _joueur;

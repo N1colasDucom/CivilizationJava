@@ -2,7 +2,9 @@ package civilization_batiments;
 
 import civilization.Case;
 import civilization.game_engine.GameButton;
+import civilization_exceptions.RessourcesInsuffisantesException;
 import civilization_joueurs.Joueur;
+import civilization_unites.UCT_Ouvrier;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,21 +17,37 @@ import java.util.Map;
 public abstract class Batiment 
 {    
     public Joueur joueur;
-    public int pointsDeVie;
-    public int pointsDeVieRestants;
-    public int tempsConstruction;
+    public int pointsDeVie, pointsDeVieRestants;
+    public int requisNourriture, requisBois, requisFer, requisOr, tempsConstruction, ouvriersMax;
+    public ArrayList<UCT_Ouvrier> ouvriersQuiConstruisent = new ArrayList<>();
     
     public Case caseParent;
         
-    public Batiment(Joueur j,Case c,int t,int p)
+    public Batiment(Joueur j, Case c, int t, int p,
+            int or, int bois, int fer, int nourriture, int ouvriersMax
+            )
     {
-       this.joueur = j;
-       this.joueur.ajouterBatiment(this);
-       this.caseParent=c;
-       this.caseParent.occupant=this;
-       this.pointsDeVie=p;
-       this.pointsDeVieRestants=this.pointsDeVie;
-       this.tempsConstruction=t;
+       this.pointsDeVie = p;
+       this.pointsDeVieRestants = this.pointsDeVie;
+       this.requisOr = or;
+       this.requisBois = bois;
+       this.requisFer = fer;
+       this.requisNourriture = nourriture;
+       this.ouvriersMax = ouvriersMax;
+       this.tempsConstruction = t;
+       
+       try {
+            if (j.disposeDesRessourcesNessairesPourAcheter(this)) {
+                this.joueur = j;
+                this.joueur.ajouterBatiment(this);
+                this.caseParent = c;
+                this.caseParent.occupant = this;
+            } else {
+                throw new RessourcesInsuffisantesException();
+            }
+        } catch (RessourcesInsuffisantesException e) {
+            System.out.println(e.getMessage());
+        }
     }
     
     public abstract Map<String, Constructor> getConstructions();

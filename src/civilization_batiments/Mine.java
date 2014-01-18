@@ -15,7 +15,7 @@ public class Mine extends Batiment
 {    
     public Mine(Joueur j,Case c)
     {
-        super(j,c,5,5);    
+        super(j, c, 5, 5, 2, 2, 1, 0, 2);    
     }
 
     public static final Map<String, Method> actions = new LinkedHashMap<>();

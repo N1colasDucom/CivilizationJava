@@ -12,9 +12,9 @@ import java.util.logging.Logger;
 
 public class Aeroport extends Batiment
 {   
-    public Aeroport(Joueur j,Case c)
+    public Aeroport(Joueur j, Case c)
     {
-        super(j,c,15,7);
+        super(j, c, 15, 7, 10, 4, 5, 0, 5);
     }
     
     public static final Map<String, Constructor> constructions = new LinkedHashMap<>();

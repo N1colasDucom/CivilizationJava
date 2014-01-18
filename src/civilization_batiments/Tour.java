@@ -11,8 +11,9 @@ import java.util.logging.Logger;
 
 public class Tour extends Batiment
 {
-    public Tour(Joueur j,Case c)
-    {super(j,c,15,7);
+    public Tour(Joueur j, Case c)
+    {
+        super(j, c, 15, 7, 2, 2, 2, 0, 2);
         this.tempsConstruction=15;
         this.pointsDeVie=8;
     }

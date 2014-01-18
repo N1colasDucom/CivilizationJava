@@ -15,7 +15,7 @@ public class Mur extends Batiment
 {
     public Mur(Joueur j,Case c) 
     {
-        super(j,c,10,20);        
+        super(j, c, 10, 20, 1, 1, 2, 0, 3);        
     }
 
     public static final Map<String, Method> actions = new LinkedHashMap<>();

@@ -14,7 +14,7 @@ public class Port extends Batiment
 {   
     public Port(Joueur j,Case c)
     {
-        super(j,c,10,5);     
+        super(j, c, 10, 5, 8, 4, 4, 0, 4);     
     }
     
     public static final Map<String, Constructor> constructions = new LinkedHashMap<>();

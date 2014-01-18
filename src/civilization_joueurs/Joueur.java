@@ -103,7 +103,8 @@ public class Joueur
      */
     public void ajouterBatiment(Batiment batiment) 
     {
-        this.batiments.add(batiment);        
+        this.batiments.add(batiment);     
+        this.consommerLesRessourcesNecessairesPourConstruire(batiment);
     }
     
     /**
@@ -116,6 +117,11 @@ public class Joueur
         return (this.ressourcesOr >= unite.requisOr && this.ressourcesBois >= unite.requisBois && this.ressourcesFer >= unite.requisFer && this.ressourcesNourriture >= unite.requisNourriture);
     }
     
+    public boolean disposeDesRessourcesNessairesPourAcheter(Batiment batiment)
+    {
+        return (this.ressourcesOr >= batiment.requisOr && this.ressourcesBois >= batiment.requisBois && this.ressourcesFer >= batiment.requisFer && this.ressourcesNourriture >= batiment.requisNourriture);
+    }
+    
     /**
      * Consomme les ressources d'un joueur nécessaires à la construction d'une unité
      * @param unite 
@@ -126,6 +132,18 @@ public class Joueur
         this.ressourcesFer -= unite.requisFer;
         this.ressourcesNourriture -= unite.requisNourriture;
         this.ressourcesOr -= unite.requisOr;
+    }
+    
+    /**
+     * Consomme les ressources d'un joueur nécessaire à la construction d'un bâtiment
+     * @param batiment 
+     */
+    private void consommerLesRessourcesNecessairesPourConstruire(Batiment batiment) 
+    {
+        this.ressourcesBois -= batiment.requisBois;
+        this.ressourcesFer -= batiment.requisFer;
+        this.ressourcesNourriture -= batiment.requisNourriture;
+        this.ressourcesOr -= batiment.requisOr;
     }
     
     /**
@@ -149,6 +167,15 @@ public class Joueur
          * Liste des Ressources
          */
         str += "    [RESS]       BOIS:"+this.ressourcesBois+"  NOUR:"+this.ressourcesNourriture+"  FER:"+this.ressourcesFer+"  OR:"+this.ressourcesOr+"\n";
+        
+        /*
+         * Liste de TOUS les Bâtiments
+         */
+        str += "    [BATIM]      ("+this.batiments.size()+") ";
+        for (Batiment b : this.batiments) {
+            str += b.getClass().getSimpleName()+" ";
+        }
+        str += "\n";
         
         /*
          * Liste de TOUTES les Unités

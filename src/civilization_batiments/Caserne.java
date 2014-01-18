@@ -19,7 +19,7 @@ public class Caserne extends Batiment
 {
    public Caserne(Joueur j,Case c)
    {
-       super(j,c,15,10);    
+       super(j, c, 15, 10, 6, 4, 6, 1, 3);    
    }
    
    public static final Map<String, Constructor> constructions = new LinkedHashMap<>();
