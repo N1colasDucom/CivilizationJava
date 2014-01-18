@@ -12,10 +12,9 @@ import java.util.logging.Logger;
 
 public class Ferme extends Batiment
 {    
-    public Ferme()
+    public Ferme(Joueur j,Case c)
     {
-        this.tempsConstruction=2;
-        this.pointsDeVie=2;
+        super(j,c,2,2);
     }
 
     public static final Map<String, Constructor> constructions = new LinkedHashMap<>();

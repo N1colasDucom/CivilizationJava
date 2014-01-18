@@ -16,12 +16,9 @@ import java.util.logging.Logger;
 
 public class Port extends Batiment
 {   
-    public Port(Joueur j)
+    public Port(Joueur j,Case c)
     {
-        this.joueur=j;
-        this.joueur.ajouterBatiment(this);
-        this.tempsConstruction=10;
-        this.pointsDeVie=5;
+        super(j,c,10,5);     
     }
     
     public static final Map<String, Constructor> constructions = new LinkedHashMap<>();

@@ -1,6 +1,8 @@
 package civilization_batiments;
 
+import civilization.Case;
 import static civilization_batiments.Maison.actions;
+import civilization_joueurs.Joueur;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.LinkedHashMap;
@@ -10,13 +12,13 @@ import java.util.logging.Logger;
 
 public class Mine extends Batiment
 {    
-    public Mine()
+    public Mine(Joueur j,Case c)
     {
-        this.tempsConstruction=5;
-        this.pointsDeVie=5;
+        super(j,c,5,5);    
     }
 
     public static final Map<String, Method> actions = new LinkedHashMap<>();
+    
     static {
         try {
             actions.put("Réparer bâtiment", Batiment.class.getDeclaredMethod("reparer"));

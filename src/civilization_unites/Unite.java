@@ -24,7 +24,7 @@ public abstract class Unite
     public Case caseParent;
     public Batiment batimentParent;
 
-    public int pointsDeVie, defense, distanceDeMvt;
+    public int pointsDeVie,pointsDeVieRestants, defense, distanceDeMvt;
     public int requisNourriture, requisBois, requisFer, requisOr, tempsConstruction;
     public int consommeNourriture, consommeBois, consommeFer, consommeOr;
         
@@ -36,6 +36,8 @@ public abstract class Unite
     {              
         this.nom = nom;        
 
+        this.pointsDeVieRestants=this.pointsDeVie;
+        
         this.requisNourriture = nourriture;
         this.requisBois = bois;
         this.requisFer = fer;
@@ -82,7 +84,7 @@ public abstract class Unite
             return false;
         } else if (unite.joueur.equals(this)) {
             return false;
-        } else {
+        }else {
             return true;
         }
     }
@@ -177,7 +179,7 @@ public abstract class Unite
     
     public Case findExitTile(){
         for (int k = 0; k < 10; k++) {                  
-            for (int i = 0; i < k*2+3; i++) {
+          for (int i = 0; i < k*2+3; i++) {
                 for (int j = 0; j < k*2+3; j++) {
                     int y = this.batimentParent.positionX() - 1-k + i;
                     int x = this.batimentParent.positionY() - 1-k + j;

@@ -3,7 +3,6 @@ package civilization_batiments;
 import civilization.Case;
 import civilization_joueurs.Joueur;
 import civilization_unites.UMT_Artillerie;
-import civilization_unites.UMT_BombeNucleaire;
 import civilization_unites.UMT_LanceGrenade;
 import civilization_unites.UMT_Sentinelle;
 import civilization_unites.UMT_Soldat;
@@ -17,17 +16,16 @@ import java.util.logging.Logger;
 
 public class Caserne extends Batiment
 {
-   public Caserne()
+   public Caserne(Joueur j,Case c)
    {
-       this.tempsConstruction=15;
-       this.pointsDeVie=10;
+       super(j,c,15,10);    
    }
    
    public static final Map<String, Constructor> constructions = new LinkedHashMap<>();
     static {
         try {
             constructions.put("Construire Artillerie", UMT_Artillerie.class.getConstructor(Joueur.class, Case.class, Batiment.class));
-            constructions.put("Constuire Bombe nucléaire", UMT_BombeNucleaire.class.getConstructor(Joueur.class, Case.class, Batiment.class));
+           // constructions.put("Constuire Bombe nucléaire", UMT_BombeNucleaire.class.getConstructor(Joueur.class, Case.class, Batiment.class));
             constructions.put("Constuire Lance-grenade", UMT_LanceGrenade.class.getConstructor(Joueur.class, Case.class, Batiment.class));
             constructions.put("Constuire Sentinelle", UMT_Sentinelle.class.getConstructor(Joueur.class, Case.class, Batiment.class));
             constructions.put("Construire Soldat", UMT_Soldat.class.getConstructor(Joueur.class, Case.class, Batiment.class));

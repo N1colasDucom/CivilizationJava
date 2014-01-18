@@ -20,17 +20,16 @@ public class Maison extends Batiment
             Arrays.asList(UCT_Ouvrier.class, UCT_Paysan.class)
     );
     
-    public Maison()
+    public Maison(Joueur j,Case c)
     {
-        this.tempsConstruction = 5;
-        this.pointsDeVie = 4;
+        super(j,c,5,4);    
     }
 
     public static final Map<String, Constructor> constructions = new LinkedHashMap<>();
     static {
         try {
             constructions.put("Construire Ouvrier", UCT_Ouvrier.class.getConstructor(Joueur.class, Case.class, Batiment.class));
-            constructions.put("Construire Paysan", UCT_Paysan.class.getConstructor(Joueur.class, Case.class, Batiment.class));
+            //constructions.put("Construire Paysan", UCT_Paysan.class.getConstructor(Joueur.class, Case.class, Batiment.class));
         } catch (NoSuchMethodException | SecurityException ex) {
             Logger.getLogger(Maison.class.getName()).log(Level.SEVERE, null, ex);
         }

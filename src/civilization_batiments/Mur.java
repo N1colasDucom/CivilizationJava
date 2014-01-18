@@ -1,6 +1,8 @@
 package civilization_batiments;
 
+import civilization.Case;
 import static civilization_batiments.Maison.actions;
+import civilization_joueurs.Joueur;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.LinkedHashMap;
@@ -10,10 +12,9 @@ import java.util.logging.Logger;
 
 public class Mur extends Batiment
 {
-    public Mur() 
+    public Mur(Joueur j,Case c) 
     {
-        this.tempsConstruction=10;
-        this.pointsDeVie=20;
+        super(j,c,10,20);        
     }
 
     public static final Map<String, Method> actions = new LinkedHashMap<>();

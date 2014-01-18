@@ -19,11 +19,11 @@ public class Civilization
         Joueur j2 = new Joueur();
         
         //Aeroport monAeroport = new Aeroport();
-        Aeroport monAeroport = new Aeroport(j1);
+       // Aeroport monAeroport = new Aeroport(j1);
         
         
         // Pour executer les constructeurs
-        for (Constructor c : monAeroport.getConstructions().values()) {
+        /*for (Constructor c : monAeroport.getConstructions().values()) {
             try {
                 System.out.println(c.newInstance(j1, null, null));       
             } catch (IllegalArgumentException | InvocationTargetException ex) {
@@ -40,6 +40,6 @@ public class Civilization
             } catch (IllegalArgumentException | InvocationTargetException ex) {
                 Logger.getLogger(Civilization.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
+        }*/
     }
 }

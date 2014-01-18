@@ -18,10 +18,9 @@ public class HotelDeVille extends Batiment
             Arrays.asList(UCT_Ouvrier.class, UCT_Paysan.class)
     );
     
-    public HotelDeVille() 
+    public HotelDeVille(Joueur j,Case c) 
     {
-        this.tempsConstruction = 0;
-        this.pointsDeVie = 50;
+        super(j,c,0,50);     
     }
 
     public static final Map<String, Constructor> constructions = new LinkedHashMap<>();

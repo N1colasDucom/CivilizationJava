@@ -20,14 +20,20 @@ public abstract class Batiment
 {    
     public Joueur joueur;
     public int pointsDeVie;
+    public int pointsDeVieRestants;
     public int tempsConstruction;
     
     public Case caseParent;
         
-    public void Batiment(Joueur j)
+    public Batiment(Joueur j,Case c,int t,int p)
     {
        this.joueur = j;
        this.joueur.ajouterBatiment(this);
+       this.caseParent=c;
+       this.caseParent.occupant=this;
+       this.pointsDeVie=p;
+       this.pointsDeVieRestants=this.pointsDeVie;
+       this.tempsConstruction=t;
     }
     
     public abstract Map<String, Constructor> getConstructions();
@@ -40,7 +46,8 @@ public abstract class Batiment
     }
     public boolean detruire()
     {
-        System.out.println("DESTRUCTION DE : \n" + this.toString());
+        this.caseParent.occupant=null;
+        this.joueur.batiments.remove(this);
         return true;
     }
     
@@ -97,7 +104,7 @@ public abstract class Batiment
         try {
             for(Constructor c : this.getConstructions().values()){
                // System.out.println(c.getName());
-                list.add(new GameButton(810, posY, new Image("Graphics/Units/Unites/"+c.getName().substring(c.getName().lastIndexOf(".")+1)+"/sprite.png"),c.getName(),c,this));
+                list.add(new GameButton(810, posY, new Image("Graphics/Units/Unites/"+c.getName().substring(c.getName().lastIndexOf(".")+1)+"/sprite.png"),c.getName().substring(c.getName().lastIndexOf(".")+1),c,this));
                 posY+=50;
             }
           for (Method m : this.getActions().values()) {

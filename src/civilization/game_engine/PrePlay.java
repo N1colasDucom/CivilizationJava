@@ -50,7 +50,7 @@ public class PrePlay extends BasicGameState{
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         randomMap.Image.draw(100, 100);
         startGame.Image.draw(100,200);
-        map.draw(200,100);
+        map.draw(200,100,3);
     }
 
     @Override

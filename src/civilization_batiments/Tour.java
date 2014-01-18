@@ -1,6 +1,8 @@
 package civilization_batiments;
 
+import civilization.Case;
 import static civilization_batiments.Maison.actions;
+import civilization_joueurs.Joueur;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.LinkedHashMap;
@@ -10,8 +12,8 @@ import java.util.logging.Logger;
 
 public class Tour extends Batiment
 {
-    public Tour()
-    {
+    public Tour(Joueur j,Case c)
+    {super(j,c,15,7);
         this.tempsConstruction=15;
         this.pointsDeVie=8;
     }

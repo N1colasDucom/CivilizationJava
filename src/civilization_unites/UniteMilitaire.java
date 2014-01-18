@@ -20,6 +20,15 @@ public abstract class UniteMilitaire extends Unite
         super(joueur, nom, or, bois, fer, nourriture, tpsConstruction, defense, dist, caseParent, batimentParent);
     }
     
+    public void attaquer(Case c){
+        if(c.occupant!=null){
+            if(c.getOccupantType().equals("Batiment")){
+                Batiment batimentAttaque=(Batiment)c.occupant;
+                
+            }
+        }
+    }
+    
     @Override public String toString()
     {
 return this.nom + " (" + this.getClass().getSimpleName() + " >> " + this.getClass().getSuperclass().getSimpleName() + ")\n" + super.toString();
