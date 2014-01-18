@@ -28,6 +28,8 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.Music;
+import org.newdawn.slick.MusicListener;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -38,13 +40,14 @@ import org.newdawn.slick.util.pathfinding.*;
  *
  * @author Nicolas
  */
-public class Play extends BasicGameState{
+public class Play extends BasicGameState implements MusicListener{
     Aeroport unAeroport, unAeroport2;
     Caserne uneCaserne;
     UMT_Artillerie uneArtillerie;
     Port unPort;
     UCT_Ouvrier unOuvrier;
     
+    Music music;
     public UnTour unTour;
     public static TiledMap tMap=null;
     int tMapX=0,tMapY=0;
@@ -410,6 +413,12 @@ public class Play extends BasicGameState{
             Logger.getLogger(Play.class.getName()).log(Level.SEVERE, null, ex);
         }
          state="normal";
+         music= new Music("Music/Guile.ogg");
+         music.addListener(this);
+         music.setVolume(0.5f);
+         music.play();
+         
+         music.loop();
     }
 
     @Override
@@ -490,6 +499,16 @@ public class Play extends BasicGameState{
             }
         moveMap(gc);
                 
+    }
+
+    @Override
+    public void musicEnded(Music music) {
+        System.out.println("hi");
+    }
+
+    @Override
+    public void musicSwapped(Music music, Music newMusic) {
+        System.out.println("hi");
     }
     
 }

@@ -33,10 +33,9 @@ public class Game extends StateBasedGame{
     
     public Game(String name) {
         super(gameName);
-        this.plateau = new Plateau();
+        Game.plateau = new Plateau();
         this.addState(new Menu(menu));
         this.addState(new PrePlay(prePlay));
-        this.addState(new Play(play));
         
     }
    
@@ -48,7 +47,6 @@ public class Game extends StateBasedGame{
     @Override
     public void initStatesList(GameContainer gc) throws SlickException {
         this.getState(menu).init(gc, this);
-        this.getState(play).init(gc, this);
         this.enterState(menu);
     }
     

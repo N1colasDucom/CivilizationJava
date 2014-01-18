@@ -7,6 +7,7 @@
 package civilization.game_engine;
 
 import civilization.Plateau;
+import static civilization.game_engine.Game.play;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -65,7 +66,8 @@ public class PrePlay extends BasicGameState{
               
            }
            else if(startGame.clickOnMe(mouseX, mouseY)){
-             
+              game.addState(new Play(play));
+              game.getState(play).init(gc, game);
               game.enterState(2);
            }
         }

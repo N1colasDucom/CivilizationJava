@@ -42,8 +42,8 @@ public class Menu extends BasicGameState{
 
     @Override
     public void render(GameContainer gc, StateBasedGame game, Graphics g) throws SlickException {
-        Background.draw(0,0);
-        Background2.draw(0,0);
+        //Background.draw(0,0);
+       // Background2.draw(0,0);
         Jouer.Image.draw(100, 100);
         Quitter.Image.draw(100, 200);
     }
@@ -55,7 +55,7 @@ public class Menu extends BasicGameState{
        
        if (gc.getInput().isMousePressed(0)) {
            if(Jouer.clickOnMe(mouseX, mouseY)){
-              game.enterState(1);
+              game.enterState(Game.prePlay);
            }
            else if (Quitter.clickOnMe(mouseX, mouseY)){
                gc.exit();

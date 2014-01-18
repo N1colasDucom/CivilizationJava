@@ -125,7 +125,18 @@ public abstract class Unite
      * @param nvCase 
      */
     public void deplacer(Case nvCase){
-        setCaseParent(nvCase);
+        if(nvCase==null){
+            this.detruire();
+        } else{
+            setCaseParent(nvCase);
+        }
+        
+    }
+    
+    public void detruire(){
+        this.joueur.unites.remove(this);
+        this.caseParent.occupant=null;
+        this.caseParent=null;
     }
     
     /**
@@ -133,7 +144,11 @@ public abstract class Unite
      * @return 
      */
     public int positionX(){
-        return this.caseParent.X;
+        if(caseParent!=null){
+            return this.caseParent.X;
+        }else{
+            return -1;
+        }
        
     }
     
@@ -142,7 +157,11 @@ public abstract class Unite
      * @return 
      */
     public int positionY(){
-        return this.caseParent.Y;
+        if(this.caseParent!=null){
+            return this.caseParent.Y;
+        }else{
+            return -1;
+        }
     }
     
     /**
@@ -177,23 +196,30 @@ public abstract class Unite
         Play.state="Deplacement";
     }
     
-    public Case findExitTile(){
+    public Case findExitTile() throws PasDePlaceException{
         for (int k = 0; k < 10; k++) {                  
           for (int i = 0; i < k*2+3; i++) {
                 for (int j = 0; j < k*2+3; j++) {
                     int y = this.batimentParent.positionX() - 1-k + i;
                     int x = this.batimentParent.positionY() - 1-k + j;
-                    if((this.movableTypes().contains(Game.plateau.cases.get(x).get(y).type()))&&(Game.plateau.cases.get(x).get(y).occupant==null)){
-                        return Game.plateau.cases.get(x).get(y);
+                    if((x>0&&x<Play.tMap.getWidth())&&(y>0&&y<Play.tMap.getHeight())){
+                        if((this.movableTypes().contains(Game.plateau.cases.get(x).get(y).type()))&&(Game.plateau.cases.get(x).get(y).occupant==null)){
+                            return Game.plateau.cases.get(x).get(y);
+                        }
                     }
                 }
             }
         }
-        return null;
+        throw new PasDePlaceException();
+        
     }
     
     public void exitParent(){
-        deplacer(findExitTile());
+        try {
+            deplacer(findExitTile());
+        } catch (PasDePlaceException ex) {
+            Logger.getLogger(Unite.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public void predeplacer(){
