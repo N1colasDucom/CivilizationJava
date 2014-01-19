@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.List;
+import org.newdawn.slick.Color;
+import org.newdawn.slick.Graphics;
 
 public abstract class Unite 
 {
@@ -36,7 +38,8 @@ public abstract class Unite
             int ptVie) 
     {              
         this.nom = nom;        
-
+        
+        this.pointsDeVie=ptVie;
         this.pointsDeVieRestants = ptVie;
         this.niveau = 1;
         
@@ -75,11 +78,18 @@ public abstract class Unite
     }
     
     /**
-     * Retourne vrai si l'unite peut attaquer
+     * Retourne vrai si l'unite peut attaquer une unité donnée.
      * @param unite
      * @return 
      */
     public abstract boolean peutAttaquer(Unite unite);
+
+    /**
+     * Retourne vrai si l'unité peut attaquer un bâtiment donné.
+     * @param batiment
+     * @return 
+     */
+    public abstract boolean peutAttaquer(Batiment batiment);
     
     /**
      * Change le statut de l'unite
@@ -119,16 +129,18 @@ public abstract class Unite
      * deplace l'unite vers une nouvelle case
      * @param nvCase 
      */
-    public void deplacer(Case nvCase){
+
+    public void deplacer(Case nvCase)
+    {
         if(nvCase==null){
             this.detruire();
         } else{
             setCaseParent(nvCase);
         }
-        
     }
     
-    public void detruire(){
+    public void detruire()
+    {
         this.joueur.unites.remove(this);
         this.caseParent.occupant=null;
         this.caseParent=null;
@@ -137,18 +149,21 @@ public abstract class Unite
      * retourne la position X d'une unite
      * @return 
      */
-    public int positionX(){
+    public int positionX()
+    {
         if(caseParent!=null){
             return this.caseParent.X;
         }else{
             return -1;
         }
     }
+    
     /**
      * retourne la position Y d'une unite
      * @return 
      */
-    public int positionY(){
+    public int positionY()
+    {
         if(this.caseParent!=null){
             return this.caseParent.Y;
         }else{
@@ -190,7 +205,8 @@ public abstract class Unite
     }
     
 
-    public Case findExitTile() throws PasDePlaceException{
+    public Case findExitTile() throws PasDePlaceException
+    {
         for (int k = 0; k < 10; k++) {                  
           for (int i = 0; i < k*2+3; i++) {
                 for (int j = 0; j < k*2+3; j++) {
@@ -208,13 +224,14 @@ public abstract class Unite
         
     }
     
-    public void exitParent(){
+
+    public void exitParent()
+    {
         try {
             deplacer(findExitTile());
         } catch (PasDePlaceException ex) {
             Logger.getLogger(Unite.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
     
     public void predeplacer()
@@ -228,10 +245,13 @@ public abstract class Unite
      */
     public List<GameButton> getMenu()
     {
+     int x=810;
+     int y=110;
+     
       List<GameButton> list = new ArrayList<>();
         try {
           try {
-              list.add(new GameButton(810, 100, new Image("Graphics/Buttons/Deplacer.png"),"deplacer",Unite.class.getDeclaredMethod("setMovableTiles"),this));
+              list.add(new GameButton(x, y, new Image("Graphics/Images/Bouton.png"),"Deplacer",Unite.class.getDeclaredMethod("setMovableTiles"),this));
           } catch (NoSuchMethodException |SecurityException ex) {
               Logger.getLogger(Unite.class.getName()).log(Level.SEVERE, null, ex);
           }
@@ -239,6 +259,34 @@ public abstract class Unite
             System.out.println("Erreur Creation Menu Action");
         }
       return list;
+    }
+    
+    public void setNom(Graphics g)
+    {
+        g.setColor(Color.white);
+        g.drawString(nom,810, 70); 
+    }
+    
+    public void barreDeVie(Graphics g)
+    {       
+        int pointsDeVieManquants=this.pointsDeVie-this.pointsDeVieRestants;
+        g.setLineWidth(5);
+        g.setColor(Color.green);
+        if(this.pointsDeVie==this.pointsDeVieRestants){
+            g.drawLine(810, 95, 1010, 95);
+        }
+        else{
+            g.drawLine(810, 95, 810+((200/this.pointsDeVie)*this.pointsDeVieRestants), 95);
+            g.setColor(Color.red);
+            g.drawLine(810+((200/this.pointsDeVie)*this.pointsDeVieRestants), 95, 1010, 95);
+        }
+        g.setLineWidth(1);
+    }
+    
+    public void sideInfos(Graphics g)
+    {
+        this.setNom(g);
+        this.barreDeVie(g);
     }
     
     /**

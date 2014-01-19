@@ -25,12 +25,12 @@ public class Caserne extends Batiment
    public static final Map<String, Constructor> constructions = new LinkedHashMap<>();
    static {
        try {
-            constructions.put("Construire Artillerie", UMT_Artillerie.class.getConstructor(Joueur.class, Case.class, Batiment.class));
+            constructions.put("Artillerie", UMT_Artillerie.class.getConstructor(Joueur.class, Case.class, Batiment.class));
            // constructions.put("Constuire Bombe nucléaire", UMT_BombeNucleaire.class.getConstructor(Joueur.class, Case.class, Batiment.class));
-            constructions.put("Constuire Lance-grenade", UMT_LanceGrenade.class.getConstructor(Joueur.class, Case.class, Batiment.class));
-            constructions.put("Constuire Sentinelle", UMT_Sentinelle.class.getConstructor(Joueur.class, Case.class, Batiment.class));
-            constructions.put("Construire Soldat", UMT_Soldat.class.getConstructor(Joueur.class, Case.class, Batiment.class));
-            constructions.put("Construire Tank", UMT_Tank.class.getConstructor(Joueur.class, Case.class, Batiment.class));
+            constructions.put("Lance-grenade", UMT_LanceGrenade.class.getConstructor(Joueur.class, Case.class, Batiment.class));
+            constructions.put("Sentinelle", UMT_Sentinelle.class.getConstructor(Joueur.class, Case.class, Batiment.class));
+            constructions.put("Soldat", UMT_Soldat.class.getConstructor(Joueur.class, Case.class, Batiment.class));
+            constructions.put("Tank", UMT_Tank.class.getConstructor(Joueur.class, Case.class, Batiment.class));
         
         } catch (NoSuchMethodException | SecurityException ex) {
             Logger.getLogger(Caserne.class.getName()).log(Level.SEVERE, null, ex);

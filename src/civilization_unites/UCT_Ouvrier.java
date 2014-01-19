@@ -45,12 +45,14 @@ public class UCT_Ouvrier extends UniteCivileTerrestre
         }
     }
     
-    public Map<String, Constructor> getConstructions() {
+    public Map<String, Constructor> getConstructions()
+    {
         return constructions;
     }
     
     
-    public List<int[]> getBuildableTiles(){
+    public List<int[]> getBuildableTiles()
+    {
         List<int[]> buildableTiles = new ArrayList<>();
         int x=this.positionX()+1;
         int y=this.positionY()+1;
@@ -70,7 +72,8 @@ public class UCT_Ouvrier extends UniteCivileTerrestre
         return buildableTiles;
     }
     
-    public boolean buildable(Case c){
+    public boolean buildable(Case c)
+    {
         List<String> rules = new ArrayList<>();
         if(aConstruire.getDeclaringClass().getSimpleName().equals("Port")){
             rules.add("Eau");
@@ -83,14 +86,16 @@ public class UCT_Ouvrier extends UniteCivileTerrestre
      return (rules.contains(c.type()));
     }
     
-    public void preConstruction(String s, Constructor c){
+    public void preConstruction(String s, Constructor c)
+    {
         this.aConstruire=c;
         this.typeAConstruire=s;
         Play.state="Construction";
         Play.placeableTiles=getBuildableTiles();
     }
     
-    public void construire(Case c){
+    public void construire(Case c)
+    {
         try {
             this.aConstruire.newInstance(this.joueur,c);
         } catch (InstantiationException|InvocationTargetException|IllegalArgumentException|IllegalAccessException ex) {
@@ -100,13 +105,14 @@ public class UCT_Ouvrier extends UniteCivileTerrestre
     
     
     @Override
-    public List<GameButton> getMenu(){
+    public List<GameButton> getMenu()
+    {
       List<GameButton> list = new ArrayList<>();
       int posY=100;
         try {
-            for(Constructor c : this.getConstructions().values()){
+            for(Constructor c : this.getConstructions().values()){ 
                 try {
-                    list.add(new GameButton(810, posY, new Image("Graphics/Units/Batiments/"+c.getName().substring(c.getName().lastIndexOf(".")+1)+"/sprite.png"),c.getName().substring(c.getName().lastIndexOf(".")+1),UCT_Ouvrier.class.getDeclaredMethod("preConstruction",String.class,Constructor.class),c,this));
+                    list.add(new GameButton(810, posY, new Image("Graphics/Images/Bouton.png"),c.getName().substring(c.getName().lastIndexOf(".")+1),UCT_Ouvrier.class.getDeclaredMethod("preConstruction",String.class,Constructor.class),c,new Image("Graphics/Units/Batiments/"+c.getName().substring(c.getName().lastIndexOf(".")+1)+"/sprite.png"),this));
                 } catch (NoSuchMethodException ex) {
                     Logger.getLogger(UCT_Ouvrier.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SecurityException ex) {
@@ -115,7 +121,7 @@ public class UCT_Ouvrier extends UniteCivileTerrestre
                 posY+=50;
             }
             try {
-                    list.add(new GameButton(810, posY, new Image("Graphics/Buttons/Deplacer.png"),"deplacer",Unite.class.getDeclaredMethod("setMovableTiles"),this));
+                    list.add(new GameButton(810, posY, new Image("Graphics/Images/Bouton.png"),"Deplacer",Unite.class.getDeclaredMethod("setMovableTiles"),this));
                 } catch (NoSuchMethodException ex) {
                     Logger.getLogger(UCT_Ouvrier.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SecurityException ex) {

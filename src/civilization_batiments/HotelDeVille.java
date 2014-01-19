@@ -26,7 +26,7 @@ public class HotelDeVille extends Batiment
     public static final Map<String, Constructor> constructions = new LinkedHashMap<>();
     static {
         try {
-            constructions.put("Construire Ouvrier", UCT_Ouvrier.class.getConstructor(Joueur.class, Case.class, Batiment.class));
+            constructions.put("Ouvrier", UCT_Ouvrier.class.getConstructor(Joueur.class, Case.class, Batiment.class));
         } catch (NoSuchMethodException | SecurityException ex) {
             Logger.getLogger(HotelDeVille.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -44,11 +44,11 @@ public class HotelDeVille extends Batiment
     
     @Override
     public Map<String, Constructor> getConstructions() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return constructions;
     }
 
     @Override
     public Map<String, Method> getActions() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return actions;
     }
 }

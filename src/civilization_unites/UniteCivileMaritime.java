@@ -8,19 +8,22 @@ import java.util.List;
 public abstract class UniteCivileMaritime extends UniteCivile
 {
     boolean peutNaviguer = true;
-    public UniteCivileMaritime(Joueur joueur, 
+    
+    public UniteCivileMaritime(
+            Joueur joueur, 
             String nom, 
             int or, int bois, int fer, int nourriture, int tpsConstruction, int defense,
             int dist,
             Case caseParent, Batiment batimentParent,
-            int ptVie)
-    {
+            int ptVie
+             ) {
         super(joueur, nom, or, bois, fer, nourriture, tpsConstruction, defense, dist, caseParent, batimentParent, ptVie);
     }
     
-   @Override
-    public List<String> movableTypes(){
-       List<String> types=new ArrayList<>();
+    @Override
+    public List<String> movableTypes()
+    {
+       List<String> types = new ArrayList<>();
        types.add("Eau");
        return types;
     }

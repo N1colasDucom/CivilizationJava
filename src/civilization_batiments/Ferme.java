@@ -18,19 +18,19 @@ public class Ferme extends Batiment
     }
 
     public static final Map<String, Constructor> constructions = new LinkedHashMap<>();
-    static {
+    /*static {
         try {
             constructions.put("Construire Paysan", UCT_Paysan.class.getConstructor(Joueur.class, Case.class, Batiment.class));
         } catch (NoSuchMethodException | SecurityException ex) {
             Logger.getLogger(Ferme.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+    }*/
     
     public static final Map<String, Method> actions = new LinkedHashMap<>();
     static {
         try {
-            actions.put("Réparer bâtiment", Batiment.class.getDeclaredMethod("reparer"));
-            actions.put("Détruire bâtiment", Batiment.class.getDeclaredMethod("detruire"));
+            actions.put("RÃ©parer bÃ¢timent", Batiment.class.getDeclaredMethod("reparer"));
+            actions.put("DÃ©truire bÃ¢timent", Batiment.class.getDeclaredMethod("detruire"));
         } catch (NoSuchMethodException | SecurityException ex) {
             Logger.getLogger(Ferme.class.getName()).log(Level.SEVERE, null, ex);
         }

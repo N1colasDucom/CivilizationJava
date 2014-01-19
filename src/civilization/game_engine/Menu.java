@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package civilization.game_engine;
 
 import org.newdawn.slick.GameContainer;
@@ -12,10 +6,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
-/**
- *
- * @author Nicolas
- */
+
 public class Menu extends BasicGameState
 {
     GameButton Jouer;
@@ -26,7 +17,6 @@ public class Menu extends BasicGameState
     {
         
     }
-
     
     @Override
     public int getID() 
@@ -37,18 +27,17 @@ public class Menu extends BasicGameState
     @Override
     public void init(GameContainer gc, StateBasedGame game) throws SlickException 
     {
-        Jouer = new GameButton(434, 362, new Image("Graphics/Images/Bouton.png"));       
-        Quitter = new GameButton(434, 448, new Image("Graphics/Images/Bouton.png"));
+        Jouer = new GameButton(434, 362, new Image("Graphics/Images/Bouton.png"),"Jouer",null);       
+        Quitter = new GameButton(434, 448, new Image("Graphics/Images/Bouton.png"),"Quitter",null);
         Background = new Image("Graphics/Images/MenuPrincipal.png");
     }
 
     @Override
-
     public void render(GameContainer gc, StateBasedGame game, Graphics g) throws SlickException 
     {
         Background.draw(0,0);
-        Jouer.Image.draw(434, 362);
-        Quitter.Image.draw(434, 448);
+        Jouer.draw(g);
+        Quitter.draw(g);
     }
 
     @Override
@@ -67,3 +56,4 @@ public class Menu extends BasicGameState
         }   
     }   
 }
+

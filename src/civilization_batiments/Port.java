@@ -20,12 +20,12 @@ public class Port extends Batiment
     public static final Map<String, Constructor> constructions = new LinkedHashMap<>();
     static {
         try {
-            constructions.put("Construire Bateau de croisière", UCM_BateaudeCroisiere.class.getConstructor(Joueur.class, Case.class, Batiment.class));
-            constructions.put("Construire Bateau de pêche", UCM_BateaudePeche.class.getConstructor(Joueur.class, Case.class, Batiment.class));
-            constructions.put("Construire Croiseur", UMM_Croiseur.class.getConstructor(Joueur.class, Case.class, Batiment.class));
-            constructions.put("Construire Destroyer", UMM_Destroyer.class.getConstructor(Joueur.class, Case.class, Batiment.class));
-            constructions.put("Construire Porte-avions", UMM_PorteAvions.class.getConstructor(Joueur.class, Case.class, Batiment.class));
-            constructions.put("Construire Sous-marin", UMM_Sousmarin.class.getConstructor(Joueur.class, Case.class, Batiment.class));
+            constructions.put("Bateau de croisière", UCM_BateaudeCroisiere.class.getConstructor(Joueur.class, Case.class, Batiment.class));
+            constructions.put("Bateau de pêche", UCM_BateaudePeche.class.getConstructor(Joueur.class, Case.class, Batiment.class));
+            constructions.put("Croiseur", UMM_Croiseur.class.getConstructor(Joueur.class, Case.class, Batiment.class));
+            constructions.put("Destroyer", UMM_Destroyer.class.getConstructor(Joueur.class, Case.class, Batiment.class));
+            constructions.put("Porte-avions", UMM_PorteAvions.class.getConstructor(Joueur.class, Case.class, Batiment.class));
+            constructions.put("Sous-marin", UMM_Sousmarin.class.getConstructor(Joueur.class, Case.class, Batiment.class));
         } catch (NoSuchMethodException | SecurityException ex) {
             Logger.getLogger(Port.class.getName()).log(Level.SEVERE, null, ex);
         }

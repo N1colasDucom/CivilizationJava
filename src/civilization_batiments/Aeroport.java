@@ -20,11 +20,11 @@ public class Aeroport extends Batiment
     public static final Map<String, Constructor> constructions = new LinkedHashMap<>();
     static {
         try {
-            constructions.put("Construire Avion de Ligne", UCA_AviondeLigne.class.getConstructor(Joueur.class, Case.class, Batiment.class));
-            constructions.put("Constuire Hélicoptère Civil", UCA_Helicoptere.class.getConstructor(Joueur.class, Case.class, Batiment.class));
-            constructions.put("Constuire Bombardier", UMA_Bombardier.class.getConstructor(Joueur.class, Case.class, Batiment.class));
-            constructions.put("Constuire Chasseur", UMA_Chasseur.class.getConstructor(Joueur.class, Case.class, Batiment.class));
-            constructions.put("Construire Hélicoptère de Combat", UMA_Helicoptere.class.getConstructor(Joueur.class, Case.class, Batiment.class));
+            constructions.put("Avion de Ligne", UCA_AviondeLigne.class.getConstructor(Joueur.class, Case.class, Batiment.class));
+            constructions.put("Hélicoptère Civil", UCA_Helicoptere.class.getConstructor(Joueur.class, Case.class, Batiment.class));
+            constructions.put("Bombardier", UMA_Bombardier.class.getConstructor(Joueur.class, Case.class, Batiment.class));
+            constructions.put("Chasseur", UMA_Chasseur.class.getConstructor(Joueur.class, Case.class, Batiment.class));
+            constructions.put("Hélicoptère de Combat", UMA_Helicoptere.class.getConstructor(Joueur.class, Case.class, Batiment.class));
         } catch (NoSuchMethodException | SecurityException ex) {
             Logger.getLogger(Aeroport.class.getName()).log(Level.SEVERE, null, ex);
         }
