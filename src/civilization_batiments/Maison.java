@@ -62,6 +62,9 @@ public class Maison extends Batiment
             case "UCT_Ouvrier" :
             case "UCT_Paysan" :
                 this.unitesHebergees.add(unite);
+                unite.caseParent = null;
+                unite.batimentParent = this;
+                unite.statut = "hebergee";
                 return true;
             default :
                 return false;

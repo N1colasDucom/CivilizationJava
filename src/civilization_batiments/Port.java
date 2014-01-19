@@ -64,6 +64,9 @@ public class Port extends Batiment
             case "UMM_PorteAvions" :
             case "UMM_Sousmarin" :
                 this.unitesHebergees.add(unite);
+                unite.caseParent = null;
+                unite.batimentParent = this;
+                unite.statut = "hebergee";
                 return true;
             default :
                 return false;

@@ -70,6 +70,9 @@ public class Caserne extends Batiment
             case "UMT_Soldat" :
             case "UMT_Tank" :
                 this.unitesHebergees.add(unite);
+                unite.caseParent = null;
+                unite.batimentParent = this;
+                unite.statut = "hebergee";
                 return true;
             default :
                 return false;

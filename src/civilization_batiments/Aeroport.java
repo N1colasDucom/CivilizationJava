@@ -62,6 +62,9 @@ public class Aeroport extends Batiment
             case "UMA_Chasseur" :
             case "UMA_Helicoptere" :
                 this.unitesHebergees.add(unite);
+                unite.caseParent = null;
+                unite.batimentParent = this;
+                unite.statut = "hebergee";
                 return true;
             default :
                 return false;

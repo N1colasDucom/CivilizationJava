@@ -46,6 +46,9 @@ public class Mine extends Batiment
         switch (unite.getClass().getSimpleName()) {
             case "UCT_Ouvrier" :
                 this.unitesHebergees.add(unite);
+                unite.caseParent = null;
+                unite.batimentParent = this;
+                unite.statut = "hebergee";
                 return true;
             default :
                 return false;
