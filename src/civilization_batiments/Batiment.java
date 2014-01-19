@@ -2,10 +2,10 @@ package civilization_batiments;
 
 import civilization.Case;
 import civilization.game_engine.GameButton;
-import civilization.game_engine.Play;
 import civilization_exceptions.RessourcesInsuffisantesException;
 import civilization_joueurs.Joueur;
 import civilization_unites.UCT_Ouvrier;
+import civilization_unites.Unite;
 import java.util.ArrayList;
 import java.util.List;
 import org.newdawn.slick.Image;
@@ -24,6 +24,7 @@ public abstract class Batiment
     public int niveau;
     public int requisNourriture, requisBois, requisFer, requisOr, prodOr, prodBois, prodFer, prodNourriture, tempsConstruction, ouvriersMax;
     public ArrayList<UCT_Ouvrier> ouvriersQuiConstruisent = new ArrayList<>();
+    public ArrayList<Unite> unitesHebergees = new ArrayList<>();
 
     public Case caseParent;
     
@@ -102,6 +103,8 @@ public abstract class Batiment
         
         return true;
     }
+    
+    public abstract boolean hebergerUnite(Unite unite);
     
     /**
      * Ajoute les ressources produits par un batiment à un joueur.

@@ -506,10 +506,11 @@ public class Play extends BasicGameState implements MusicListener{
         }
         state="normal";
         
-        music= new Music("Music/theme.ogg", true);
+        // Désactivée pendant le Dev
+        /*music= new Music("Music/theme.ogg", true);
         music.addListener(this);
         music.setVolume(0.2f);
-        music.loop();
+        music.loop();*/
     }
 
     @Override

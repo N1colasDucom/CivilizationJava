@@ -71,7 +71,7 @@ public abstract class Unite
             System.out.println(e.getMessage());
         }
         
-        if (batimentParent!=null) {
+        if (batimentParent != null && caseParent != null) {
             this.finirConstruction(); 
         }
     }

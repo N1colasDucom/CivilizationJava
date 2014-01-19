@@ -50,4 +50,11 @@ public class HotelDeVille extends Batiment
     public Map<String, Method> getActions() {
         return actions;
     }
+
+    @Override
+    public boolean hebergerUnite(Unite unite) 
+    {
+        this.unitesHebergees.add(unite);
+        return true;
+    }
 }

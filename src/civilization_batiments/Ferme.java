@@ -2,7 +2,7 @@ package civilization_batiments;
 
 import civilization.Case;
 import civilization_joueurs.Joueur;
-import civilization_unites.UCT_Paysan;
+import civilization_unites.Unite;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.LinkedHashMap;
@@ -29,20 +29,35 @@ public class Ferme extends Batiment
     public static final Map<String, Method> actions = new LinkedHashMap<>();
     static {
         try {
-            actions.put("RÃ©parer bÃ¢timent", Batiment.class.getDeclaredMethod("reparer"));
-            actions.put("DÃ©truire bÃ¢timent", Batiment.class.getDeclaredMethod("detruire"));
+            actions.put("Réparer", Batiment.class.getDeclaredMethod("reparer"));
+            actions.put("Détruire", Batiment.class.getDeclaredMethod("detruire"));
         } catch (NoSuchMethodException | SecurityException ex) {
             Logger.getLogger(Ferme.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
     @Override
-    public Map<String, Constructor> getConstructions() {
+    public Map<String, Constructor> getConstructions() 
+    {
         return constructions;
     }
 
     @Override
-    public Map<String, Method> getActions() {
+    public Map<String, Method> getActions() 
+    {
         return actions;
+    }
+
+    @Override
+    public boolean hebergerUnite(Unite unite) 
+    {
+        switch (unite.getClass().getSimpleName()) {
+            case "UCT_Ouvrier" :
+            case "UCT_Paysan" :
+                this.unitesHebergees.add(unite);
+                return true;
+            default :
+                return false;
+        }
     }
 }
