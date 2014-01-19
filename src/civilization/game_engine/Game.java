@@ -10,7 +10,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class Game extends StateBasedGame
 {
-    public static final String gameName = "Civilization";
+    public static final String gameName = "Civilisation";
     public static ArrayList<Joueur> joueurs = new ArrayList<Joueur>() {{
         // 3 joueurs par exemple...
         add(new Joueur());

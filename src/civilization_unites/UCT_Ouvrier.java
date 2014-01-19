@@ -7,6 +7,7 @@ import civilization.game_engine.Play;
 import civilization_batiments.*;
 import civilization_batiments.Batiment;
 import civilization_joueurs.Joueur;
+import static civilization_unites.UCA_AviondeLigne.actions;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -134,6 +135,17 @@ public class UCT_Ouvrier extends UniteCivileTerrestre
       return list;
     }
 
+    public static final Map<String, Method> actions = new LinkedHashMap<>();
+    static {
+        try {
+            actions.put("Déplacer", Unite.class.getDeclaredMethod("setMovableTiles"));
+            actions.put("Soigner", Unite.class.getDeclaredMethod("reparer"));
+            actions.put("Tuer", Unite.class.getDeclaredMethod("detruire"));
+        } catch (NoSuchMethodException | SecurityException ex) {
+            Logger.getLogger(UCT_Ouvrier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     @Override
     public Map<String, Method> getActions() 
     {
