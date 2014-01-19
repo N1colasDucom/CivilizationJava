@@ -30,15 +30,18 @@ public abstract class Unite
     public Batiment batimentParent;
 
     public int pointsDeVie, pointsDeVieRestants, defense, distanceDeMvt, niveau;
-    public int requisNourriture, requisBois, requisFer, requisOr, tempsConstruction;
+    public int requisNourriture, requisBois, requisFer, requisOr, tempsConstruction, prodOr, prodBois, prodFer, prodNourr;
     public int consommeNourriture, consommeBois, consommeFer, consommeOr;
+    
+    
         
     public Unite(Joueur _joueur, 
             String nom, 
             int or, int bois, int fer, int nourriture, int tpsConstruction, int defense, 
             int dist,
             Case caseParent, Batiment batimentParent,
-            int ptVie
+            int ptVie,
+            int prodOr, int prodBois, int prodFer, int prodNourr
     ) {              
         this.nom = nom;           
         this.pointsDeVie=ptVie;
@@ -56,6 +59,11 @@ public abstract class Unite
         this.consommeBois = 0;
         this.consommeFer = 0;
         this.consommeOr = 0;
+        
+        this.prodOr = prodOr;
+        this.prodBois = prodBois;
+        this.prodFer = prodFer;
+        this.prodNourr = prodNourr;
         
         this.caseParent = caseParent;
         this.batimentParent = batimentParent;
@@ -85,6 +93,7 @@ public abstract class Unite
      * @return 
      */
     public abstract boolean peutAttaquer(Unite unite);
+    
     /**
      * Retourne vrai si l'unité peut attaquer un bâtiment donné.
      * @param batiment
@@ -92,6 +101,10 @@ public abstract class Unite
      */
     public abstract boolean peutAttaquer(Batiment batiment);
     
+    /**
+     * Constructions disponibles pour une unité.
+     * @return 
+     */
     public abstract Map<String, Constructor> getConstructions();
     
     /**
@@ -99,6 +112,18 @@ public abstract class Unite
      * @return 
      */
     public abstract Map<String, Method> getActions();
+    
+    /**
+     * Ajoute les ressources produits par un batiment à un joueur.
+     * @param joueur 
+     */
+    public void produireDesRessources(Joueur joueur)
+    {
+        joueur.ressourcesOr += this.prodOr;
+        joueur.ressourcesBois += this.prodBois;
+        joueur.ressourcesFer += this.prodFer;
+        joueur.ressourcesNourriture += this.prodNourr;
+    }
     
     /**
      * Change le statut de l'unite

@@ -103,6 +103,7 @@ public class Joueur
      */
     public void ajouterBatiment(Batiment batiment) 
     {
+        System.out.println("IN ajouterBatiment");
         this.batiments.add(batiment);     
         this.consommerLesRessourcesNecessairesPourConstruire(batiment);
     }
@@ -132,7 +133,7 @@ public class Joueur
      * @param unite 
      */
     private void consommerLesRessourcesNecessairesPourConstruire(Unite unite) 
-    {
+    {        
         this.ressourcesBois -= unite.requisBois;
         this.ressourcesFer -= unite.requisFer;
         this.ressourcesNourriture -= unite.requisNourriture;
@@ -144,11 +145,13 @@ public class Joueur
      * @param batiment 
      */
     private void consommerLesRessourcesNecessairesPourConstruire(Batiment batiment) 
-    {
+    {        
         this.ressourcesBois -= batiment.requisBois;
         this.ressourcesFer -= batiment.requisFer;
         this.ressourcesNourriture -= batiment.requisNourriture;
         this.ressourcesOr -= batiment.requisOr;
+        
+        System.out.println(ressourcesBois+"/"+ressourcesFer+"/"+ressourcesNourriture+"/"+ressourcesOr);
     }
     
     /**

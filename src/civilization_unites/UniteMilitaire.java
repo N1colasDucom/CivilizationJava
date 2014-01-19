@@ -37,7 +37,7 @@ public abstract class UniteMilitaire extends Unite
             Case caseParent, Batiment batimentParent,
             int ptVie
     ) {
-        super(joueur, nom, or, bois, fer, nourriture, tpsConstruction, defense, dist, caseParent, batimentParent, ptVie);
+        super(joueur, nom, or, bois, fer, nourriture, tpsConstruction, defense, dist, caseParent, batimentParent, ptVie, 0, 0, 0, 0);
     }
     
     public void attaquer(Case c) 

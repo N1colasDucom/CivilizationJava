@@ -55,9 +55,8 @@ public class HotelDeVille extends Batiment
     public boolean hebergerUnite(Unite unite) 
     {
         this.unitesHebergees.add(unite);
-        unite.caseParent = null;
-        unite.batimentParent = this;
-        unite.statut = "hebergee";
+        unite.setBatimentParent(this);
+        unite.changerStatut("hebergee");
         return true;
     }
 }

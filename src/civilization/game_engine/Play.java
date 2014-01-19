@@ -439,10 +439,10 @@ public class Play extends BasicGameState implements MusicListener{
         }
     }
     
-    public void setInfosBottomPane(Graphics g){
+    public void setInfosBottomPane(Graphics g) {
         g.setColor(Color.white);
-        int x =120;
-        int y=650;
+        int x = 120;
+        int y = 660;
            
         String joueurActif = "Joueur : "+UnTour.joueurActif.pseudo;
         g.drawString(joueurActif, x, y);

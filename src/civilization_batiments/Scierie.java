@@ -46,9 +46,8 @@ public class Scierie extends Batiment
             case "UCT_Ouvrier" :
             case "UCT_Paysan" :
                 this.unitesHebergees.add(unite);
-                unite.caseParent = null;
-                unite.batimentParent = this;
-                unite.statut = "hebergee";
+                unite.setBatimentParent(this);
+                unite.changerStatut("hebergee");
                 return true;
             default :
                 return false;

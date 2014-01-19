@@ -17,7 +17,7 @@ public class UCM_BateaudeCroisiere extends UniteCivileMaritime
  
     public UCM_BateaudeCroisiere(Joueur _joueur, Case caseParent, Batiment batimentParent)
     {
-        super(_joueur, "Bâteau de croisière", 4, 4, 2, 0, 6, 5, 10, caseParent, batimentParent, 12);
+        super(_joueur, "Bâteau de croisière", 4, 4, 2, 0, 6, 5, 10, caseParent, batimentParent, 12, 0, 0, 0, 0);
     }
     
     public static final Map<String, Method> actions = new LinkedHashMap<>();

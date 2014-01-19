@@ -4,6 +4,7 @@ import civilization.game_engine.Game;
 import civilization.game_engine.Play;
 import civilization_batiments.Batiment;
 import civilization_joueurs.Joueur;
+import civilization_unites.Unite;
 
 public class UnTour 
 {
@@ -33,6 +34,10 @@ public class UnTour
     {
         for (Batiment b : joueurActif.batiments) {
             b.produireDesRessources(joueurActif);
+        }
+        
+        for (Unite u : joueurActif.unites) {
+            u.produireDesRessources(joueurActif);
         }
     }
        

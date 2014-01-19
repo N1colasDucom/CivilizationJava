@@ -47,9 +47,8 @@ public class Tour extends Batiment
             case "UMT_Sentinelle" :
             case "UMT_Soldat" :
                 this.unitesHebergees.add(unite);
-                unite.caseParent = null;
-                unite.batimentParent = this;
-                unite.statut = "hebergee";
+                unite.setBatimentParent(this);
+                unite.changerStatut("hebergee");
                 return true;
             default :
                 return false;
