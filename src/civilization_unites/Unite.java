@@ -8,6 +8,7 @@ import civilization.game_engine.pathfinder.AStar;
 import civilization_batiments.Batiment;
 import civilization_joueurs.Joueur;
 import civilization_exceptions.*;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
@@ -73,7 +74,7 @@ public abstract class Unite
             System.out.println(e.getMessage());
         }
         
-        if (batimentParent != null && caseParent != null) {
+        if (batimentParent != null) {
             this.finirConstruction(); 
         }
     }
@@ -90,6 +91,8 @@ public abstract class Unite
      * @return 
      */
     public abstract boolean peutAttaquer(Batiment batiment);
+    
+    public abstract Map<String, Constructor> getConstructions();
     
     /**
      * Actions disponibles pour une unité
@@ -254,24 +257,34 @@ public abstract class Unite
     }
     
     /**
-     * retourne une liste de boutons correspondant aux actions que peut effectuer cette unite
+     * Retourne une liste de boutons correspondant aux actions que peut effectuer cette unite
      * @return 
      */
     public List<GameButton> getMenu()
     {
-     int x=810;
-     int y=110;  
-      List<GameButton> list = new ArrayList<>();
+        int x = 810; int y = 110;  
+        List<GameButton> list = new ArrayList<>();
         try {
-          try {
-              list.add(new GameButton(x, y, new Image("Graphics/Images/Bouton.png"),"Deplacer",Unite.class.getDeclaredMethod("setMovableTiles"),this));
-          } catch (NoSuchMethodException |SecurityException ex) {
-              Logger.getLogger(Unite.class.getName()).log(Level.SEVERE, null, ex);
-          }
+            if (this.getConstructions() != null) {
+                for (Map.Entry<String, Constructor> c : this.getConstructions().entrySet()) {
+                    try {
+                        list.add(new GameButton(810, y, new Image("Graphics/Images/BoutonSmall.png"), c.getKey(), UCT_Ouvrier.class.getDeclaredMethod("preConstruction",String.class,Constructor.class), c.getValue(), new Image("Graphics/Units/Batiments/"+c.getValue().getName().substring(c.getValue().getName().lastIndexOf(".")+1)+"/sprite.png"),this));
+                    } catch (NoSuchMethodException | SecurityException ex) {
+                        Logger.getLogger(Unite.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    y += 30;
+                }
+            }
+            
+            for (Map.Entry<String, Method> m : this.getActions().entrySet()) {
+                list.add(new GameButton(810, y, new Image("Graphics/Images/Bouton.png"), m.getKey(), m.getValue(), this));
+                y += 50;
+            }                
         } catch (SlickException ex) {
             System.out.println("Erreur Creation Menu Action");
         }
-      return list;
+        
+        return list;
     }
     
     public void setNom(Graphics g)

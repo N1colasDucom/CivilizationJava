@@ -3,6 +3,7 @@ package civilization_unites;
 import civilization.Case;
 import civilization_batiments.Batiment;
 import civilization_joueurs.Joueur;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -30,5 +31,11 @@ public class UMA_Helicoptere extends UniteMilitaireAerien
     public Map<String, Method> getActions() 
     {
         return actions;
+    }
+
+    @Override
+    public Map<String, Constructor> getConstructions() 
+    {
+        return null;
     }
 }

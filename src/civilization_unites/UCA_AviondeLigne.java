@@ -3,6 +3,7 @@ package civilization_unites;
 import civilization.Case;
 import civilization_batiments.Batiment;
 import civilization_joueurs.Joueur;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -19,6 +20,7 @@ public class UCA_AviondeLigne extends UniteCivileAerien
     public static final Map<String, Method> actions = new LinkedHashMap<>();
     static {
         try {
+            actions.put("Déplacer", Unite.class.getDeclaredMethod("setMovableTiles"));
             actions.put("Réparer", Unite.class.getDeclaredMethod("reparer"));
             actions.put("Détruire", Unite.class.getDeclaredMethod("detruire"));
         } catch (NoSuchMethodException | SecurityException ex) {
@@ -30,5 +32,11 @@ public class UCA_AviondeLigne extends UniteCivileAerien
     public Map<String, Method> getActions() 
     {
         return actions;
+    }
+
+    @Override
+    public Map<String, Constructor> getConstructions() 
+    {
+        return null;
     }
 }

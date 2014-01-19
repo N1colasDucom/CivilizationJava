@@ -206,8 +206,8 @@ public abstract class Batiment
         try {
             if (this.getConstructions() != null) {
                 for (Map.Entry<String, Constructor> c : this.getConstructions().entrySet()) {
-                    list.add(new GameButton(810, posY, new Image("Graphics/Images/Bouton.png"), c.getKey(), c.getValue(), new Image("Graphics/Units/Unites/"+c.getValue().getName().substring(c.getValue().getName().lastIndexOf(".")+1)+"/sprite.png"),this));
-                    posY+=50;
+                    list.add(new GameButton(810, posY, new Image("Graphics/Images/BoutonSmall.png"), c.getKey(), c.getValue(), new Image("Graphics/Units/Unites/"+c.getValue().getName().substring(c.getValue().getName().lastIndexOf(".")+1)+"/sprite.png"), this));
+                    posY += 30;
                 }
             }
             
