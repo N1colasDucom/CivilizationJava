@@ -67,7 +67,7 @@ public abstract class Batiment
         this.ouvriersMax = ouvriersMax;
         this.tempsConstruction = t;
         this.niveau = 1;
-        this.statut = "En construction"; //VAL METTRE "EN CONSTRUCTION" quand tu sera pret a implementer la construction!
+        this.statut = "En construction";
        
        try {
             if (j.disposeDesRessourcesNessairesPourAcheter(this)) {
@@ -132,7 +132,7 @@ public abstract class Batiment
     public Image getSprite()
     {
         try {
-            return new Image("Graphics/Units/Batiments/"+((!this.statut.equals("En Construction"))?this.getClass().getSimpleName():"Construction")+"/sprite.png");
+            return new Image("Graphics/Units/Batiments/"+((!this.statut.equals("En construction"))?this.getClass().getSimpleName():"Construction")+"/sprite.png");
         } catch (SlickException ex) {
             System.out.println("Erreur image:"+this.getClass().getSimpleName());
         }
