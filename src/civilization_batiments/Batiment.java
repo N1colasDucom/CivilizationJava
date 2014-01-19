@@ -28,6 +28,8 @@ public abstract class Batiment
 
     public Case caseParent;
     
+    public boolean actionDuTourRealisee = false;
+    
     public abstract Map<String, Constructor> getConstructions();
     public abstract Map<String, Method> getActions();
         

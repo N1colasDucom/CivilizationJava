@@ -98,7 +98,7 @@ public class Play extends BasicGameState implements MusicListener{
     {
         this.actionButtons.clear();
         if(Game.plateau.getCase(realMouseX, realMouseY).occupant!=null) { 
-            if(myEntity()) {
+            if(myEntity() && unitAvailable()) {
                 this.actionButtons=Game.plateau.getCase(realMouseX, realMouseY).getOccupantMenu();
             }
             
@@ -124,6 +124,18 @@ public class Play extends BasicGameState implements MusicListener{
                     return true;
                 }
                 break;
+        }
+        return false;
+    }
+    
+    public boolean unitAvailable()
+    {
+        String classTemp= Game.plateau.getCase(realMouseX, realMouseY).getOccupantType();
+        switch (classTemp) {
+            case "Batiment":
+                return !((Batiment)Game.plateau.getCase(realMouseX, realMouseY).occupant).actionDuTourRealisee;
+            case "Unite":
+                return !((Unite)Game.plateau.getCase(realMouseX, realMouseY).occupant).actionDuTourRealisee;
         }
         return false;
     }
@@ -376,13 +388,18 @@ public class Play extends BasicGameState implements MusicListener{
         int[] tileTemp= new int[2];
         tileTemp[0]=realMouseX;
         tileTemp[1]=realMouseY;
-        if (state.equals("Deplacement")&&isValidTile(movableTiles,tileTemp)) { 
+        
+        if (state.equals("Deplacement") && isValidTile(movableTiles,tileTemp)) { 
+            ((Unite)pastTile.occupant).actionDuTourRealisee = true;
             ((Unite)pastTile.occupant).deplacer(Game.plateau.getCase(realMouseX, realMouseY));
+            
             if(movableTiles!=null) {
                 movableTiles.clear();
             }
+            
             return true;
         }
+        
         return false;  
     }
     
