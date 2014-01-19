@@ -38,4 +38,10 @@ public class UMT_Soldat extends UniteMilitaireTerrestre
     {
         return null;
     }
+    
+    @Override
+    public boolean hebergerUnite(Unite unite) 
+    {
+        return false;
+    }
 }

@@ -148,5 +148,11 @@ public class UCT_Ouvrier extends UniteCivileTerrestre
       return list;
     }
     */ 
+    
+    @Override
+    public boolean hebergerUnite(Unite unite) 
+    {
+        return false;
+    }
 }
 

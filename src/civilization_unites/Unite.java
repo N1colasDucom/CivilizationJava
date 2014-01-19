@@ -33,7 +33,7 @@ public abstract class Unite
     public int requisNourriture, requisBois, requisFer, requisOr, tempsConstruction, prodOr, prodBois, prodFer, prodNourr;
     public int consommeNourriture, consommeBois, consommeFer, consommeOr;
     
-    
+    public ArrayList<Unite> unitesHebergees = new ArrayList<>();
         
     public Unite(Joueur _joueur, 
             String nom, 
@@ -112,6 +112,13 @@ public abstract class Unite
      * @return 
      */
     public abstract Map<String, Method> getActions();
+    
+    /**
+     * Lorsqu'une unité peut en "héberger" une autre (ex: un avion de ligne peut transporter un passager)
+     * @param unite
+     * @return boolean
+     */
+    public abstract boolean hebergerUnite(Unite unite);
     
     /**
      * Ajoute les ressources produits par un batiment à un joueur.
@@ -377,6 +384,12 @@ public abstract class Unite
         str += "    [DEF] "+this.defense+"\n";
         str += "    [REQ] BOIS:"+this.requisBois+" NOUR:"+this.requisNourriture+" FER:"+this.requisFer+" OR:"+this.requisOr+ " TPS:"+this.tempsConstruction+ "\n";
         str += "    [CNS] BOIS:"+this.consommeBois+" NOUR:"+this.consommeNourriture+" FER:"+this.consommeFer+" OR:"+this.consommeOr+"\n";
+        
+        str += "    [HEB] ";
+        for (Unite u : this.unitesHebergees) {
+            str += u.nom + " ";
+        }
+        str += "\n";
         
         return str;
     }

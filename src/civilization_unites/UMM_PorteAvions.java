@@ -38,4 +38,34 @@ public class UMM_PorteAvions extends UniteMilitaireMaritime
     {
         return null;
     }
+    
+    @Override
+    public boolean hebergerUnite(Unite unite) 
+    {
+        if (this.joueur.equals(unite.joueur)) {
+            switch (unite.getClass().getSimpleName()) {
+                case "UCT_Ouvrier" :
+                case "UCT_Paysan" :
+                case "UCA_Helicoptere" :
+                case "UCA_AviondeLigne" :
+                case "UMA_Bombardier" :
+                case "UMA_Chasseur" :
+                case "UMA_Helicoptere" :
+                case "UMT_Artillerie" :
+                case "UMT_LanceGrenade" :
+                case "UMT_Sentinelle" :
+                case "UMT_Soldat" :
+                case "UMT_Tank" :
+                    this.unitesHebergees.add(unite);
+                    unite.caseParent = null;
+                    unite.batimentParent = null;
+                    unite.changerStatut("hebergee");
+                    return true;
+                default :
+                    return false;
+            }
+        } else {
+            return false;
+        }
+    }
 }

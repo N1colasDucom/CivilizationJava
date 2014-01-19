@@ -3,7 +3,6 @@ package civilization_unites;
 import civilization.Case;
 import civilization_batiments.Batiment;
 import civilization_joueurs.Joueur;
-import static civilization_unites.UCA_Helicoptere.actions;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.LinkedHashMap;
@@ -40,5 +39,25 @@ public class UCM_BateaudeCroisiere extends UniteCivileMaritime
     public Map<String, Constructor> getConstructions() 
     {
         return null;
+    }
+    
+    @Override
+    public boolean hebergerUnite(Unite unite) 
+    {
+        if (this.joueur.equals(unite.joueur)) {
+            switch (unite.getClass().getSimpleName()) {
+                case "UCT_Ouvrier" :
+                case "UCT_Paysan" :
+                    this.unitesHebergees.add(unite);
+                    unite.caseParent = null;
+                    unite.batimentParent = null;
+                    unite.changerStatut("hebergee");
+                    return true;
+                default :
+                    return false;
+            }
+        } else {
+            return false;
+        }   
     }
 }

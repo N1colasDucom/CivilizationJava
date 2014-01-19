@@ -39,4 +39,24 @@ public class UCA_AviondeLigne extends UniteCivileAerien
     {
         return null;
     }
+
+    @Override
+    public boolean hebergerUnite(Unite unite) 
+    {
+        if (this.joueur.equals(unite.joueur)) {
+            switch (unite.getClass().getSimpleName()) {
+                case "UCT_Ouvrier" :
+                case "UCT_Paysan" :
+                    this.unitesHebergees.add(unite);
+                    unite.caseParent = null;
+                    unite.batimentParent = null;
+                    unite.changerStatut("hebergee");
+                    return true;
+                default :
+                    return false;
+            }
+        } else {
+            return false;
+        }
+    }
 }

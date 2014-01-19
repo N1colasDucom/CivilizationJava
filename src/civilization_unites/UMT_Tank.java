@@ -38,4 +38,10 @@ public class UMT_Tank extends UniteMilitaireTerrestre
     {
         return null;
     }
+    
+    @Override
+    public boolean hebergerUnite(Unite unite) 
+    {
+        return false;
+    }
 }

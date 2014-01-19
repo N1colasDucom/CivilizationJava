@@ -26,4 +26,10 @@ public class UCT_Paysan extends UniteCivileTerrestre
     {
         return null;
     }
+    
+    @Override
+    public boolean hebergerUnite(Unite unite) 
+    {
+        return false;
+    }
 }

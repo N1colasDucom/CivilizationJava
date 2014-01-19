@@ -38,4 +38,10 @@ public class UMT_Artillerie extends UniteMilitaireTerrestre
     {
         return null;
     }
+    
+    @Override
+    public boolean hebergerUnite(Unite unite) 
+    {
+        return false;
+    }
 }
