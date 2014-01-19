@@ -3,7 +3,6 @@ package civilization_batiments;
 import civilization.Case;
 import civilization_joueurs.Joueur;
 import civilization_unites.UMT_Artillerie;
-import civilization_unites.UMT_BombeNucleaire;
 import civilization_unites.UMT_LanceGrenade;
 import civilization_unites.UMT_Sentinelle;
 import civilization_unites.UMT_Soldat;

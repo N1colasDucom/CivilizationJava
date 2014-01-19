@@ -36,7 +36,7 @@ public abstract class UniteMilitaire extends Unite
             int dist,
             Case caseParent, Batiment batimentParent,
             int ptVie
-            ) {
+    ) {
         super(joueur, nom, or, bois, fer, nourriture, tpsConstruction, defense, dist, caseParent, batimentParent, ptVie);
     }
     

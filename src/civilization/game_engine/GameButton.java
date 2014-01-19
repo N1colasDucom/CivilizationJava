@@ -45,6 +45,7 @@ public class GameButton
        parent = p;
    }
    
+
    public GameButton(int x,int y,Image i,String s, Constructor c,Image sp,Object p)
    {
        X = x;

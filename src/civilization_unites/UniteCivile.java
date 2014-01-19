@@ -39,8 +39,7 @@ public abstract class UniteCivile extends Unite
             int dist,
             Case caseParent, Batiment batimentParent,
             int ptVie
-             ) {
-
+    ) {
         super(joueur, nom, or, bois, fer, nourriture, tpsConstruction, defense, dist, caseParent, batimentParent, ptVie);
         this.peutObtenirNourriture = false;
         this.peutObtenirFer = false;
@@ -49,7 +48,6 @@ public abstract class UniteCivile extends Unite
         this.peutConstruire = false;
     }
     
-
     /**
      * Une unité civile ne peut pas attaquer d'unité.
      * @param unite

@@ -18,8 +18,7 @@ public class UnTour
     {
         ajouterLesRessourcesProduitesDuJoueurEnCours();
         System.out.println("Récapitulatif du Joueur " + joueurActif.pseudo + " :");
-        System.out.println(joueurActif);
-        
+        System.out.println(joueurActif);       
         joueurActif = Game.joueurs.get(((Game.joueurs.indexOf(joueurActif) + 1) == Game.joueurs.size()) ? 0 : (Game.joueurs.indexOf(joueurActif) + 1));
         numero++;
         numeroFactis=numero/Game.joueurs.size();

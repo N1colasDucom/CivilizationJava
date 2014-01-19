@@ -527,7 +527,6 @@ public class Play extends BasicGameState implements MusicListener{
            drawActionMenu(g);
        }
         drawSquare(g);
-
        for (Joueur j : Game.joueurs) {
            this.drawUnits(g, j);
            this.drawBuildings(g, j);

@@ -26,7 +26,6 @@ public abstract class Batiment
     public ArrayList<UCT_Ouvrier> ouvriersQuiConstruisent = new ArrayList<>();
 
     public Case caseParent;
-
     
     public abstract Map<String, Constructor> getConstructions();
     public abstract Map<String, Method> getActions();
@@ -92,7 +91,6 @@ public abstract class Batiment
         
     }
     
-
     /**
      * Détruit un bâtiment
      * @return boolean

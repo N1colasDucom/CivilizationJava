@@ -35,10 +35,9 @@ public abstract class Unite
             int or, int bois, int fer, int nourriture, int tpsConstruction, int defense, 
             int dist,
             Case caseParent, Batiment batimentParent,
-            int ptVie) 
-    {              
-        this.nom = nom;        
-        
+            int ptVie
+    ) {              
+        this.nom = nom;           
         this.pointsDeVie=ptVie;
         this.pointsDeVieRestants = ptVie;
         this.niveau = 1;
@@ -83,7 +82,6 @@ public abstract class Unite
      * @return 
      */
     public abstract boolean peutAttaquer(Unite unite);
-
     /**
      * Retourne vrai si l'unité peut attaquer un bâtiment donné.
      * @param batiment
@@ -129,7 +127,6 @@ public abstract class Unite
      * deplace l'unite vers une nouvelle case
      * @param nvCase 
      */
-
     public void deplacer(Case nvCase)
     {
         if(nvCase==null){
@@ -203,7 +200,6 @@ public abstract class Unite
         Play.movableTiles=movableTiles;
         Play.state="Deplacement";
     }
-    
 
     public Case findExitTile() throws PasDePlaceException
     {
@@ -223,7 +219,6 @@ public abstract class Unite
         throw new PasDePlaceException();
         
     }
-    
 
     public void exitParent()
     {
@@ -246,8 +241,7 @@ public abstract class Unite
     public List<GameButton> getMenu()
     {
      int x=810;
-     int y=110;
-     
+     int y=110;  
       List<GameButton> list = new ArrayList<>();
         try {
           try {

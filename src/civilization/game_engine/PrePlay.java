@@ -1,6 +1,5 @@
 package civilization.game_engine;
 
-
 import civilization.Case;
 import static civilization.game_engine.Game.play;
 import civilization_batiments.Batiment;
