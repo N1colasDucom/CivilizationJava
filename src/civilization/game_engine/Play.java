@@ -504,12 +504,12 @@ public class Play extends BasicGameState implements MusicListener{
         } catch (NoSuchMethodException | SecurityException ex) {
             Logger.getLogger(Play.class.getName()).log(Level.SEVERE, null, ex);
         }
-         state="normal";
-        music= new Music("Music/theme.ogg");
-         music.addListener(this);
-         music.setVolume(0.2f);
+        state="normal";
         
-         music.loop();
+        music= new Music("Music/theme.ogg", true);
+        music.addListener(this);
+        music.setVolume(0.2f);
+        music.loop();
     }
 
     @Override
