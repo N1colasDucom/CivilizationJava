@@ -35,8 +35,7 @@ public class HotelDeVille extends Batiment
     public static final Map<String, Method> actions = new LinkedHashMap<>();
     static {
         try {
-            actions.put("Réparer bâtiment", Batiment.class.getDeclaredMethod("reparer"));
-            actions.put("Détruire bâtiment", Batiment.class.getDeclaredMethod("detruire"));
+            actions.put("Réparer", Batiment.class.getDeclaredMethod("reparer"));
         } catch (NoSuchMethodException | SecurityException ex) {
             Logger.getLogger(HotelDeVille.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -50,5 +49,14 @@ public class HotelDeVille extends Batiment
     @Override
     public Map<String, Method> getActions() {
         return actions;
+    }
+
+    @Override
+    public boolean hebergerUnite(Unite unite) 
+    {
+        this.unitesHebergees.add(unite);
+        unite.setBatimentParent(this);
+        unite.changerStatut("hebergee");
+        return true;
     }
 }

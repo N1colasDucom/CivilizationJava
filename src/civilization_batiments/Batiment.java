@@ -2,10 +2,10 @@ package civilization_batiments;
 
 import civilization.Case;
 import civilization.game_engine.GameButton;
-import civilization.game_engine.Play;
 import civilization_exceptions.RessourcesInsuffisantesException;
 import civilization_joueurs.Joueur;
 import civilization_unites.UCT_Ouvrier;
+import civilization_unites.Unite;
 import java.util.ArrayList;
 import java.util.List;
 import org.newdawn.slick.Image;
@@ -24,8 +24,11 @@ public abstract class Batiment
     public int niveau;
     public int requisNourriture, requisBois, requisFer, requisOr, prodOr, prodBois, prodFer, prodNourriture, tempsConstruction, ouvriersMax;
     public ArrayList<UCT_Ouvrier> ouvriersQuiConstruisent = new ArrayList<>();
+    public ArrayList<Unite> unitesHebergees = new ArrayList<>();
 
     public Case caseParent;
+    
+    public boolean actionDuTourRealisee = false;
     
     public abstract Map<String, Constructor> getConstructions();
     public abstract Map<String, Method> getActions();
@@ -102,6 +105,13 @@ public abstract class Batiment
         
         return true;
     }
+    
+    public void preHebergerUnite()
+    {
+        System.out.println("Batiment.java > preHebergerUnite() pour appeler hebergerUnite() ensuite?");
+    }
+    
+    public abstract boolean hebergerUnite(Unite unite);
     
     /**
      * Ajoute les ressources produits par un batiment à un joueur.
@@ -197,24 +207,26 @@ public abstract class Batiment
      */
     public List<GameButton> getMenu()
     {
-      List<GameButton> list = new ArrayList<>();
-      int posY=100;
+        List<GameButton> list = new ArrayList<>();
+        int posY=100;
+        
         try {
-            if(this.getConstructions()!=null){
-                for(Constructor c : this.getConstructions().values()){
-                   // System.out.println(c.getName());
-                    list.add(new GameButton(810, posY, new Image("Graphics/Images/Bouton.png"),c.getName().substring(c.getName().lastIndexOf(".")+1),c,new Image("Graphics/Units/Unites/"+c.getName().substring(c.getName().lastIndexOf(".")+1)+"/sprite.png"),this));
-                    posY+=50;
+            if (this.getConstructions() != null) {
+                for (Map.Entry<String, Constructor> c : this.getConstructions().entrySet()) {
+                    list.add(new GameButton(810, posY, new Image("Graphics/Images/BoutonSmall.png"), c.getKey(), c.getValue(), new Image("Graphics/Units/Unites/"+c.getValue().getName().substring(c.getValue().getName().lastIndexOf(".")+1)+"/sprite.png"), this));
+                    posY += 30;
                 }
             }
-          for (Method m : this.getActions().values()) {
-             // System.out.println(m.getName());
-              list.add(new GameButton(810, posY, new Image("Graphics/Images/Bouton.png"),m.getName(),m,this));
-              posY+=50;
-          }
+            
+            for (Map.Entry<String, Method> m : this.getActions().entrySet()) {
+                list.add(new GameButton(810, posY, new Image("Graphics/Images/Bouton.png"), m.getKey(), m.getValue(), this));
+                posY+=50;
+            }
+       
         } catch (SlickException ex) {
             System.out.println("Erreur Creation Menu Action");
         }
-      return list;
+        
+        return list;
     }
 }

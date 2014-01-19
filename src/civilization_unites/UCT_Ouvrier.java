@@ -2,21 +2,19 @@ package civilization_unites;
 
 import civilization.Case;
 import civilization.game_engine.Game;
-import civilization.game_engine.GameButton;
 import civilization.game_engine.Play;
 import civilization_batiments.*;
 import civilization_batiments.Batiment;
 import civilization_joueurs.Joueur;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
 
 public class UCT_Ouvrier extends UniteCivileTerrestre
 {    
@@ -28,28 +26,45 @@ public class UCT_Ouvrier extends UniteCivileTerrestre
         super(_joueur, "Ouvrier", 1, 0, 0, 2, 2, 2, 10, caseParent, batimentParent, 5);
     }
     
-        public static final Map<String, Constructor> constructions = new LinkedHashMap<>(); 
+    public static final Map<String, Constructor> constructions = new LinkedHashMap<>(); 
     static {
         try {
-            constructions.put("Construire Aeroport", Aeroport.class.getConstructor(Joueur.class, Case.class));
-            constructions.put("Constuire Port", Port.class.getConstructor(Joueur.class, Case.class));
-            constructions.put("Constuire Caserne", Caserne.class.getConstructor(Joueur.class, Case.class));
-            constructions.put("Constuire Scierie", Scierie.class.getConstructor(Joueur.class, Case.class));
-            constructions.put("Construire Ferme", Ferme.class.getConstructor(Joueur.class, Case.class));
-            constructions.put("Construire Maison", Maison.class.getConstructor(Joueur.class, Case.class));
-            constructions.put("Construire Tour", Tour.class.getConstructor(Joueur.class, Case.class));
-            constructions.put("Construire Mur", Mur.class.getConstructor(Joueur.class, Case.class));
-            constructions.put("Construire Mine", Mine.class.getConstructor(Joueur.class, Case.class));
+            constructions.put("Aéroport", Aeroport.class.getConstructor(Joueur.class, Case.class));
+            constructions.put("Port", Port.class.getConstructor(Joueur.class, Case.class));
+            constructions.put("Caserne", Caserne.class.getConstructor(Joueur.class, Case.class));
+            constructions.put("Scierie", Scierie.class.getConstructor(Joueur.class, Case.class));
+            constructions.put("Ferme", Ferme.class.getConstructor(Joueur.class, Case.class));
+            constructions.put("Maison", Maison.class.getConstructor(Joueur.class, Case.class));
+            constructions.put("Tour", Tour.class.getConstructor(Joueur.class, Case.class));
+            constructions.put("Mur", Mur.class.getConstructor(Joueur.class, Case.class));
+            constructions.put("Mine", Mine.class.getConstructor(Joueur.class, Case.class));
         } catch (NoSuchMethodException | SecurityException ex) {
             Logger.getLogger(Aeroport.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public static final Map<String, Method> actions = new LinkedHashMap<>();
+    static {
+        try {
+            actions.put("Déplacer", Unite.class.getDeclaredMethod("setMovableTiles"));
+            actions.put("Héberger", Batiment.class.getDeclaredMethod("preHebergerUnite"));
+            actions.put("Soigner", Unite.class.getDeclaredMethod("reparer"));
+            actions.put("Tuer", Unite.class.getDeclaredMethod("detruire"));
+        } catch (NoSuchMethodException | SecurityException ex) {
+            Logger.getLogger(UCT_Ouvrier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    @Override
+    public Map<String, Method> getActions() 
+    {
+        return actions;
     }
     
     public Map<String, Constructor> getConstructions()
     {
         return constructions;
     }
-    
     
     public List<int[]> getBuildableTiles()
     {
@@ -104,6 +119,7 @@ public class UCT_Ouvrier extends UniteCivileTerrestre
     }
     
     
+    /*
     @Override
     public List<GameButton> getMenu()
     {
@@ -131,6 +147,13 @@ public class UCT_Ouvrier extends UniteCivileTerrestre
             System.out.println("Erreur Creation Menu Action");
         }
       return list;
+    }
+    */ 
+    
+    @Override
+    public boolean hebergerUnite(Unite unite) 
+    {
+        return false;
     }
 }
 

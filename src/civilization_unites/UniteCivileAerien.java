@@ -18,7 +18,7 @@ public abstract class UniteCivileAerien extends UniteCivile
             Case caseParent, Batiment batimentParent,
             int ptVie
     ) {
-        super(joueur, nom, or, bois, fer, nourriture, tpsConstruction, defense, dist, caseParent, batimentParent, ptVie);
+        super(joueur, nom, or, bois, fer, nourriture, tpsConstruction, defense, dist, caseParent, batimentParent, ptVie, 0, 0, 0, 0);
     }
     
     @Override

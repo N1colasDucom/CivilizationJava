@@ -8,14 +8,17 @@ import civilization.game_engine.pathfinder.AStar;
 import civilization_batiments.Batiment;
 import civilization_joueurs.Joueur;
 import civilization_exceptions.*;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.List;
+import java.util.Map;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 
 public abstract class Unite 
 {
@@ -27,15 +30,19 @@ public abstract class Unite
     public Batiment batimentParent;
 
     public int pointsDeVie, pointsDeVieRestants, defense, distanceDeMvt, niveau;
-    public int requisNourriture, requisBois, requisFer, requisOr, tempsConstruction;
+    public int requisNourriture, requisBois, requisFer, requisOr, tempsConstruction, prodOr, prodBois, prodFer, prodNourr;
     public int consommeNourriture, consommeBois, consommeFer, consommeOr;
+    public boolean actionDuTourRealisee = false;
+    
+    public ArrayList<Unite> unitesHebergees = new ArrayList<>();
         
     public Unite(Joueur _joueur, 
             String nom, 
             int or, int bois, int fer, int nourriture, int tpsConstruction, int defense, 
             int dist,
             Case caseParent, Batiment batimentParent,
-            int ptVie
+            int ptVie,
+            int prodOr, int prodBois, int prodFer, int prodNourr
     ) {              
         this.nom = nom;           
         this.pointsDeVie=ptVie;
@@ -54,6 +61,11 @@ public abstract class Unite
         this.consommeFer = 0;
         this.consommeOr = 0;
         
+        this.prodOr = prodOr;
+        this.prodBois = prodBois;
+        this.prodFer = prodFer;
+        this.prodNourr = prodNourr;
+        
         this.caseParent = caseParent;
         this.batimentParent = batimentParent;
         
@@ -71,7 +83,7 @@ public abstract class Unite
             System.out.println(e.getMessage());
         }
         
-        if (batimentParent!=null) {
+        if (batimentParent != null) {
             this.finirConstruction(); 
         }
     }
@@ -82,6 +94,7 @@ public abstract class Unite
      * @return 
      */
     public abstract boolean peutAttaquer(Unite unite);
+    
     /**
      * Retourne vrai si l'unité peut attaquer un bâtiment donné.
      * @param batiment
@@ -89,6 +102,37 @@ public abstract class Unite
      */
     public abstract boolean peutAttaquer(Batiment batiment);
     
+    /**
+     * Constructions disponibles pour une unité.
+     * @return 
+     */
+    public abstract Map<String, Constructor> getConstructions();
+    
+    /**
+     * Actions disponibles pour une unité
+     * @return 
+     */
+    public abstract Map<String, Method> getActions();
+    
+    /**
+     * Lorsqu'une unité peut en "héberger" une autre (ex: un avion de ligne peut transporter un passager)
+     * @param unite
+     * @return boolean
+     */
+    public abstract boolean hebergerUnite(Unite unite);
+    
+    /**
+     * Ajoute les ressources produits par un batiment à un joueur.
+     * @param joueur 
+     */
+    public void produireDesRessources(Joueur joueur)
+    {
+        joueur.ressourcesOr += this.prodOr;
+        joueur.ressourcesBois += this.prodBois;
+        joueur.ressourcesFer += this.prodFer;
+        joueur.ressourcesNourriture += this.prodNourr;
+    }
+        
     /**
      * Change le statut de l'unite
      * @param s 
@@ -136,11 +180,33 @@ public abstract class Unite
         }
     }
     
-    public void detruire()
+    /**
+     * Réparer les dégâts d'une unité.
+     */
+    public void reparer()
     {
+        
+    }
+    
+    /**
+     * Détruire une unité.
+     * @return 
+     */
+    public boolean detruire()
+    {
+        switch (this.getClass().getSuperclass().getSuperclass().getSimpleName()) {
+            case "UniteCivile":
+                this.joueur.unitesCiviles.remove(this);                
+                break;
+            case "UniteMilitaire":
+                this.joueur.unitesMilitaires.remove(this);
+                break;
+        }
         this.joueur.unites.remove(this);
-        this.caseParent.occupant=null;
-        this.caseParent=null;
+        this.caseParent.occupant = null;
+        this.caseParent = null;
+        
+        return true;
     }
     /**
      * retourne la position X d'une unite
@@ -235,24 +301,34 @@ public abstract class Unite
     }
     
     /**
-     * retourne une liste de boutons correspondant aux actions que peut effectuer cette unite
+     * Retourne une liste de boutons correspondant aux actions que peut effectuer cette unite
      * @return 
      */
     public List<GameButton> getMenu()
     {
-     int x=810;
-     int y=110;  
-      List<GameButton> list = new ArrayList<>();
+        int x = 810; int y = 110;  
+        List<GameButton> list = new ArrayList<>();
         try {
-          try {
-              list.add(new GameButton(x, y, new Image("Graphics/Images/Bouton.png"),"Deplacer",Unite.class.getDeclaredMethod("setMovableTiles"),this));
-          } catch (NoSuchMethodException |SecurityException ex) {
-              Logger.getLogger(Unite.class.getName()).log(Level.SEVERE, null, ex);
-          }
+            if (this.getConstructions() != null) {
+                for (Map.Entry<String, Constructor> c : this.getConstructions().entrySet()) {
+                    try {
+                        list.add(new GameButton(810, y, new Image("Graphics/Images/BoutonSmall.png"), c.getKey(), UCT_Ouvrier.class.getDeclaredMethod("preConstruction",String.class,Constructor.class), c.getValue(), new Image("Graphics/Units/Batiments/"+c.getValue().getName().substring(c.getValue().getName().lastIndexOf(".")+1)+"/sprite.png"),this));
+                    } catch (NoSuchMethodException | SecurityException ex) {
+                        Logger.getLogger(Unite.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    y += 30;
+                }
+            }
+            
+            for (Map.Entry<String, Method> m : this.getActions().entrySet()) {
+                list.add(new GameButton(810, y, new Image("Graphics/Images/Bouton.png"), m.getKey(), m.getValue(), this));
+                y += 50;
+            }                
         } catch (SlickException ex) {
             System.out.println("Erreur Creation Menu Action");
         }
-      return list;
+        
+        return list;
     }
     
     public void setNom(Graphics g)
@@ -320,6 +396,12 @@ public abstract class Unite
         str += "    [DEF] "+this.defense+"\n";
         str += "    [REQ] BOIS:"+this.requisBois+" NOUR:"+this.requisNourriture+" FER:"+this.requisFer+" OR:"+this.requisOr+ " TPS:"+this.tempsConstruction+ "\n";
         str += "    [CNS] BOIS:"+this.consommeBois+" NOUR:"+this.consommeNourriture+" FER:"+this.consommeFer+" OR:"+this.consommeOr+"\n";
+        
+        str += "    [HEB] ";
+        for (Unite u : this.unitesHebergees) {
+            str += u.nom + " ";
+        }
+        str += "\n";
         
         return str;
     }

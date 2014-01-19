@@ -4,6 +4,7 @@ import civilization.game_engine.Game;
 import civilization.game_engine.Play;
 import civilization_batiments.Batiment;
 import civilization_joueurs.Joueur;
+import civilization_unites.Unite;
 
 public class UnTour 
 {
@@ -16,13 +17,15 @@ public class UnTour
      */
     public UnTour()
     {
+        // Actions sur le joueur actuel avant de passer au tour suivant...
         ajouterLesRessourcesProduitesDuJoueurEnCours();
+        resetActionsRealisees();
         System.out.println("Récapitulatif du Joueur " + joueurActif.pseudo + " :");
-        System.out.println(joueurActif);       
+        System.out.println(joueurActif);
+        
+        // Passage au joueur suivant...
         joueurActif = Game.joueurs.get(((Game.joueurs.indexOf(joueurActif) + 1) == Game.joueurs.size()) ? 0 : (Game.joueurs.indexOf(joueurActif) + 1));
-        numero++;
-        numeroFactis=numero/Game.joueurs.size();
-        System.out.println(this.toString());
+        numero++; numeroFactis = numero/Game.joueurs.size();
         Play.state="Nouveau Tour";
     }
     
@@ -33,6 +36,21 @@ public class UnTour
     {
         for (Batiment b : joueurActif.batiments) {
             b.produireDesRessources(joueurActif);
+        }
+        
+        for (Unite u : joueurActif.unites) {
+            u.produireDesRessources(joueurActif);
+        }
+    }
+    
+    private void resetActionsRealisees()
+    {
+        for (Batiment b : joueurActif.batiments) {
+            b.actionDuTourRealisee = false;
+        }
+        
+        for (Unite u : joueurActif.unites) {
+            u.actionDuTourRealisee = false;
         }
     }
        

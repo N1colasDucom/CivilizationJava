@@ -1,5 +1,6 @@
 package civilization.game_engine;
 import civilization_batiments.Batiment;
+import civilization_unites.Unite;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -12,7 +13,7 @@ import org.newdawn.slick.Image;
 public class GameButton 
 {
    int X,Y;
-   Image image,sprite;
+   Image image, sprite;
    String action;
    Object parent;
    Method method;
@@ -40,7 +41,7 @@ public class GameButton
        X = x;
        Y = y;
        image = i;
-       action = s;
+       action = "Test 1";
        construct = c;
        parent = p;
    }
@@ -48,23 +49,20 @@ public class GameButton
 
    public GameButton(int x,int y,Image i,String s, Constructor c,Image sp,Object p)
    {
-       X = x;
-       Y = y;
+       X = x; Y = y;
        image = i;
-       action = s;
-       sprite=sp;
+       action = s; //"Test 2";
+       sprite = sp;
        construct = c;
        parent = p;
    }
    
    public GameButton(int x,int y,Image i,String s, Method m,Object p)
    {
-       X = x;
-       Y = y;
+       X = x; Y = y;
        image = i;
-       action = s;
+       action = s; //"Test 3";
        method = m;
-       System.out.println(m);
        parent = p;
    } 
    
@@ -74,7 +72,7 @@ public class GameButton
        Y = y;
        image = i;
        sprite = sp;
-       action = s;
+       action = s; //"Test 4";
        method = m;
        construct = c;
        parent = p;
@@ -98,14 +96,13 @@ public class GameButton
        int y= this.Y;
        this.image.draw(x, y);
        g.setColor(Color.black);
-       if(this.sprite!=null){
+       if (this.sprite!=null){
            x+=5;
-           y+=9;
+           y+=0;
            this.sprite.draw(x,y);
            x+=32;
            y+=5;
-       } 
-       else{
+       }  else {
            x+=10;
            y+=15;
        }
@@ -120,7 +117,7 @@ public class GameButton
    public void doAction()
    {
        System.out.println(method);
-       if(method!=null && construct!=null) {
+       if (method!=null && construct!=null) {
            try {
                method.invoke(parent,action,construct);
            } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
@@ -128,7 +125,7 @@ public class GameButton
                System.out.println(cause);
            }
            
-       } else if(method!=null){
+       } else if (method!=null) {
            try {   
                System.out.println(method.getName());
                method.invoke(parent);
@@ -136,10 +133,14 @@ public class GameButton
                System.out.println(ex.getCause());
            } 
            
-       } else if(construct!=null){
+       } else if (construct!=null) {
            try {
                System.out.println(construct.getName());
-               construct.newInstance(((Batiment)parent).joueur, null, (Batiment)this.parent);
+               if (parent.getClass().getSuperclass().getSimpleName().contains("Unite")) {
+                   construct.newInstance(((Unite)parent).joueur, ((Unite)this.parent).caseParent);
+               } else {
+                   construct.newInstance(((Batiment)parent).joueur, null, (Batiment)this.parent);
+               }  
            } catch (InstantiationException |IllegalAccessException| IllegalArgumentException| InvocationTargetException ex) {
                Logger.getLogger(GameButton.class.getName()).log(Level.SEVERE, null, ex);
            }

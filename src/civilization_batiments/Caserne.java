@@ -7,6 +7,7 @@ import civilization_unites.UMT_LanceGrenade;
 import civilization_unites.UMT_Sentinelle;
 import civilization_unites.UMT_Soldat;
 import civilization_unites.UMT_Tank;
+import civilization_unites.Unite;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.LinkedHashMap;
@@ -39,20 +40,41 @@ public class Caserne extends Batiment
     public static final Map<String, Method> actions = new LinkedHashMap<>();
     static {
         try {
-            actions.put("Réparer bâtiment", Batiment.class.getDeclaredMethod("reparer"));
-            actions.put("Détruire bâtiment", Batiment.class.getDeclaredMethod("detruire"));
+            actions.put("Réparer", Batiment.class.getDeclaredMethod("reparer"));
+            actions.put("Détruire", Batiment.class.getDeclaredMethod("detruire"));
         } catch (NoSuchMethodException | SecurityException ex) {
             Logger.getLogger(Caserne.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Override
-    public Map<String, Constructor> getConstructions() {
+    public Map<String, Constructor> getConstructions() 
+    {
         return constructions;
     }
 
     @Override
-    public Map<String, Method> getActions() {
+    public Map<String, Method> getActions() 
+    {
         return actions;
+    }
+
+    @Override
+    public boolean hebergerUnite(Unite unite) 
+    {
+        switch (unite.getClass().getSimpleName()) {
+            case "UMT_Artillerie" :
+            case "UMT_BombeNucleaire" :
+            case "UMT_LanceGrenade" :
+            case "UMT_Sentinelle" :
+            case "UMT_Soldat" :
+            case "UMT_Tank" :
+                this.unitesHebergees.add(unite);
+                unite.setBatimentParent(this);
+                unite.changerStatut("hebergee");
+                return true;
+            default :
+                return false;
+        }
     }
 }
