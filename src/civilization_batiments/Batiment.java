@@ -66,8 +66,8 @@ public abstract class Batiment
         this.prodNourriture = prodNourriture;
         this.ouvriersMax = ouvriersMax;
         this.tempsConstruction = t;
-        this.niveau=1;
-        this.statut="Normal"; //VAL METTRE "EN CONSTRUCTION" quand tu sera pret a implementer la construction!
+        this.niveau = 1;
+        this.statut = "En construction"; //VAL METTRE "EN CONSTRUCTION" quand tu sera pret a implementer la construction!
        
        try {
             if (j.disposeDesRessourcesNessairesPourAcheter(this)) {
@@ -228,5 +228,19 @@ public abstract class Batiment
         }
         
         return list;
+    }
+    
+    @Override public String toString()
+    {
+        String str = "";
+        str += this.getClass().getSimpleName() + "\n";
+        
+        str += "    [OUVR] ";
+        for (UCT_Ouvrier ou : this.ouvriersQuiConstruisent) {
+            str += ou.nom + " ";
+        }
+        str += "\n";
+        
+        return str;
     }
 }

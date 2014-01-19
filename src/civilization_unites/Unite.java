@@ -312,7 +312,7 @@ public abstract class Unite
             if (this.getConstructions() != null) {
                 for (Map.Entry<String, Constructor> c : this.getConstructions().entrySet()) {
                     try {
-                        list.add(new GameButton(810, y, new Image("Graphics/Images/BoutonSmall.png"), c.getKey(), UCT_Ouvrier.class.getDeclaredMethod("preConstruction",String.class,Constructor.class), c.getValue(), new Image("Graphics/Units/Batiments/"+c.getValue().getName().substring(c.getValue().getName().lastIndexOf(".")+1)+"/sprite.png"),this));
+                        list.add(new GameButton(810, y, new Image("Graphics/Images/BoutonSmall.png"), c.getKey(), UCT_Ouvrier.class.getDeclaredMethod("preConstruction", new Class[]{String.class, Constructor.class, Unite.class}), c.getValue(), new Image("Graphics/Units/Batiments/"+c.getValue().getName().substring(c.getValue().getName().lastIndexOf(".")+1)+"/sprite.png"),this));
                     } catch (NoSuchMethodException | SecurityException ex) {
                         Logger.getLogger(Unite.class.getName()).log(Level.SEVERE, null, ex);
                     }

@@ -106,7 +106,6 @@ public class Joueur
      */
     public void ajouterBatiment(Batiment batiment) 
     {
-        System.out.println("IN ajouterBatiment");
         this.batiments.add(batiment);     
         this.consommerLesRessourcesNecessairesPourConstruire(batiment);
     }

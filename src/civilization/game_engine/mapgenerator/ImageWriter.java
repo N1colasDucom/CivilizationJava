@@ -86,7 +86,6 @@ public class ImageWriter {
         try {
             // retrieve image
             File outputfile = new File("Graphics/Tileset/gameMap.png");
-            System.out.println("SAved!");
             outputfile.createNewFile();
 
             ImageIO.write(image, "png", outputfile);
@@ -96,7 +95,6 @@ public class ImageWriter {
         }
        try {
           PrintWriter out = new PrintWriter("Graphics/Tileset/map.tmx");
-           System.out.println("SAved!");
           out.println(sb.toString());
           
            out.close();
