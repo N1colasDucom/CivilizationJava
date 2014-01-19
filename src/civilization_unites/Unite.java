@@ -10,8 +10,6 @@ import civilization_joueurs.Joueur;
 import civilization_exceptions.*;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,6 +17,8 @@ import java.util.List;
 import java.util.Map;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 
 public abstract class Unite 
 {
@@ -32,6 +32,7 @@ public abstract class Unite
     public int pointsDeVie, pointsDeVieRestants, defense, distanceDeMvt, niveau;
     public int requisNourriture, requisBois, requisFer, requisOr, tempsConstruction, prodOr, prodBois, prodFer, prodNourr;
     public int consommeNourriture, consommeBois, consommeFer, consommeOr;
+    public boolean actionDuTourRealisee = false;
     
     public ArrayList<Unite> unitesHebergees = new ArrayList<>();
         
