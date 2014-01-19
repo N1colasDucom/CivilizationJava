@@ -11,9 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class UCM_BateaudeCroisiere extends UniteCivileMaritime
-{
-    public static String nom = "Bateau de Croisière";
- 
+{ 
     public UCM_BateaudeCroisiere(Joueur _joueur, Case caseParent, Batiment batimentParent)
     {
         super(_joueur, "Bâteau de croisière", 4, 4, 2, 0, 6, 5, 10, caseParent, batimentParent, 12, 0, 0, 0, 0);
@@ -22,6 +20,7 @@ public class UCM_BateaudeCroisiere extends UniteCivileMaritime
     public static final Map<String, Method> actions = new LinkedHashMap<>();
     static {
         try {
+            actions.put("Déplacer", Unite.class.getDeclaredMethod("setMovableTiles"));
             actions.put("Réparer", Unite.class.getDeclaredMethod("reparer"));
             actions.put("Détruire", Unite.class.getDeclaredMethod("detruire"));
         } catch (NoSuchMethodException | SecurityException ex) {

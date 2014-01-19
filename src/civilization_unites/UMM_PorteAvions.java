@@ -20,6 +20,7 @@ public class UMM_PorteAvions extends UniteMilitaireMaritime
     public static final Map<String, Method> actions = new LinkedHashMap<>();
     static {
         try {
+            actions.put("Déplacer", Unite.class.getDeclaredMethod("setMovableTiles"));
             actions.put("Réparer", Unite.class.getDeclaredMethod("reparer"));
             actions.put("Détruire", Unite.class.getDeclaredMethod("detruire"));
         } catch (NoSuchMethodException | SecurityException ex) {

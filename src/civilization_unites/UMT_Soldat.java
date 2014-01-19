@@ -20,6 +20,7 @@ public class UMT_Soldat extends UniteMilitaireTerrestre
     public static final Map<String, Method> actions = new LinkedHashMap<>();
     static {
         try {
+            actions.put("Déplacer", Unite.class.getDeclaredMethod("setMovableTiles"));
             actions.put("Soigner", Unite.class.getDeclaredMethod("reparer"));
             actions.put("Détruire", Unite.class.getDeclaredMethod("detruire"));
         } catch (NoSuchMethodException | SecurityException ex) {
