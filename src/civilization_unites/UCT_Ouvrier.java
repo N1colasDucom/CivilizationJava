@@ -9,6 +9,7 @@ import civilization_batiments.Batiment;
 import civilization_joueurs.Joueur;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -28,7 +29,7 @@ public class UCT_Ouvrier extends UniteCivileTerrestre
         super(_joueur, "Ouvrier", 1, 0, 0, 2, 2, 2, 10, caseParent, batimentParent, 5);
     }
     
-        public static final Map<String, Constructor> constructions = new LinkedHashMap<>(); 
+    public static final Map<String, Constructor> constructions = new LinkedHashMap<>(); 
     static {
         try {
             constructions.put("Construire Aeroport", Aeroport.class.getConstructor(Joueur.class, Case.class));
@@ -131,6 +132,12 @@ public class UCT_Ouvrier extends UniteCivileTerrestre
             System.out.println("Erreur Creation Menu Action");
         }
       return list;
+    }
+
+    @Override
+    public Map<String, Method> getActions() 
+    {
+        return null;
     }
 }
 

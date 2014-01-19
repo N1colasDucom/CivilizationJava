@@ -8,12 +8,14 @@ import civilization.game_engine.pathfinder.AStar;
 import civilization_batiments.Batiment;
 import civilization_joueurs.Joueur;
 import civilization_exceptions.*;
+import java.lang.reflect.Method;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.List;
+import java.util.Map;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 
@@ -90,6 +92,12 @@ public abstract class Unite
     public abstract boolean peutAttaquer(Batiment batiment);
     
     /**
+     * Actions disponibles pour une unité
+     * @return 
+     */
+    public abstract Map<String, Method> getActions();
+    
+    /**
      * Change le statut de l'unite
      * @param s 
      */
@@ -136,6 +144,17 @@ public abstract class Unite
         }
     }
     
+    /**
+     * Réparer les dégâts d'une unité.
+     */
+    public void reparer()
+    {
+        
+    }
+    
+    /**
+     * Détruire une unité.
+     */
     public void detruire()
     {
         this.joueur.unites.remove(this);
