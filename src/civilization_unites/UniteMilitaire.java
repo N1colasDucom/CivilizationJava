@@ -42,10 +42,27 @@ public abstract class UniteMilitaire extends Unite
     
     public void attaquer(Case c) 
     {
-        if (c.occupant!=null) {
-            if (c.getOccupantType().equals("Batiment")) {
-                Batiment batimentAttaque = (Batiment) c.occupant;
-                
+        if (c.occupant != null) {
+            switch (c.getOccupantType()) {
+                case "Batiment":
+                    Batiment batimentAttaque = (Batiment) c.occupant;
+                    if (this.peutAttaquer(batimentAttaque)) {
+                        batimentAttaque.pointsDeVieRestants -= this.attaquePoints;
+                        if (batimentAttaque.pointsDeVieRestants <= 0) {
+                            batimentAttaque.detruire();
+                        }
+                    }
+                    break;
+                    
+                case "Unite":
+                    Unite uniteAttaquee = (Unite) c.occupant;
+                    if (this.peutAttaquer(uniteAttaquee)) {
+                        uniteAttaquee.pointsDeVieRestants -= this.attaquePoints;
+                        if (uniteAttaquee.pointsDeVieRestants <= 0) {
+                            uniteAttaquee.detruire();
+                        }
+                    }
+                    break;
             }
         }
     }

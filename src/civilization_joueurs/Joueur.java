@@ -19,6 +19,9 @@ public class Joueur
     public ArrayList<Unite> unites = new ArrayList<>();
     public ArrayList<UniteCivile> unitesCiviles = new ArrayList<>();
     public ArrayList<UniteMilitaire> unitesMilitaires = new ArrayList<>();
+    public String[] pseudosDisponible = new String[]{
+        "Honey Bunny", "Smoochy", "Babycake", "Dream Boy", "Dream Girl", "Lovebird", "My Hunk", "Paramour", "Stud", "Sweet Potato", "Squeeze", "Steady", "Stud Muffin", "Sugar Daddy", "Shnookums", "Hottie", "Casanova", "Ducky", "Jaycee", "Star", "Afflon", "Acence", "Abarden", "Alia", "Brodir", "Bydern", "Caino", "Cade", "Burk", "Bolu", "Calden", "Darste", "Daun", "Darrin", "Daud", "Eron", "Falan", "Fayne", "Furl", "Garth", "Gyin", "Hacyon", "Gwydion", "Gwerto", "Gurney", "Kam", "Kenneldor", "Kaprin", "Kern", "Kib", "Layne", "Leit", "Letor", "Leia", "River", "Rosh", "Ruly", "Saeg", "Sathe", "Zymos"
+    };
         
     /**
      * Crée un joueur avec un pseudo aléatoire.
@@ -26,7 +29,7 @@ public class Joueur
     public Joueur()
     {
         Random random = new Random();
-        this.pseudo = "Joueur_"+random.nextInt(420);
+        this.pseudo = pseudosDisponible[random.nextInt(pseudosDisponible.length-1)];
         this.ressourcesBois = 100;
         this.ressourcesFer = 100;
         this.ressourcesNourriture = 100;

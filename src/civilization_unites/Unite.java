@@ -190,12 +190,23 @@ public abstract class Unite
     
     /**
      * Détruire une unité.
+     * @return 
      */
-    public void detruire()
+    public boolean detruire()
     {
+        switch (this.getClass().getSuperclass().getSuperclass().getSimpleName()) {
+            case "UniteCivile":
+                this.joueur.unitesCiviles.remove(this);                
+                break;
+            case "UniteMilitaire":
+                this.joueur.unitesMilitaires.remove(this);
+                break;
+        }
         this.joueur.unites.remove(this);
-        this.caseParent.occupant=null;
-        this.caseParent=null;
+        this.caseParent.occupant = null;
+        this.caseParent = null;
+        
+        return true;
     }
     /**
      * retourne la position X d'une unite
