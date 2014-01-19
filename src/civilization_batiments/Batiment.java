@@ -106,6 +106,11 @@ public abstract class Batiment
         return true;
     }
     
+    public void preHebergerUnite()
+    {
+        System.out.println("Batiment.java > preHebergerUnite() pour appeler hebergerUnite() ensuite?");
+    }
+    
     public abstract boolean hebergerUnite(Unite unite);
     
     /**

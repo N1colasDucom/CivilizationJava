@@ -21,6 +21,7 @@ public class UCA_Helicoptere extends UniteCivileAerien
     static {
         try {
             actions.put("Déplacer", Unite.class.getDeclaredMethod("setMovableTiles"));
+            actions.put("Rejoindre aéroport", Batiment.class.getDeclaredMethod("preHebergerUnite"));
             actions.put("Réparer", Unite.class.getDeclaredMethod("reparer"));
             actions.put("Détruire", Unite.class.getDeclaredMethod("detruire"));
         } catch (NoSuchMethodException | SecurityException ex) {

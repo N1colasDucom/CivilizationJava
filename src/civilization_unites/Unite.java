@@ -132,7 +132,7 @@ public abstract class Unite
         joueur.ressourcesFer += this.prodFer;
         joueur.ressourcesNourriture += this.prodNourr;
     }
-    
+        
     /**
      * Change le statut de l'unite
      * @param s 

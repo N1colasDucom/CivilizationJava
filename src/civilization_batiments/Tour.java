@@ -20,6 +20,7 @@ public class Tour extends Batiment
     public static final Map<String, Method> actions = new LinkedHashMap<>();
     static {
         try {
+            actions.put("Attaquer", Tour.class.getDeclaredMethod("attaquer"));
             actions.put("Réparer", Batiment.class.getDeclaredMethod("reparer"));
             actions.put("Détruire", Batiment.class.getDeclaredMethod("detruire"));
         } catch (NoSuchMethodException | SecurityException ex) {
@@ -53,5 +54,10 @@ public class Tour extends Batiment
             default :
                 return false;
         }
+    }
+    
+    public void attaquer()
+    {
+        System.out.println("Attaque d'une unité ici...");
     }
 }

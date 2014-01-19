@@ -40,6 +40,11 @@ public abstract class UniteMilitaire extends Unite
         super(joueur, nom, or, bois, fer, nourriture, tpsConstruction, defense, dist, caseParent, batimentParent, ptVie, 0, 0, 0, 0);
     }
     
+    public void preAttaque()
+    {
+        System.out.println("Pré attaque ici, en supposant qu'il faut appeler attaquer(Case c) après...");
+    }
+    
     public void attaquer(Case c) 
     {
         if (c.occupant != null) {

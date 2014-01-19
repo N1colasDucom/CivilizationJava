@@ -21,6 +21,8 @@ public class UMT_Soldat extends UniteMilitaireTerrestre
     static {
         try {
             actions.put("Déplacer", Unite.class.getDeclaredMethod("setMovableTiles"));
+            actions.put("Attaquer", UniteMilitaire.class.getDeclaredMethod("preAttaque"));
+            actions.put("En garnison", Batiment.class.getDeclaredMethod("preHebergerUnite"));
             actions.put("Soigner", Unite.class.getDeclaredMethod("reparer"));
             actions.put("Détruire", Unite.class.getDeclaredMethod("detruire"));
         } catch (NoSuchMethodException | SecurityException ex) {

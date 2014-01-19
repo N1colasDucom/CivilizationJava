@@ -47,6 +47,7 @@ public class UCT_Ouvrier extends UniteCivileTerrestre
     static {
         try {
             actions.put("Déplacer", Unite.class.getDeclaredMethod("setMovableTiles"));
+            actions.put("Héberger", Batiment.class.getDeclaredMethod("preHebergerUnite"));
             actions.put("Soigner", Unite.class.getDeclaredMethod("reparer"));
             actions.put("Tuer", Unite.class.getDeclaredMethod("detruire"));
         } catch (NoSuchMethodException | SecurityException ex) {
