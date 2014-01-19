@@ -197,24 +197,26 @@ public abstract class Batiment
      */
     public List<GameButton> getMenu()
     {
-      List<GameButton> list = new ArrayList<>();
-      int posY=100;
+        List<GameButton> list = new ArrayList<>();
+        int posY=100;
+        
         try {
-            if(this.getConstructions()!=null){
-                for(Constructor c : this.getConstructions().values()){
-                   // System.out.println(c.getName());
-                    list.add(new GameButton(810, posY, new Image("Graphics/Images/Bouton.png"),c.getName().substring(c.getName().lastIndexOf(".")+1),c,new Image("Graphics/Units/Unites/"+c.getName().substring(c.getName().lastIndexOf(".")+1)+"/sprite.png"),this));
+            if (this.getConstructions() != null) {
+                for (Map.Entry<String, Constructor> c : this.getConstructions().entrySet()) {
+                    list.add(new GameButton(810, posY, new Image("Graphics/Images/Bouton.png"), c.getKey(), c.getValue(), new Image("Graphics/Units/Unites/"+c.getValue().getName().substring(c.getValue().getName().lastIndexOf(".")+1)+"/sprite.png"),this));
                     posY+=50;
                 }
             }
-          for (Method m : this.getActions().values()) {
-             // System.out.println(m.getName());
-              list.add(new GameButton(810, posY, new Image("Graphics/Images/Bouton.png"),m.getName(),m,this));
-              posY+=50;
-          }
+            
+            for (Map.Entry<String, Method> m : this.getActions().entrySet()) {
+                list.add(new GameButton(810, posY, new Image("Graphics/Images/Bouton.png"), m.getKey(), m.getValue(), this));
+                posY+=50;
+            }
+       
         } catch (SlickException ex) {
             System.out.println("Erreur Creation Menu Action");
         }
-      return list;
+        
+        return list;
     }
 }

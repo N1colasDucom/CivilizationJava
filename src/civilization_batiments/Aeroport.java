@@ -33,8 +33,8 @@ public class Aeroport extends Batiment
     public static final Map<String, Method> actions = new LinkedHashMap<>();
     static {
         try {
-            actions.put("Réparer bâtiment", Batiment.class.getDeclaredMethod("reparer"));
-            actions.put("Détruire bâtiment", Batiment.class.getDeclaredMethod("detruire"));
+            actions.put("Réparer", Batiment.class.getDeclaredMethod("reparer"));
+            actions.put("Détruire", Batiment.class.getDeclaredMethod("detruire"));
         } catch (NoSuchMethodException | SecurityException ex) {
             Logger.getLogger(Aeroport.class.getName()).log(Level.SEVERE, null, ex);
         }

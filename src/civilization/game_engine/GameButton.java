@@ -12,7 +12,7 @@ import org.newdawn.slick.Image;
 public class GameButton 
 {
    int X,Y;
-   Image image,sprite;
+   Image image, sprite;
    String action;
    Object parent;
    Method method;
@@ -40,7 +40,7 @@ public class GameButton
        X = x;
        Y = y;
        image = i;
-       action = s;
+       action = "Test 1";
        construct = c;
        parent = p;
    }
@@ -48,23 +48,20 @@ public class GameButton
 
    public GameButton(int x,int y,Image i,String s, Constructor c,Image sp,Object p)
    {
-       X = x;
-       Y = y;
+       X = x; Y = y;
        image = i;
-       action = s;
-       sprite=sp;
+       action = s; //"Test 2";
+       sprite = sp;
        construct = c;
        parent = p;
    }
    
    public GameButton(int x,int y,Image i,String s, Method m,Object p)
    {
-       X = x;
-       Y = y;
+       X = x; Y = y;
        image = i;
-       action = s;
+       action = s; //"Test 3";
        method = m;
-       System.out.println(m);
        parent = p;
    } 
    
@@ -74,7 +71,7 @@ public class GameButton
        Y = y;
        image = i;
        sprite = sp;
-       action = s;
+       action = "Test 4";
        method = m;
        construct = c;
        parent = p;
