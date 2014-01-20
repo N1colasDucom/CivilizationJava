@@ -65,7 +65,7 @@ public class Play extends BasicGameState implements MusicListener{
      */
     public void drawGrid(Graphics g)
     {
-        g.setColor(Color.black);
+        g.setColor(Color.gray);
         for(int i=0;i<=25;i++){
             g.drawLine(32*i, 0, 32*i, 640);      
         }
@@ -606,19 +606,19 @@ public class Play extends BasicGameState implements MusicListener{
         x+=45;
         g.drawImage(this.imBois, x, y-10);
         x+=35;
-        g.drawString(nourriture, x, y);
+        g.drawString(bois, x, y);
         
         String or = ":"+UnTour.joueurActif.ressourcesOr;
         x+=45;
         g.drawImage(this.imOr, x, y-10);
         x+=35;
-        g.drawString(nourriture, x, y);
+        g.drawString(or, x, y);
         
         String fer = ":"+UnTour.joueurActif.ressourcesFer;
         x+=45;
         g.drawImage(this.imFer, x, y-10);
         x+=35;
-        g.drawString(nourriture, x, y);    
+        g.drawString(fer, x, y);    
     }
     
     /**

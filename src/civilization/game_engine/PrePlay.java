@@ -106,10 +106,10 @@ public class PrePlay extends BasicGameState
     public void init(GameContainer container, StateBasedGame game) throws SlickException 
     {
         this.game=game;
-        randomMap = new GameButton(578, 378, new Image("Graphics/Images/Bouton.png"),"Generer",null);
-        randomPlacement = new GameButton(700, 650, new Image("Graphics/Images/Bouton.png"),"Placer GQs",null);
-        startGame = new GameButton(622, 464, new Image("Graphics/Images/Bouton.png"),"Jouer",null);
-        quitGame = new GameButton(678, 548, new Image("Graphics/Images/Bouton.png"), "Quitter", null);
+        randomMap = new GameButton(610, 353, new Image("Graphics/Images/Bouton.png"),"Nouvelle carte",null);
+        randomPlacement = new GameButton(610, 428, new Image("Graphics/Images/Bouton.png"),"Placer QGs",null);
+        startGame = new GameButton(610, 500, new Image("Graphics/Images/Bouton.png"),"JOUER !",null);
+        quitGame = new GameButton(610, 573, new Image("Graphics/Images/Bouton.png"), "Quitter", null);
         Game.plateau= civilization.game_engine.mapgenerator.Noise.GenerateMap();
         randomPlacement();
         map = new Image("Graphics/Tileset/gameMap.png");
@@ -139,13 +139,15 @@ public class PrePlay extends BasicGameState
              map = new Image("Graphics/Tileset/gameMap.png");
              this.randomPlacement();
               
-           } else if (randomPlacement.clickOnMe(mouseX, mouseY)){
+           } else if (randomPlacement.clickOnMe(mouseX, mouseY)) {
                this.randomPlacement();
                write();             
-           } else if(startGame.clickOnMe(mouseX, mouseY)){
+           } else if (startGame.clickOnMe(mouseX, mouseY)) {
               game.addState(new Play(play));
               game.getState(play).init(gc, game);
               game.enterState(2);
+           } else if (quitGame.clickOnMe(mouseX, mouseY)) {
+               gc.exit();
            }
            
         }

@@ -14,7 +14,7 @@ public class UCM_BateaudePeche extends UniteCivileMaritime
 {      
     public UCM_BateaudePeche(Joueur _joueur, Case caseParent, Batiment batimentParent)
     {
-        super(_joueur, "Bâteau de pêche", 3, 4, 2, 0, 5, 4, 10, caseParent, batimentParent, 10, 0, 0, 0, 2);
+        super(_joueur, "Bâteau de pêche", 3, 4, 2, 0, 5, 4, 4, caseParent, batimentParent, 10, 0, 0, 0, 2);
     }
     
     public static final Map<String, Method> actions = new LinkedHashMap<>();
