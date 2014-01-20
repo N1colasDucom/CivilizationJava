@@ -53,4 +53,15 @@ public class Mine extends Batiment
                 return false;
         }
     }
+    
+    @Override
+    public boolean peutHebergerUnite(Unite unite) 
+    {
+        switch (unite.getClass().getSimpleName()) {
+            case "UCT_Ouvrier" :
+                return true;
+            default :
+                return false;
+        }
+    }
 }

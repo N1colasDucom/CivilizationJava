@@ -5,6 +5,7 @@ import civilization_batiments.*;
 import civilization_unites.*;
 import java.util.ArrayList;
 import java.util.Random;
+import org.newdawn.slick.Color;
 
 public class Joueur 
 {
@@ -22,6 +23,8 @@ public class Joueur
     public String[] pseudosDisponible = new String[]{
         "Honey Bunny", "Smoochy", "Babycake", "Dream Boy", "Dream Girl", "Lovebird", "My Hunk", "Paramour", "Stud", "Sweet Potato", "Squeeze", "Steady", "Stud Muffin", "Sugar Daddy", "Shnookums", "Hottie", "Casanova", "Ducky", "Jaycee", "Star", "Afflon", "Acence", "Abarden", "Alia", "Brodir", "Bydern", "Caino", "Cade", "Burk", "Bolu", "Calden", "Darste", "Daun", "Darrin", "Daud", "Eron", "Falan", "Fayne", "Furl", "Garth", "Gyin", "Hacyon", "Gwydion", "Gwerto", "Gurney", "Kam", "Kenneldor", "Kaprin", "Kern", "Kib", "Layne", "Leit", "Letor", "Leia", "River", "Rosh", "Ruly", "Saeg", "Sathe", "Zymos"
     };
+    
+    public Color couleur;
         
     /**
      * Crée un joueur avec un pseudo aléatoire.
@@ -34,6 +37,7 @@ public class Joueur
         this.ressourcesFer = 100;
         this.ressourcesNourriture = 100;
         this.ressourcesOr = 100;
+        this.couleur=new Color((float)Math.random(), (float)Math.random(),(float)Math.random());
     }
     
     /**
@@ -47,6 +51,7 @@ public class Joueur
         this.ressourcesFer = 1000;
         this.ressourcesNourriture = 1000;
         this.ressourcesOr = 1000;
+        this.couleur=new Color((float)Math.random(), (float)Math.random(),(float)Math.random());
     }
     
     /**
@@ -64,6 +69,7 @@ public class Joueur
         this.ressourcesBois = _bois;
         this.ressourcesFer = _fer;
         this.ressourcesNourriture = _nourriture;
+        this.couleur=new Color((float)Math.random(), (float)Math.random(),(float)Math.random());
     }
     
     /**
@@ -79,6 +85,7 @@ public class Joueur
         this.ressourcesNourriture = 100;
         this.ressourcesOr = 100;
         this.jeu=g;
+        this.couleur=new Color((float)Math.random(), (float)Math.random(),(float)Math.random());
     }
 
     /**

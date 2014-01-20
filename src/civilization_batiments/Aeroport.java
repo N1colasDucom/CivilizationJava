@@ -69,4 +69,19 @@ public class Aeroport extends Batiment
                 return false;
         }
     }
+    
+    @Override
+    public boolean peutHebergerUnite(Unite unite) 
+    {
+        switch (unite.getClass().getSimpleName()) {
+            case "UCA_AviondeLigne" :
+            case "UCA_Helicoptere" :
+            case "UMA_Bombardier" :
+            case "UMA_Chasseur" :
+            case "UMA_Helicoptere" :
+                return true;
+            default :
+                return false;
+        }
+    }
 }

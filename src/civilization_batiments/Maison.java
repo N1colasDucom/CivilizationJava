@@ -69,4 +69,15 @@ public class Maison extends Batiment
                 return false;
         }
     }
+
+    @Override
+    public boolean peutHebergerUnite(Unite unite) {
+        switch (unite.getClass().getSimpleName()) {
+            case "UCT_Ouvrier" :
+            case "UCT_Paysan" :
+                return true;
+            default :
+                return false;
+        }
+    }
 }

@@ -48,7 +48,7 @@ public class UCT_Ouvrier extends UniteCivileTerrestre
         try {
             actions.put("Déplacer", Unite.class.getDeclaredMethod("setMovableTiles"));
             actions.put("Aider à bâtir", Unite.class.getDeclaredMethod("aiderBatir"));
-            actions.put("Héberger", Batiment.class.getDeclaredMethod("preHebergerUnite"));
+            actions.put("Héberger", Unite.class.getDeclaredMethod("preHeberger"));
             actions.put("Soigner", Unite.class.getDeclaredMethod("reparer"));
             actions.put("Tuer", Unite.class.getDeclaredMethod("detruire"));
         } catch (NoSuchMethodException | SecurityException ex) {
@@ -117,6 +117,7 @@ public class UCT_Ouvrier extends UniteCivileTerrestre
             Batiment batimentEnConstruction = (Batiment) this.aConstruire.newInstance(this.joueur, c);
             batimentEnConstruction.ouvriersQuiConstruisent.add(this);
             this.batimentParent = batimentEnConstruction;
+            this.caseParent.occupant=null;
             this.caseParent = null;
             //System.out.println("BATIMENT EN CONSTRUCTION DETAILS : \n"+batimentEnConstruction);
         } catch (InstantiationException|InvocationTargetException|IllegalArgumentException|IllegalAccessException ex) {

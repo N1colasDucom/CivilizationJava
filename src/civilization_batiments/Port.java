@@ -71,4 +71,23 @@ public class Port extends Batiment
                 return false;
         }
     }
+    
+    @Override
+    public boolean peutHebergerUnite(Unite unite) 
+    {
+        switch (unite.getClass().getSimpleName()) {
+            case "UCM_BateaudeCroisiere" :
+            case "UCM_BateaudePeche" :
+            case "UMM_Croiseur" :
+            case "UMM_Destroyer" :
+            case "UMM_PorteAvions" :
+            case "UMM_Sousmarin" :
+                this.unitesHebergees.add(unite);
+                unite.setBatimentParent(this);
+                unite.changerStatut("hebergee");
+                return true;
+            default :
+                return false;
+        }
+    }
 }

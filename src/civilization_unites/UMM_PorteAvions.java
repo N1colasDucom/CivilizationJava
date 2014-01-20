@@ -22,7 +22,7 @@ public class UMM_PorteAvions extends UniteMilitaireMaritime
         try {
             actions.put("Déplacer", Unite.class.getDeclaredMethod("setMovableTiles"));
             actions.put("Attaquer", UniteMilitaire.class.getDeclaredMethod("preAttaque"));
-            actions.put("Rejoindre port", Batiment.class.getDeclaredMethod("preHebergerUnite"));
+            actions.put("Rejoindre port", Unite.class.getDeclaredMethod("preHeberger"));
             actions.put("Réparer", Unite.class.getDeclaredMethod("reparer"));
             actions.put("Détruire", Unite.class.getDeclaredMethod("detruire"));
         } catch (NoSuchMethodException | SecurityException ex) {

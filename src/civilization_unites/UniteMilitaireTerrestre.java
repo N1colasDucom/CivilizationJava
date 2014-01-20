@@ -23,15 +23,18 @@ public abstract class UniteMilitaireTerrestre extends UniteMilitaire
     @Override 
     public boolean peutAttaquer(Unite unite)
     {
-        switch (unite.getClass().getSuperclass().getSimpleName()) {
-            case "UniteCivileAerien" : return false;
-            case "UniteCivileMaritime" : return false;
-            case "UniteCivileTerrestre" : return true;
-            case "UniteMilitaireAerien" : return false;
-            case "UniteMilitaireMaritime" : return false;
-            case "UniteMilitaireTerrestre" : return true;
-            default: return false;
+        if(!this.joueur.equals(unite.joueur)){
+            switch (unite.getClass().getSuperclass().getSimpleName()) {
+                case "UniteCivileAerien" : return false;
+                case "UniteCivileMaritime" : return false;
+                case "UniteCivileTerrestre" : return true;
+                case "UniteMilitaireAerien" : return false;
+                case "UniteMilitaireMaritime" : return false;
+                case "UniteMilitaireTerrestre" : return true;
+                default: return false;
+            }
         }
+        return true;
     }
     
     @Override

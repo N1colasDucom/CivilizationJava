@@ -56,6 +56,19 @@ public class Tour extends Batiment
         }
     }
     
+    @Override
+    public boolean peutHebergerUnite(Unite unite) 
+    {
+        switch (unite.getClass().getSimpleName()) {
+            case "UMT_LanceGrenade" :
+            case "UMT_Sentinelle" :
+            case "UMT_Soldat" :
+                return true;
+            default :
+                return false;
+        }
+    }
+    
     public void attaquer()
     {
         System.out.println("Attaque d'une unité ici...");

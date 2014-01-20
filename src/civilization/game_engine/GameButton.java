@@ -173,4 +173,15 @@ public class GameButton
         
         return "Erreur Classe Occupant";        
     }
+   
+   public boolean actionDejaRealisee()
+   {
+       switch(this.getParentType()){
+           case "Unite":       
+               return ((Unite)this.parent).actionDuTourRealisee;
+           case "Batiment":    
+               return ((Batiment)this.parent).actionDuTourRealisee;
+       }
+       return false;
+   }
 }

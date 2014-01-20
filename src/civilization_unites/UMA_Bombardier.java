@@ -22,7 +22,7 @@ public class UMA_Bombardier extends UniteMilitaireAerien
         try {
             actions.put("Déplacer", Unite.class.getDeclaredMethod("setMovableTiles"));
             actions.put("Attaquer", UniteMilitaire.class.getDeclaredMethod("preAttaque"));
-            actions.put("En garnison", Batiment.class.getDeclaredMethod("preHebergerUnite"));
+            actions.put("En garnison", Unite.class.getDeclaredMethod("preHeberger"));
             actions.put("Réparer", Unite.class.getDeclaredMethod("reparer"));
             actions.put("Détruire", Unite.class.getDeclaredMethod("detruire"));
         } catch (NoSuchMethodException | SecurityException ex) {

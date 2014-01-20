@@ -41,6 +41,8 @@ public class Play extends BasicGameState implements MusicListener{
     int[] square;
     public static List<int[]> movableTiles=null;
     public static List<int[]> placeableTiles=null;
+    public static List<int[]> attackables=null;
+    public static List<int[]> hebergeables=null;
     private List<GameButton> actionButtons;
     private GameButton prochainTour;
     public static String state;
@@ -171,11 +173,13 @@ public class Play extends BasicGameState implements MusicListener{
      */
     public void drawUnits(Graphics g,Joueur j)
     {
+        g.setColor(j.couleur);
         if(!j.unites.isEmpty()) {
             for(int i=0;i<j.unites.size();i++) {   
                 if(j.unites.get(i).statut.equals("normal")) {
                     if ((((j.unites.get(i).positionX())*32-32*tMapX<25*32)&&(j.unites.get(i).positionY()*32-32*tMapY<20*32))) {
-                        j.unites.get(i).getSprite().draw((float)(j.unites.get(i).positionX()*32-32*tMapX),(float)(j.unites.get(i).positionY()*32-32*tMapY),(float)32,(float)32);
+                        j.unites.get(i).getSprite().draw((float)(j.unites.get(i).positionX()*32-32*tMapX),(float)(j.unites.get(i).positionY()*32-32*tMapY),(float)32,(float)32);   
+                        g.drawRect((float)(j.unites.get(i).positionX()*32-32*tMapX+1),(float)(j.unites.get(i).positionY()*32-32*tMapY+1), 30, 30);                    
                     }
                 }
             }
@@ -189,13 +193,16 @@ public class Play extends BasicGameState implements MusicListener{
      */
     public void drawBuildings(Graphics g, Joueur j)
     {
+        g.setColor(j.couleur);
         if (!j.batiments.isEmpty()) {
             for(int i=0;i<j.batiments.size();i++) {   
                 if ((((j.batiments.get(i).positionX())*32-32*tMapX<25*32)&&(j.batiments.get(i).positionY()*32-32*tMapY<20*32))) {
                     j.batiments.get(i).getSprite().draw((float)(j.batiments.get(i).positionX()*32-32*tMapX),(float)(j.batiments.get(i).positionY()*32-32*tMapY),(float)32,(float)32);
+                    g.drawRect((float)(j.batiments.get(i).positionX()*32-32*tMapX+1),(float)(j.batiments.get(i).positionY()*32-32*tMapY+1), 30, 30);
                 }
             }
         }
+        g.setColor(Color.white);
     }
     
     /**
@@ -220,7 +227,7 @@ public class Play extends BasicGameState implements MusicListener{
         int x=gc.getInput().getMouseX();
         int y=gc.getInput().getMouseY();
         for(int i=0;i<this.actionButtons.size();i++) {
-            if(this.actionButtons.get(i).clickOnMe(x, y)) {
+            if(this.actionButtons.get(i).clickOnMe(x, y)&&!this.actionButtons.get(i).actionDejaRealisee()) {
                 this.actionButtons.get(i).doAction();
             }
         }
@@ -351,6 +358,23 @@ public class Play extends BasicGameState implements MusicListener{
     }
     
     /**
+     * Affiche les Tiles dans lesquelles une unite peut etre hebergee
+     * @param g 
+     */
+    public void drawHebergeableTiles(Graphics g)
+    {
+        if (Play.hebergeables!=null) {
+            Color Fill = new Color(0.0f, 6.0f, 0.0f, 0.5f);   
+            g.setColor(Fill);
+            for (int i=0;i<Play.hebergeables.size();i++){
+                if ((((Play.hebergeables.get(i)[0]-1)*32-32*tMapX<25*32)&&((Play.hebergeables.get(i)[1]-1)*32-32*tMapY<20*32))) {
+                    g.fillRect((float)(Play.hebergeables.get(i)[0]*32-32*tMapX-31),(float)(Play.hebergeables.get(i)[1]*32-32*tMapY-31), 31, 31);
+                }
+            }
+        } 
+    }
+    
+    /**
      * Affiche les Tiles sur lesquelles un ouvrier peut construire un batiment
      * @param g 
      */
@@ -361,6 +385,23 @@ public class Play extends BasicGameState implements MusicListener{
         for (int i=0;i<Play.movableTiles.size();i++){
             if ((((Play.movableTiles.get(i)[0]-1)*32-32*tMapX<25*32)&&((Play.movableTiles.get(i)[1]-1)*32-32*tMapY<20*32))) {
                 g.fillRect((float)(Play.movableTiles.get(i)[0]*32-32*tMapX-31),(float)(Play.movableTiles.get(i)[1]*32-32*tMapY-31), 31, 31);
+            }
+        } 
+    }
+    
+    /**
+     * Affiche les Tiles que l'on peut attaquer
+     * @param g 
+     */
+    public void drawAttackables(Graphics g)
+    {
+        if (Play.attackables!=null) {
+            Color Fill = new Color(6.0f, 0.0f, 0.0f, 0.5f);   
+            g.setColor(Fill);
+            for (int i=0;i<Play.attackables.size();i++){
+                if ((((Play.attackables.get(i)[0]-1)*32-32*tMapX<25*32)&&((Play.attackables.get(i)[1]-1)*32-32*tMapY<20*32))) {
+                    g.fillRect((float)(Play.attackables.get(i)[0]*32-32*tMapX-31),(float)(Play.attackables.get(i)[1]*32-32*tMapY-31), 31, 31);
+                }
             }
         } 
     }
@@ -385,13 +426,23 @@ public class Play extends BasicGameState implements MusicListener{
         if(deplacer(gc)) {
         
         } else if(construire(gc)) {
+            
+        } else if(attaquer(gc)) {
+            
+        } else if (heberger(gc)) {
         
-        } else {
+        }else {
             if(movableTiles!=null) {
                 movableTiles.clear();
             }
             if(placeableTiles!=null) {
                 placeableTiles.clear();
+            }
+            if(attackables!=null) {
+                attackables.clear();
+            }
+            if(hebergeables!=null) {
+                hebergeables.clear();
             }
             state="normal";
         }        
@@ -416,6 +467,67 @@ public class Play extends BasicGameState implements MusicListener{
         
         return false;  
     }
+    
+    public boolean attaquer(GameContainer gc)
+    {
+        int[] tileTemp= new int[2];
+        tileTemp[0]=realMouseX;
+        tileTemp[1]=realMouseY;
+        
+        if (state.equals("Attaque") && isValidTile(attackables,tileTemp)) { 
+            switch(pastTile.getOccupantType()){
+                case "Unite":
+                    System.out.println("Attaque Unite!");
+                    ((UniteMilitaire)pastTile.occupant).actionDuTourRealisee = true;
+                    ((UniteMilitaire)pastTile.occupant).attaquer(Game.plateau.getCase(realMouseX, realMouseY));
+                return true;
+                case "Batiment":
+                    System.out.println("Attaque Batiment!");
+                    ((Batiment)pastTile.occupant).actionDuTourRealisee = true;
+                    ((Tour)pastTile.occupant).attaquer();
+                return true;
+            }          
+            if(attackables!=null) {
+                attackables.clear();
+            }
+            
+            return true;
+        }
+        if(attackables!=null) {
+                attackables.clear();
+            }
+        
+        return false;  
+    }
+    
+    public boolean heberger(GameContainer gc)
+    {
+        int[] tileTemp= new int[2];
+        tileTemp[0]=realMouseX;
+        tileTemp[1]=realMouseY;
+       
+        if (state.equals("Heberger") && isValidTile(hebergeables,tileTemp)) { 
+             System.out.println("coucou");
+            switch(Game.plateau.getCase(realMouseX, realMouseY).getOccupantType()){
+                case "Batiment":
+                    System.out.println("Hebergement Unite!");
+                    ((Batiment)Game.plateau.getCase(realMouseX, realMouseY).occupant).hebergerUnite((Unite)pastTile.occupant);
+                return true;
+            }          
+            if(hebergeables!=null) {
+                hebergeables.clear();
+            }
+            
+            return true;
+        }
+        if(hebergeables!=null) {
+                hebergeables.clear();
+            }
+        
+        return false;  
+    }
+    
+    
     
     public boolean construire(GameContainer gc)
     {
@@ -471,13 +583,14 @@ public class Play extends BasicGameState implements MusicListener{
     }
     
     public void setInfosBottomPane(Graphics g) {
-        g.setColor(Color.white);
+        
         int x = 120;
         int y = 660;
-           
+        g.setColor(UnTour.joueurActif.couleur);
         String joueurActif = "Joueur : "+UnTour.joueurActif.pseudo;
         g.drawString(joueurActif, x, y);
         
+        g.setColor(Color.white);
         y+=20;
         String tour = "Tour : "+UnTour.numeroFactis;
         g.drawString(tour, 120, 670);
@@ -529,6 +642,8 @@ public class Play extends BasicGameState implements MusicListener{
         actionButtons = new ArrayList<>();  
         movableTiles= new ArrayList<>();
         placeableTiles = new ArrayList<>();
+        attackables = new ArrayList<>();
+        hebergeables = new ArrayList<>();
         System.out.println(Game.joueurs.get(0));
         try {
             prochainTour = new GameButton(805, 645, new Image("Graphics/Images/Bouton.png"),"Fin Tour", Play.class.getDeclaredMethod("newTour"), this);
@@ -553,8 +668,10 @@ public class Play extends BasicGameState implements MusicListener{
         prochainTour.draw(g);
         setInfosBottomPane(g);
         drawGrid(g);
-        /*if(state.equals("Deplacement"))*/ this.drawMovableTiles(g);
-        /*if(state.equals("Construction"))*/ this.drawPlaceableTiles(g);
+        this.drawMovableTiles(g);
+        this.drawPlaceableTiles(g);
+        this.drawAttackables(g);
+        this.drawHebergeableTiles(g);
        if (!this.actionButtons.isEmpty()){
            drawActionMenu(g);
        }
@@ -586,8 +703,8 @@ public class Play extends BasicGameState implements MusicListener{
         //this.setMovableTiles(realMouseX, realMouseY, 8);
             System.out.println(Game.plateau.getCase(realMouseX, realMouseY).toString());
             //System.out.println(Game.j1.unites.size());
-            this.clickInTile(gc);
             stateActions(gc);
+            this.clickInTile(gc);          
             updatePastTile(gc);
             
             if(pastTile!=null){

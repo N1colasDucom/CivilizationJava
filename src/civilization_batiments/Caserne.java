@@ -77,4 +77,20 @@ public class Caserne extends Batiment
                 return false;
         }
     }
+    
+    @Override
+    public boolean peutHebergerUnite(Unite unite) 
+    {
+        switch (unite.getClass().getSimpleName()) {
+            case "UMT_Artillerie" :
+            case "UMT_BombeNucleaire" :
+            case "UMT_LanceGrenade" :
+            case "UMT_Sentinelle" :
+            case "UMT_Soldat" :
+            case "UMT_Tank" :
+                return true;
+            default :
+                return false;
+        }
+    }
 }

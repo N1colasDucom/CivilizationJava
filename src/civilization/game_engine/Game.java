@@ -13,9 +13,7 @@ public class Game extends StateBasedGame
     public static final String gameName = "Civilisation";
     public static ArrayList<Joueur> joueurs = new ArrayList<Joueur>() {{
         // 3 joueurs par exemple...
-        add(new Joueur());
-        add(new Joueur());
-        add(new Joueur());
+        add(new Joueur());       
     }};
     public static final int menu = 0;
     public static final int prePlay = 1;

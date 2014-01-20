@@ -71,8 +71,8 @@ public class PrePlay extends BasicGameState
     {
        for(HotelDeVille h:HotelsDeVille){
            //Color c = new Color((float)Math.random(),(float) Math.random(),(float)Math.random());
-           g.setColor(Color.yellow);
-           g.drawRect(162+(300/100*h.positionX()-1), 335+(300/100*h.positionY()-1), 3, 3);
+           g.setColor(h.joueur.couleur);
+           g.fillRect(162+(300/100*h.positionX()-2), 335+(300/100*h.positionY()-2), 5, 5);
        }
     }
     

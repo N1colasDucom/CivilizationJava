@@ -60,4 +60,10 @@ public class HotelDeVille extends Batiment
         unite.changerStatut("hebergee");
         return true;
     }
+    
+    @Override
+    public boolean peutHebergerUnite(Unite unite) 
+    {
+        return true;
+    }
 }

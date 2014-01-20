@@ -44,4 +44,10 @@ public class Mur extends Batiment
     {
         return false;
     }
+    
+    @Override
+    public boolean peutHebergerUnite(Unite unite) 
+    {
+        return false;
+    }
 }
