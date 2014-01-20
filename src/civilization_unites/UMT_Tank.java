@@ -14,7 +14,7 @@ public class UMT_Tank extends UniteMilitaireTerrestre
 {
     public UMT_Tank(Joueur _joueur, Case caseParent, Batiment batimentParent)
     {
-        super(_joueur, "Tank", 9, 0, 12, 0, 10, 12, 6, 3, 3, 10, caseParent, batimentParent, 24);
+        super(_joueur, "Tank", 9, 0, 12, 0, 10, 12, 6, 3, 3, 4, caseParent, batimentParent, 24);
     }
     
     public static final Map<String, Method> actions = new LinkedHashMap<>();

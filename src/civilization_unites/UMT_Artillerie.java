@@ -14,7 +14,7 @@ public class UMT_Artillerie extends UniteMilitaireTerrestre
 {
     public  UMT_Artillerie(Joueur _joueur, Case caseParent, Batiment batimentParent)
     {
-        super(_joueur, "Artillerie", 7, 2, 10, 0, 8, 8, 5, 3, 3, 10, caseParent, batimentParent, 20);
+        super(_joueur, "Artillerie", 7, 2, 10, 0, 8, 8, 5, 3, 3, 5, caseParent, batimentParent, 20);
     }
     
     public static final Map<String, Method> actions = new LinkedHashMap<>();
