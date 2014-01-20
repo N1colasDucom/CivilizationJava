@@ -1,4 +1,5 @@
 package civilization.game_engine;
+
 import civilization_batiments.Batiment;
 import civilization_unites.Unite;
 import java.lang.reflect.Constructor;
@@ -36,7 +37,7 @@ public class GameButton
        parent = p;
    }
    
-   public GameButton(int x,int y,Image i,String s, Constructor c,Object p)
+   public GameButton(int x, int y, Image i, String s, Constructor c, Object p)
    {
        X = x;
        Y = y;
@@ -47,7 +48,7 @@ public class GameButton
    }
    
 
-   public GameButton(int x,int y,Image i,String s, Constructor c,Image sp,Object p)
+   public GameButton(int x, int y, Image i, String s, Constructor c, Image sp, Object p)
    {
        X = x; Y = y;
        image = i;
@@ -57,7 +58,7 @@ public class GameButton
        parent = p;
    }
    
-   public GameButton(int x,int y,Image i,String s, Method m,Object p)
+   public GameButton(int x, int y, Image i, String s, Method m, Object p)
    {
        X = x; Y = y;
        image = i;
@@ -66,7 +67,7 @@ public class GameButton
        parent = p;
    } 
    
-   public GameButton(int x,int y,Image i,String s,Method m, Constructor c,Image sp,Object p)
+   public GameButton(int x, int y, Image i, String s, Method m, Constructor c, Image sp, Object p)
    {
        X = x;
        Y = y;
@@ -116,16 +117,19 @@ public class GameButton
     */
    public void doAction()
    {
-       System.out.println(method);
-       if (method!=null && construct!=null) {
+       System.out.println("YOU SHALL NOT PASS BY VP");
+       if (method != null && construct != null) {
+           System.out.println("YOU SHALL NOT PASS BY VP_1");
+           System.out.println((Unite)parent);
            try {
-               method.invoke(parent,action,construct);
+               method.invoke(parent, action, construct, (Unite)parent);
            } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
                Throwable cause = ex.getCause();
                System.out.println(cause);
            }
            
        } else if (method!=null) {
+           System.out.println("YOU SHALL NOT PASS BY VP_2");
            try {   
                System.out.println(method.getName());
                method.invoke(parent);
@@ -133,13 +137,15 @@ public class GameButton
                System.out.println(ex.getCause());
            } 
            
-       } else if (construct!=null) {
+       } else if (construct != null) {
+           System.out.println("YOU SHALL NOT PASS BY VP_3");
            try {
-               System.out.println(construct.getName());
                if (parent.getClass().getSuperclass().getSimpleName().contains("Unite")) {
-                   construct.newInstance(((Unite)parent).joueur, ((Unite)this.parent).caseParent);
+                   Batiment batimentConstruit = (Batiment) construct.newInstance(((Unite)parent).joueur, ((Unite)this.parent).caseParent);
+                   System.out.println(batimentConstruit);
                } else {
-                   construct.newInstance(((Batiment)parent).joueur, null, (Batiment)this.parent);
+                   Unite uniteConstruite = (Unite) construct.newInstance(((Batiment)parent).joueur, null, (Batiment)this.parent);
+                   System.out.println(uniteConstruite);
                }  
            } catch (InstantiationException |IllegalAccessException| IllegalArgumentException| InvocationTargetException ex) {
                Logger.getLogger(GameButton.class.getName()).log(Level.SEVERE, null, ex);

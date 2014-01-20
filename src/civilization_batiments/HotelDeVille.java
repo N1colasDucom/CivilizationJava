@@ -20,7 +20,8 @@ public class HotelDeVille extends Batiment
     
     public HotelDeVille(Joueur j,Case c) 
     {
-        super(j, c, 0, 50, 0, 0, 0, 0, 1, 1, 1, 1, 1);     
+        super(j, c, 0, 50, 0, 0, 0, 0, 1, 1, 1, 1, 1); 
+        this.statut = "Normal";
     }
 
     public static final Map<String, Constructor> constructions = new LinkedHashMap<>();

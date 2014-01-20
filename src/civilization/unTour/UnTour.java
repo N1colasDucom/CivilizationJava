@@ -4,6 +4,7 @@ import civilization.game_engine.Game;
 import civilization.game_engine.Play;
 import civilization_batiments.Batiment;
 import civilization_joueurs.Joueur;
+import civilization_unites.UCT_Ouvrier;
 import civilization_unites.Unite;
 
 public class UnTour 
@@ -25,6 +26,7 @@ public class UnTour
         
         // Passage au joueur suivant...
         joueurActif = Game.joueurs.get(((Game.joueurs.indexOf(joueurActif) + 1) == Game.joueurs.size()) ? 0 : (Game.joueurs.indexOf(joueurActif) + 1));
+        buildTurnByTurn();
         numero++; numeroFactis = numero/Game.joueurs.size();
         Play.state="Nouveau Tour";
     }
@@ -43,6 +45,9 @@ public class UnTour
         }
     }
     
+    /**
+     * Réinitialie les actions actions réalisées par une unité.
+     */
     private void resetActionsRealisees()
     {
         for (Batiment b : joueurActif.batiments) {
@@ -51,6 +56,25 @@ public class UnTour
         
         for (Unite u : joueurActif.unites) {
             u.actionDuTourRealisee = false;
+        }
+    }
+    
+    /**
+     * Construit les bâtiments
+     */
+    private void buildTurnByTurn()
+    {
+        for (Batiment b : joueurActif.batiments) {
+            if (b.statut.equals("En construction")) {
+                b.tempsConstruction -= b.ouvriersQuiConstruisent.size();
+                if (b.tempsConstruction <= 0) {
+                    for (UCT_Ouvrier u : b.ouvriersQuiConstruisent) {
+                        u.exitParent();
+                    }
+                    b.ouvriersQuiConstruisent.clear();
+                    b.statut = "Normal";
+                }
+            }
         }
     }
        

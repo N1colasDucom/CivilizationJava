@@ -47,6 +47,7 @@ public class UCT_Ouvrier extends UniteCivileTerrestre
     static {
         try {
             actions.put("Déplacer", Unite.class.getDeclaredMethod("setMovableTiles"));
+            actions.put("Aider à bâtir", Unite.class.getDeclaredMethod("aiderBatir"));
             actions.put("Héberger", Batiment.class.getDeclaredMethod("preHebergerUnite"));
             actions.put("Soigner", Unite.class.getDeclaredMethod("reparer"));
             actions.put("Tuer", Unite.class.getDeclaredMethod("detruire"));
@@ -61,6 +62,7 @@ public class UCT_Ouvrier extends UniteCivileTerrestre
         return actions;
     }
     
+    @Override
     public Map<String, Constructor> getConstructions()
     {
         return constructions;
@@ -101,18 +103,22 @@ public class UCT_Ouvrier extends UniteCivileTerrestre
      return (rules.contains(c.type()));
     }
     
-    public void preConstruction(String s, Constructor c)
+    public void preConstruction(String s, Constructor c, Unite u)
     {
-        this.aConstruire=c;
-        this.typeAConstruire=s;
-        Play.state="Construction";
-        Play.placeableTiles=getBuildableTiles();
+        this.aConstruire = c;
+        this.typeAConstruire = s;
+        Play.state = "Construction";
+        Play.placeableTiles = getBuildableTiles();
     }
     
     public void construire(Case c)
     {
         try {
-            this.aConstruire.newInstance(this.joueur,c);
+            Batiment batimentEnConstruction = (Batiment) this.aConstruire.newInstance(this.joueur, c);
+            batimentEnConstruction.ouvriersQuiConstruisent.add(this);
+            this.batimentParent = batimentEnConstruction;
+            this.caseParent = null;
+            //System.out.println("BATIMENT EN CONSTRUCTION DETAILS : \n"+batimentEnConstruction);
         } catch (InstantiationException|InvocationTargetException|IllegalArgumentException|IllegalAccessException ex) {
             Logger.getLogger(UCT_Ouvrier.class.getName()).log(Level.SEVERE, null, ex);
         } 

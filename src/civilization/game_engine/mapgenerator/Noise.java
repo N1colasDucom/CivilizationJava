@@ -1,33 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package civilization.game_engine.mapgenerator;
 
 import civilization.Plateau;
 
-/**
- *
- * @author Nicolas
- */
-public class Noise {
-
-
-    
-    public static float[][] Perl(){
-            Perlin noise = new Perlin();
+public class Noise 
+{
+    public static float[][] Perl()
+    {
+        Perlin noise = new Perlin();
         float[][] seed =  Perlin.GenerateWhiteNoise(100, 100);
-        System.out.println("WHIIIIITE~~~~~~~~~~~~~~~~~~~~~~~");
-    
-     float[][] seedE = noise.GenerateSmoothNoise( seed,2);
-        System.out.println("SMOOOOOTH~~~~~~~~~~~~~~~~~~~~~~~~~");
-
-     
-     float[][] perlinNoise = noise.GeneratePerlinNoise(seedE,6);
-        System.out.println("PERLIIIIN~~~~~~~~~~~~~~~~~~~~~~~");
-     return perlinNoise;
+        float[][] seedE = noise.GenerateSmoothNoise(seed, 2);
+        float[][] perlinNoise = noise.GeneratePerlinNoise(seedE, 6);
+        
+        return perlinNoise;
     }
     
     

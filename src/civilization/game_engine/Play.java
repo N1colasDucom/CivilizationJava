@@ -98,7 +98,7 @@ public class Play extends BasicGameState implements MusicListener{
     {
         this.actionButtons.clear();
         if(Game.plateau.getCase(realMouseX, realMouseY).occupant!=null) { 
-            if(myEntity() && unitAvailable()) {
+            if(myEntity() && unitAvailable() && !buildingInProgress()) {
                 this.actionButtons=Game.plateau.getCase(realMouseX, realMouseY).getOccupantMenu();
             }
             
@@ -137,6 +137,20 @@ public class Play extends BasicGameState implements MusicListener{
             case "Unite":
                 return !((Unite)Game.plateau.getCase(realMouseX, realMouseY).occupant).actionDuTourRealisee;
         }
+        
+        return false;
+    }
+    
+    public boolean buildingInProgress()
+    {
+        String classTemp= Game.plateau.getCase(realMouseX, realMouseY).getOccupantType();
+        switch (classTemp) {
+            case "Batiment":
+                return ((Batiment)Game.plateau.getCase(realMouseX, realMouseY).occupant).statut.equals("En construction");
+            case "Unite":
+                return false;
+        }
+        
         return false;
     }
     

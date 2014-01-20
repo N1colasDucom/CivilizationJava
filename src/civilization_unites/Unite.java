@@ -239,10 +239,10 @@ public abstract class Unite
      */
     public void setMovableTiles()
     {
-        int xStart,yStart,xFinish,yFinish;
-        int x=this.positionX()+1;
-        int y=this.positionY()+1;
-        int l=this.distanceDeMvt;
+        int xStart, yStart, xFinish, yFinish;
+        int x = this.positionX() + 1;
+        int y = this.positionY() + 1;
+        int l = this.distanceDeMvt;
         List<String> movableTypes= movableTypes();
         List<int[]> movableTiles = new ArrayList<>();
         int[] tiles=null;
@@ -265,6 +265,41 @@ public abstract class Unite
         movableTiles=paths.pathfind();
         Play.movableTiles=movableTiles;
         Play.state="Deplacement";
+    }
+    
+    public void setMovableTilesForHelpBuilding()
+    {
+        int xStart, yStart, xFinish, yFinish;
+        int x = this.positionX() + 1;
+        int y = this.positionY() + 1;
+        int l = this.distanceDeMvt;
+        List<String> movableTypes = movableTypes();
+        List<int[]> movableTiles = new ArrayList<>();
+        int[] tiles = null;
+        xStart = (x-l>0) ? (x-l) : 1;
+        yStart = (y-l>0) ? (y-l) : 1;
+        xFinish = (x+l<Play.tMap.getWidth())?(x+l):100;
+        yFinish = (y+l<Play.tMap.getHeight())?(y+l):100;
+        for (int i = xStart; i <= xFinish; i++){
+            for(int j=yStart;j<=yFinish;j++){
+                if((Math.abs(x-i)+Math.abs(y-j))<=l&&(movableTypes.contains(Game.plateau.cases.get(j-1).get(i-1).type())) && (Game.plateau.cases.get(j-1).get(i-1).occupant instanceof Batiment)){
+                    tiles = new int[2];
+                    tiles[0] = i;
+                    tiles[1] = j;
+                    movableTiles.add(tiles);
+                    tiles = null;
+                }
+            }
+        }
+        AStar paths= new AStar(Play.tMap.getHeight(), Play.tMap.getWidth(), x, y, l, Game.plateau, movableTypes, movableTiles);
+        movableTiles=paths.pathfind();
+        Play.movableTiles=movableTiles;
+        Play.state="Deplacement";
+    }
+    
+    public void aiderBatir()
+    {
+        System.out.println("ICI LA FONCTION QUI PERMET A UN OUVRIER DAIDER A CONSTUIRE UN AUTRE BATIMENT");
     }
 
     public Case findExitTile() throws PasDePlaceException
@@ -312,7 +347,7 @@ public abstract class Unite
             if (this.getConstructions() != null) {
                 for (Map.Entry<String, Constructor> c : this.getConstructions().entrySet()) {
                     try {
-                        list.add(new GameButton(810, y, new Image("Graphics/Images/BoutonSmall.png"), c.getKey(), UCT_Ouvrier.class.getDeclaredMethod("preConstruction",String.class,Constructor.class), c.getValue(), new Image("Graphics/Units/Batiments/"+c.getValue().getName().substring(c.getValue().getName().lastIndexOf(".")+1)+"/sprite.png"),this));
+                        list.add(new GameButton(810, y, new Image("Graphics/Images/BoutonSmall.png"), c.getKey(), UCT_Ouvrier.class.getDeclaredMethod("preConstruction", new Class[]{String.class, Constructor.class, Unite.class}), c.getValue(), new Image("Graphics/Units/Batiments/"+c.getValue().getName().substring(c.getValue().getName().lastIndexOf(".")+1)+"/sprite.png"),this));
                     } catch (NoSuchMethodException | SecurityException ex) {
                         Logger.getLogger(Unite.class.getName()).log(Level.SEVERE, null, ex);
                     }
