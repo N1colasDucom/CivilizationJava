@@ -15,7 +15,6 @@ public class UMT_Soldat extends UniteMilitaireTerrestre
     public UMT_Soldat(Joueur _joueur, Case caseParent, Batiment batimentParent)
     {
         super(_joueur, "Soldat", 4, 0, 3, 4, 4, 6, 3, 1, 1, 6, caseParent, batimentParent, 15);
-        batimentParent.actionDuTourRealisee = true;
     }
     
     public static final Map<String, Method> actions = new LinkedHashMap<>();

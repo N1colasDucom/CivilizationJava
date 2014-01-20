@@ -14,7 +14,6 @@ public class UMM_Sousmarin extends UniteMilitaireMaritime
     public UMM_Sousmarin(Joueur _joueur, Case caseParent, Batiment batimentParent)
     {
         super(_joueur, "Sous-marin", 10, 0, 12, 0, 15, 20, 14, 8, 2, 8, caseParent, batimentParent, 30);
-        batimentParent.actionDuTourRealisee = true;
     }
     
     public static final Map<String, Method> actions = new LinkedHashMap<>();

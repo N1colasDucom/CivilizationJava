@@ -15,7 +15,6 @@ public class UCA_AviondeLigne extends UniteCivileAerien
     public UCA_AviondeLigne(Joueur _joueur, Case caseParent, Batiment batimentParent)
     {
         super(_joueur, "Avion de ligne", 5, 0, 6, 0, 10, 6, 7, caseParent, batimentParent, 15);
-        batimentParent.actionDuTourRealisee = true;
     }
   
     public static final Map<String, Method> actions = new LinkedHashMap<>();

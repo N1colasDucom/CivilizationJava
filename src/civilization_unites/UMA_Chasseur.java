@@ -15,7 +15,6 @@ public class UMA_Chasseur extends UniteMilitaireAerien
     public UMA_Chasseur(Joueur _joueur, Case caseParent, Batiment batimentParent)
     {
         super(_joueur, "Chasseur", 8, 0, 9, 0, 11, 10, 9, 12, 1, 10, caseParent, batimentParent, 25);
-        batimentParent.actionDuTourRealisee = true;
     }
     
     public static final Map<String, Method> actions = new LinkedHashMap<>();
