@@ -15,6 +15,7 @@ public class UMM_PorteAvions extends UniteMilitaireMaritime
     public UMM_PorteAvions(Joueur _joueur, Case caseParent, Batiment batimentParent)
     {
         super(_joueur, "Porte-avions", 9, 0, 12, 0, 14, 18, 12, 6, 1, 5, caseParent, batimentParent, 25);
+        batimentParent.actionDuTourRealisee = true;
     }
     
     public static final Map<String, Method> actions = new LinkedHashMap<>();

@@ -24,6 +24,7 @@ public class UCT_Ouvrier extends UniteCivileTerrestre
     public UCT_Ouvrier(Joueur _joueur, Case caseParent, Batiment batimentParent)
     {
         super(_joueur, "Ouvrier", 1, 0, 0, 2, 2, 2, 5, caseParent, batimentParent, 5);
+        batimentParent.actionDuTourRealisee = true;
     }
     
     public static final Map<String, Constructor> constructions = new LinkedHashMap<>(); 
